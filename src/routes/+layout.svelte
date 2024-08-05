@@ -9,6 +9,7 @@
 
 	import ContentWidth from '$lib/components/ContentWidth/ContentWidth.svelte';
   import { onMount } from 'svelte';
+  import DefaultButton from '$lib/components/Buttons/DefaultButton.svelte';
 
     const NAV_LINKS=[
         {
@@ -100,10 +101,10 @@
 	<slot />
 
 <footer>
-    <div class="w-screen h-[80vh] bg-paper-red flex flex-col items-center justify-center">
-        <ContentWidth class="flex flex-row items-start justify-between">
+    <div class="w-screen py-12 md:h-[80vh] bg-paper-red flex flex-col items-center justify-center">
+        <ContentWidth class="flex flex-col md:flex-row items-start justify-between">
             <h3 class="text-white w-4/5">Isn't it time to arm your brand with a clear story and compelling design?</h3>
-            
+            <DefaultButton class="mt-6" text="MEET WITH US" filled={false} click={()=>window.location.href="/contact"}/>
         </ContentWidth>
     </div>
     <ContentWidth class="py-10 flex flex-row justify-between">
