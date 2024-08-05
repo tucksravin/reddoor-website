@@ -12,7 +12,7 @@ body{
     scrollbar-width: none !important;
     overflow-y: auto;
     color: #6D6E71;
-    background-color: #fff;
+    background-color: #F1F2F2;
 }
 
 body::-webkit-scrollbar { 
@@ -22,8 +22,22 @@ body::-webkit-scrollbar {
     width: 0 !important;  /* Remove scrollbar space */  /* Optional: just make scrollbar invisible */
 }
 
+.bg-paper{
+    background-image: url('/waterColorBg.jpg');
+    background-size: 100vw;
+    background-position: center;
+}
+
+.bg-paper-red{
+    background-image: url('/waterColorBgRed.jpg');
+    background-size: 100vw;
+    background-position: center;
+
+
+}
+
 .bump{
-    transition: transform 300ms ease-out;
+    transition: transform 150ms ease-out, color 300ms ease-out, background-color 300ms ease-out;
 }
 
 .bump:active{
@@ -99,8 +113,20 @@ p{
     line-height: 35px; 
 }
 
+.nav-link{
+    font-size: 16px;
+    font-weight: 300;
+}
+
 button{
     cursor: pointer;
+}
+
+.footer-text{
+font-size: 14px;
+color: #6c6d70;
+line-height: 25px;
+font-weight: 200;
 }
 
 

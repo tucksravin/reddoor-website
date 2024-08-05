@@ -2,42 +2,38 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
+
 	import "../app.css";
 
 	import { fly, fade } from "svelte/transition"
 
 	import ContentWidth from '$lib/components/ContentWidth/ContentWidth.svelte';
+  import { onMount } from 'svelte';
 
     const NAV_LINKS=[
         {
-            label:"ABOUT",
-            href:"/"
+            label:"Portfolio",
+            href:"/portfolio"
         },
         {
-            label:"PORTFOLIO",
-            href:"/"
+            label:"About",
+            href:"/about"
         },
         {
-            label:"RESOURCES",
-            href:"/"
-        },
-        {
-            label:"BLOG",
-            href:"/"
-        },
-        {
-            label:"CONTACT",
-            href:"/"
+            label:"Meet With Us",
+            href:"/contact"
         },
 
     ];
 
-
+    let showNav = false;
 
     let isOverlayVisible = false;
 
     const toggleOverlayOn = () => isOverlayVisible = true;
     const toggleOverlayOff = () => isOverlayVisible = false;
+
+    onMount(()=>showNav=true);
 </script>
 
 <svelte:head>
@@ -71,18 +67,22 @@
 {/if}
 <main>
 	<!-- nav #2 -->
-
-<div class="h-16 w-screen">
+{#if showNav}
+<div class="h-16 w-screen top-0 fixed bg-white bg-opacity-80" transition:fly={{y:-64, delay:500}}>
     <ContentWidth class="flex flex-row justify-between items-center h-full">
-        <a href="/" class="hover:opacity-80 transition-all duration-500 bump">
-            Reddoor LA
+        <a href="/" class="hover:opacity-80 transition-all duration-500 bump nav-link">
+            Reddoor Creative
         </a>
         
         
         <div class="flex flex-row">
             <div class="hidden lg:flex flex-row justify-between items-center gap-10">
-                {#each NAV_LINKS as item}
-                    <a href={item.href}>{item.label}</a>
+                {#each NAV_LINKS as item, i}
+                    {#if i<NAV_LINKS.length-1}
+                    <a class="nav-link" href={item.href}>{item.label}</a>
+                    {:else}
+                    <a class="text-primary nav-link" href={item.href}>{item.label}</a>
+                    {/if}
                 {/each}
             </div>
        
@@ -96,10 +96,74 @@
 
     </ContentWidth>
 </div>
-
-
-
-
+{/if}
 	<slot />
+
+<footer>
+    <div class="w-screen h-[80vh] bg-paper-red flex flex-col items-center justify-center">
+        <ContentWidth class="flex flex-row items-start justify-between">
+            <h3 class="text-white w-4/5">Isn't it time to arm your brand with a clear story and compelling design?</h3>
+            
+        </ContentWidth>
+    </div>
+    <ContentWidth class="py-10 flex flex-row justify-between">
+        <div class="flex flex-col gap-8 justify-between items-start">
+            <div class="flex flex-row gap-3">
+                <a href="https://www.linkedin.com/company/reddoor-creative" class=" p-2 flex items-center justify-center border-[1px] border-mid rounded-full h-8 w-8 hover:bg-dark text-mid hover:text-light bump">
+                    <i class="fa-brands fa-linkedin-in"/>
+                </a>
+                <a href="https://www.instagram.com/reddoorla/" class=" p-2 flex items-center justify-center border-[1px] border-mid hover:bg-dark text-mid hover:text-light rounded-full h-8 w-8 bump">
+                    <i class="fa-brands fa-instagram d"/>
+                </a>
+            </div>
+            <div class="flex md:hidden flex-col tracking-wide footer-text gap-8">
+                <div class="flex flex-col">
+                    <div>CONTACT</div>
+                    <a href="tel:3103413571" class="text-primary underline">+1 310-341-3571</a>
+                    <a href="mailto:info@reddoorla.com" class="text-primary underline">info@reddoorla.com</a>
+                </div>
+                <div class="flex flex-col">
+                    <div>HQ MAILING ADDRESS</div>
+                    <div>29027 Dapper Dan Dr.</div>
+                    <div>Fair Oaks Ranch, TX 78015</div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <a href="/" class="text-primary underline">Home</a>
+                    <div>/</div>
+                    <a href="/" class="text-primary underline">Portfolio</a>
+                    <div>/</div>
+                    <a href="/" class="text-primary underline">About</a>
+                    <div>/</div>
+                    <a href="/" class="text-primary underline">Meet with Us</a>
+                </div>
+            </div>
+            <div class="footer-text">
+                {"© Reddoor Creative 2006-"+ new Date().getFullYear() + ", All Rights Reserved"}
+            </div>
+        </div>
+        <div class="hidden md:flex flex-col tracking-wide footer-text gap-16">
+            <div class="flex flex-col">
+                <div>CONTACT</div>
+                <a href="tel:3103413571" class="text-primary underline">+1 310-341-3571</a>
+                <a href="mailto:info@reddoorla.com" class="text-primary underline">info@reddoorla.com</a>
+            </div>
+            <div class="flex flex-col">
+                <div>HQ MAILING ADDRESS</div>
+                <div>29027 Dapper Dan Dr.</div>
+                <div>Fair Oaks Ranch, TX 78015</div>
+            </div>
+            <div class="flex flex-row gap-1">
+                <a href="/" class="text-primary underline">Home</a>
+                <div>/</div>
+                <a href="/" class="text-primary underline">Portfolio</a>
+                <div>/</div>
+                <a href="/" class="text-primary underline">About</a>
+                <div>/</div>
+                <a href="/" class="text-primary underline">Meet with Us</a>
+            </div>
+        </div>
+    </ContentWidth>
+
+</footer>
 </main>
 <PrismicPreview {repositoryName} />
