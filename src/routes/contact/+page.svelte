@@ -3,6 +3,9 @@
   import ContactForm from "$lib/components/FullWidth/ContactForm.svelte";
 
 </script>
+<svelte:head>
+    <title>Contact | Reddoor Creative</title>
+</svelte:head>
 
 <div class="w-screen h-[50vh] max-h-96 relative bg-paper">
     <ContentWidth class="h-full flex justify-start items-center">

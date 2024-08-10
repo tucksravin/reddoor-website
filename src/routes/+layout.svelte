@@ -66,9 +66,10 @@
 </svelte:head>
 
 {#if isOverlayVisible}
-<div class="w-screen h-screen fixed bg-dark flex flex-col items-center justify-center gap-12 z-30" transition:fly={{y:"-100%"}}>
+<div class="w-screen h-screen fixed bg-primary flex flex-col items-center justify-center gap-12 z-30" transition:fly={{y:"-100%"}}>
+    <a href="/" class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>Home</a>
     {#each NAV_LINKS as item}
-        <a href={item.href} class="text-white text-2xl">{item.label}</a>
+        <a href={item.href} class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>{item.label}</a>
     {/each}
 
     <button class="absolute top-5 right-5 opacity-60 hover:opacity-100 transition z-40" on:click={toggleOverlayOff}>
@@ -93,9 +94,9 @@
             <div class="hidden lg:flex flex-row justify-between items-center gap-10">
                 {#each NAV_LINKS as item, i}
                     {#if i<NAV_LINKS.length-1}
-                    <a class="label" href={item.href}>{item.label}</a>
+                    <a class="label" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
                     {:else}
-                    <a class="text-primary label" href={item.href}>{item.label}</a>
+                    <a class="text-primary label" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
                     {/if}
                 {/each}
             </div>
