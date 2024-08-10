@@ -38,10 +38,8 @@
     let scrollY:number;
 
     const handleScroll = () =>{
-        if(scrollY>200){
+        if(scrollY>300){
             showNav=true;
-        }else{
-            showNav=false;
         }
     }
 
