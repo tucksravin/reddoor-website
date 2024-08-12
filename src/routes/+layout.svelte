@@ -41,6 +41,7 @@
         if(scrollY>300){
             showNav=true;
         }
+        
     }
 
     onMount(()=>{

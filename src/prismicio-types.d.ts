@@ -76,7 +76,12 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type ProjectDocumentDataSlicesSlice = never;
+type ProjectDocumentDataSlicesSlice =
+  | SlideshowSlice
+  | ValueBlockSlice
+  | ScreenWidthImageSlice
+  | ContentWidthImageSlice
+  | RichTextSlice;
 
 /**
  * Content for project documents
@@ -92,6 +97,100 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * hero field in *project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.hero
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero: prismic.ImageField<never>;
+
+  /**
+   * tagline field in *project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.tagline
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tagline: prismic.KeyTextField;
+
+  /**
+   * branding field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.branding
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  branding: prismic.BooleanField;
+
+  /**
+   * product field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.product
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  product: prismic.BooleanField;
+
+  /**
+   * print field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.print
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  print: prismic.BooleanField;
+
+  /**
+   * environmental field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.environmental
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  environmental: prismic.BooleanField;
+
+  /**
+   * digital field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.digital
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  digital: prismic.BooleanField;
+
+  /**
+   * web field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.web
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  web: prismic.BooleanField;
 
   /**
    * Slice Zone field in *project*
@@ -155,6 +254,134 @@ export type ProjectDocument<Lang extends string = string> =
 export type AllDocumentTypes = PageDocument | ProjectDocument;
 
 /**
+ * Item in *ContentWidthMedia → Default → Primary → images*
+ */
+export interface ContentWidthImageSliceDefaultPrimaryImagesItem {
+  /**
+   * image field in *ContentWidthMedia → Default → Primary → images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_width_image.default.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * vimeoEmbed field in *ContentWidthMedia → Default → Primary → images*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_width_image.default.primary.images[].vimeoembed
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  vimeoembed: prismic.EmbedField;
+}
+
+/**
+ * Primary content in *ContentWidthMedia → Default → Primary*
+ */
+export interface ContentWidthImageSliceDefaultPrimary {
+  /**
+   * label field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_width_image.default.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * body field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_width_image.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * width field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: content_width_image.default.primary.isFullContentWidth
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isFullContentWidth: prismic.BooleanField;
+
+  /**
+   * background field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: content_width_image.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<
+    "white" | "gray" | "red" | "paper" | "paper-red",
+    "filled"
+  >;
+
+  /**
+   * desktopColumns field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 1
+   * - **API ID Path**: content_width_image.default.primary.desktopcolumns
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  desktopcolumns: prismic.SelectField<"1" | "2" | "3", "filled">;
+
+  /**
+   * images field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_width_image.default.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<
+    Simplify<ContentWidthImageSliceDefaultPrimaryImagesItem>
+  >;
+}
+
+/**
+ * Default variation for ContentWidthMedia Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentWidthImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContentWidthImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContentWidthMedia*
+ */
+type ContentWidthImageSliceVariation = ContentWidthImageSliceDefault;
+
+/**
+ * ContentWidthMedia Shared Slice
+ *
+ * - **API ID**: `content_width_image`
+ * - **Description**: ContentWidthImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentWidthImageSlice = prismic.SharedSlice<
+  "content_width_image",
+  ContentWidthImageSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -167,6 +394,52 @@ export interface RichTextSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
+
+  /**
+   * textColor field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: dark
+   * - **API ID Path**: rich_text.default.primary.textColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  textColor: prismic.SelectField<"dark" | "white" | "red", "filled">;
+
+  /**
+   * backgroundColor field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: rich_text.default.primary.backgroundcolor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundcolor: prismic.SelectField<
+    "white" | "gray" | "red" | "paper" | "paper-red",
+    "filled"
+  >;
+
+  /**
+   * width field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: full
+   * - **API ID Path**: rich_text.default.primary.width
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  width: prismic.SelectField<"full" | "4/5" | "3/5", "filled">;
+
+  /**
+   * float field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.default.primary.float
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  float: prismic.SelectField<"center" | "left" | "right">;
 }
 
 /**
@@ -199,6 +472,231 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Primary content in *ScreenWidthMedia → Default → Primary*
+ */
+export interface ScreenWidthImageSliceDefaultPrimary {
+  /**
+   * image field in *ScreenWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: screen_width_image.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ScreenWidthMedia Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScreenWidthImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ScreenWidthImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ScreenWidthMedia*
+ */
+type ScreenWidthImageSliceVariation = ScreenWidthImageSliceDefault;
+
+/**
+ * ScreenWidthMedia Shared Slice
+ *
+ * - **API ID**: `screen_width_image`
+ * - **Description**: ScreenWidthImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScreenWidthImageSlice = prismic.SharedSlice<
+  "screen_width_image",
+  ScreenWidthImageSliceVariation
+>;
+
+/**
+ * Item in *Slideshow → Default → Primary → images*
+ */
+export interface SlideshowSliceDefaultPrimaryImagesItem {
+  /**
+   * image field in *Slideshow → Default → Primary → images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slideshow.default.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Slideshow → Default → Primary*
+ */
+export interface SlideshowSliceDefaultPrimary {
+  /**
+   * label field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slideshow.default.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * body field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slideshow.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * images field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slideshow.default.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<SlideshowSliceDefaultPrimaryImagesItem>>;
+
+  /**
+   * backgroundColor field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: slideshow.default.primary.backgroundcolor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundcolor: prismic.SelectField<
+    "white" | "gray" | "red" | "paper" | "paper-red",
+    "filled"
+  >;
+
+  /**
+   * width field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: slideshow.default.primary.isFullContentWidth
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isFullContentWidth: prismic.BooleanField;
+}
+
+/**
+ * Default variation for Slideshow Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SlideshowSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SlideshowSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Slideshow*
+ */
+type SlideshowSliceVariation = SlideshowSliceDefault;
+
+/**
+ * Slideshow Shared Slice
+ *
+ * - **API ID**: `slideshow`
+ * - **Description**: Slideshow
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SlideshowSlice = prismic.SharedSlice<
+  "slideshow",
+  SlideshowSliceVariation
+>;
+
+/**
+ * Primary content in *ValueBlock → Default → Primary*
+ */
+export interface ValueBlockSliceDefaultPrimary {
+  /**
+   * eyebrow field in *ValueBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: value_block.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eyebrow: prismic.KeyTextField;
+
+  /**
+   * title field in *ValueBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: value_block.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * body field in *ValueBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: value_block.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * drawn Image field in *ValueBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: value_block.default.primary.drawn_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  drawn_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ValueBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ValueBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ValueBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ValueBlock*
+ */
+type ValueBlockSliceVariation = ValueBlockSliceDefault;
+
+/**
+ * ValueBlock Shared Slice
+ *
+ * - **API ID**: `value_block`
+ * - **Description**: ValueBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ValueBlockSlice = prismic.SharedSlice<
+  "value_block",
+  ValueBlockSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -216,10 +714,28 @@ declare module "@prismicio/client" {
       ProjectDocumentData,
       ProjectDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ContentWidthImageSlice,
+      ContentWidthImageSliceDefaultPrimaryImagesItem,
+      ContentWidthImageSliceDefaultPrimary,
+      ContentWidthImageSliceVariation,
+      ContentWidthImageSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ScreenWidthImageSlice,
+      ScreenWidthImageSliceDefaultPrimary,
+      ScreenWidthImageSliceVariation,
+      ScreenWidthImageSliceDefault,
+      SlideshowSlice,
+      SlideshowSliceDefaultPrimaryImagesItem,
+      SlideshowSliceDefaultPrimary,
+      SlideshowSliceVariation,
+      SlideshowSliceDefault,
+      ValueBlockSlice,
+      ValueBlockSliceDefaultPrimary,
+      ValueBlockSliceVariation,
+      ValueBlockSliceDefault,
     };
   }
 }

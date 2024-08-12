@@ -1,0 +1,50 @@
+{
+  "id": "value_block",
+  "type": "SharedSlice",
+  "name": "ValueBlock",
+  "description": "ValueBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "eyebrow",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading5"
+          }
+        },
+        "drawn_image": {
+          "type": "Image",
+          "config": {
+            "label": "drawn Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

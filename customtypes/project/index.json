@@ -19,11 +19,96 @@
           "placeholder": ""
         }
       },
+      "hero": {
+        "type": "Image",
+        "config": {
+          "label": "hero",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "tagline": {
+        "type": "Text",
+        "config": {
+          "label": "tagline",
+          "placeholder": ""
+        }
+      },
+      "branding": {
+        "type": "Boolean",
+        "config": {
+          "label": "branding",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
+      "product": {
+        "type": "Boolean",
+        "config": {
+          "label": "product",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
+      "print": {
+        "type": "Boolean",
+        "config": {
+          "label": "print",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
+      "environmental": {
+        "type": "Boolean",
+        "config": {
+          "label": "environmental",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
+      "digital": {
+        "type": "Boolean",
+        "config": {
+          "label": "digital",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
+      "web": {
+        "type": "Boolean",
+        "config": {
+          "label": "web",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "slideshow": {
+              "type": "SharedSlice"
+            },
+            "value_block": {
+              "type": "SharedSlice"
+            },
+            "screen_width_image": {
+              "type": "SharedSlice"
+            },
+            "content_width_image": {
+              "type": "SharedSlice"
+            },
+            "rich_text": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
