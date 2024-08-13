@@ -22,7 +22,7 @@
        
 
     </div>
-    <PrismicImage field={slice.primary.drawn_image} class="w-3/5 md:w-1/5 absolute right-0 top-1/2 -translate-y-1/2" />
+    <PrismicImage field={slice.primary.drawn_image} class="w-3/5 md:w-1/5 absolute right-0 top-1/2 -translate-y-1/2 mix-blend-multiply" />
   </div>
 </ContentWidth>
   
