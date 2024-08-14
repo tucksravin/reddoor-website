@@ -86,7 +86,7 @@
 
     <div class="h-12 w-screen top-0 absolute z-20 bg-transparent mix-blend-difference" transition:fly={{y:-64, delay:500}}>
         <ContentWidth class="flex flex-row justify-between items-center h-full">
-            <a href="/" class="hover:opacity-80 transition-all duration-500 bump label">
+            <a href="/" class="hover:opacity-80 transition-all duration-500 bump label text-white">
                 Reddoor Creative
             </a>
             
@@ -95,9 +95,9 @@
                 <div class="hidden lg:flex flex-row justify-between items-center gap-10">
                     {#each NAV_LINKS as item, i}
                         {#if i<NAV_LINKS.length-1}
-                        <a class="label hover:opacity-80 transition-opacity" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
+                        <a class="label hover:opacity-80 transition-opacity text-white" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
                         {:else}
-                        <a class="label hover:opacity-80 transition-opacity" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
+                        <a class="label hover:opacity-80 transition-opacity text-white" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
                         {/if}
                     {/each}
                 </div>
