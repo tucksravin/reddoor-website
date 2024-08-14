@@ -20,7 +20,8 @@ export async function load({ params, fetch, cookies }) {
 
 	return {
 		page,
-		title: page.data.title,
+		title: page.data.title+" | Reddoor Creative",
+		heroHeading: page.data.title,
 		meta_description: page.data.meta_description,
 		meta_title: page.data.meta_title,
 		meta_image: page.data.meta_image.url,

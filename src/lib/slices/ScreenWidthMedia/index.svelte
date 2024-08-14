@@ -8,4 +8,4 @@
 </script>
 <svelte:window bind:innerHeight={viewportHeight} bind:innerWidth={viewportWidth} />
 
-<PrismicImage field={slice.primary.image} class="object-cover aspect-video {viewportHeight * 16 > viewportWidth * 9 ? 'h-screen min-w-full' : 'w-screen min-h-full'}"/>
+<PrismicImage field={slice.primary.image} class="object-cover w-screen"/>

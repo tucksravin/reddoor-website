@@ -88,6 +88,15 @@
           "placeholder_false": "false"
         }
       },
+      "social": {
+        "type": "Boolean",
+        "config": {
+          "label": "social",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

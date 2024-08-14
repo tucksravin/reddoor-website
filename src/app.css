@@ -79,14 +79,14 @@ h4{
     font-size: 50px;
     font-style: normal;
     font-weight: 100;
-    line-height: 70px; 
+    line-height: 66px; 
 }
 
 h5{
    font-size: 36px;
    font-style: normal;
    font-weight: 200; 
-   line-height: 50px;
+   line-height: 44px;
 }
 
 h6{
@@ -245,4 +245,19 @@ input[type='textarea']::placeholder{
     font-style: normal;
     font-weight: 700 !important;
     /* 142.857% */
+}
+
+.rich-text a{
+    
+    color: #D71920;
+    transition: color 400ms;
+}
+
+.rich-text p,h1,h2,h3,h4,h5,h6{
+    padding-bottom: 36px;
+}
+
+.rich-text a:hover{
+    
+    color: #aa1419;
 }

@@ -193,6 +193,18 @@ interface ProjectDocumentData {
   web: prismic.BooleanField;
 
   /**
+   * social field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.social
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  social: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *project*
    *
    * - **Field Type**: Slice Zone
@@ -258,6 +270,16 @@ export type AllDocumentTypes = PageDocument | ProjectDocument;
  */
 export interface ContentWidthImageSliceDefaultPrimaryImagesItem {
   /**
+   * label field in *ContentWidthMedia → Default → Primary → images*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_width_image.default.primary.images[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
    * image field in *ContentWidthMedia → Default → Primary → images*
    *
    * - **Field Type**: Image
@@ -307,7 +329,7 @@ export interface ContentWidthImageSliceDefaultPrimary {
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
-   * - **Default Value**: true
+   * - **Default Value**: false
    * - **API ID Path**: content_width_image.default.primary.isFullContentWidth
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
@@ -337,6 +359,17 @@ export interface ContentWidthImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   desktopcolumns: prismic.SelectField<"1" | "2" | "3", "filled">;
+
+  /**
+   * padding field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: content_width_image.default.primary.hasPadding
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasPadding: prismic.BooleanField;
 
   /**
    * images field in *ContentWidthMedia → Default → Primary*
@@ -440,6 +473,17 @@ export interface RichTextSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   float: prismic.SelectField<"center" | "left" | "right">;
+
+  /**
+   * padding field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: rich_text.default.primary.hasPadding
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasPadding: prismic.BooleanField;
 }
 
 /**

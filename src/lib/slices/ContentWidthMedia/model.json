@@ -34,7 +34,7 @@
             "label": "width",
             "placeholder_false": "80% content width, floats right",
             "placeholder_true": "full content width",
-            "default_value": true
+            "default_value": false
           }
         },
         "background": {
@@ -65,12 +65,28 @@
             "default_value": "1"
           }
         },
+        "hasPadding": {
+          "type": "Boolean",
+          "config": {
+            "label": "padding",
+            "placeholder_false": "no padding",
+            "placeholder_true": "vertical padding",
+            "default_value": true
+          }
+        },
         "images": {
           "type": "Group",
           "config": {
             "label": "images",
             "repeat": true,
             "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "label",
+                  "placeholder": ""
+                }
+              },
               "image": {
                 "type": "Image",
                 "config": {

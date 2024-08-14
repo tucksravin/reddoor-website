@@ -10,23 +10,27 @@
 	const float = slice.primary.float;
 	const width = slice.primary.width;
 
-	
+
 </script>
 
-<section class="w-full py-12 text-{slice.primary.textColor} {backgroundColorString}">
-	<ContentWidth class="
-		{width==="4/5"&&float==="center"? "md:px-[10%]":""}
-		{width==="3/5"&&float==="center"? "md:px-[20%]":""}
-		{width==="4/5"&&float==="left"? "md:pr-[20%]":""}
-		{width==="4/5"&&float==="right"? "md:pl-[20%]":""}
-		{width==="3/5"&&float==="left"? "md:pr-[40%]":""}
-		{width==="3/5"&&float==="right"? "md:pl-[40%]":""}
+
+<section class="w-full {slice.primary.hasPadding? "py-12" : ""} text-{slice.primary.textColor} {backgroundColorString}">
+	<ContentWidth class="flex flex-col 
+		{float==="right"?"items-end":""}
+		{float==="center"?"items-center":""}
+		{float==="left"?"items-start":""}
+	">
+	<div class="
+		{width==="4/5"? "w-full md:w-4/5":""}
+		{width==="3/5"? "w-full md:w-3/5":""}
+		pr-6
+		rich-text
 	">
 		
 			<PrismicRichText
 			field={slice.primary.content}
 		/>
-		
+	</div>
 		
 	</ContentWidth>
 </section>

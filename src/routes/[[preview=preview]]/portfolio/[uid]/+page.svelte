@@ -3,70 +3,56 @@
 
 	import { components } from '$lib/slices';
     import ContentWidth from '$lib/components/ContentWidth/ContentWidth.svelte';
+  import { onMount } from 'svelte';
 
 	export let data;
 
-    const pageData = data.page.data;
-let servicesArray = [];
-servicesArray.push(pageData.branding);
-servicesArray.push(pageData.product);
-servicesArray.push(pageData.print);
-servicesArray.push(pageData.environmental);
-servicesArray.push(pageData.digital);
-servicesArray.push(pageData.web);
-console.log(servicesArray);
+    $: pageData = data.page.data;
 
-let services = "";
-for (let i = 0; i < servicesArray.length; i++) {
-  console.log(i);
-  if (servicesArray[i] && services) {
-    services += ", ";
-  }
-  switch (i) {
-    case 0:
-      if (servicesArray[i]) services += "Branding";
-      break;
-    case 1:
-      if (servicesArray[i]) services += "Product";
-      break;
-    case 2:
-      if (servicesArray[i]) services += "Print";
-      break;
-    case 3:
-      if (servicesArray[i]) services += "Environmental";
-      break;
-    case 4:
-      if (servicesArray[i]) services += "Digital";
-      break;
-    case 5:
-      if (servicesArray[i]) services += "Web";
-      break;
-  }
-}
 
-console.log(services);
+    $: servicesArray = [
+  pageData.branding,
+  pageData.product,
+  pageData.print,
+  pageData.environmental,
+  pageData.digital,
+  pageData.web,
+  pageData.social
+];
+
+
+$: services = servicesArray.reduce((acc, service, index) => {
+  if (service) {
+    if (acc) acc += ", ";
+    acc += ["Brand", "Product", "Print", "Environmental", "Digital", "Web","Social"][index];
+  }
+  return acc;
+}, "");
+
         
 </script>
+
+
 
 <div class="w-screen h-[80vh] relative">
     <PrismicImage field={data.page.data.hero} class="w-full h-full absolute object-cover"/>
     <div class="w-full h-full absolute " style="background: linear-gradient(rgba(0, 0, 0, 0.42) 0%, rgba(215, 25, 32, 0.86) 100%); z-index: 0;"></div>
-    <ContentWidth class="h-full flex flex-col justify-between items-center">
+    <ContentWidth class="h-full flex flex-col justify-between items-start">
         <div />
-        <h4 class="text-white md:w-3/5 max-w-[800px] z-10">{pageData.tagline}</h4>
-        <div class="md:w-3/5 text-white z-10 mb-12">
+        <h5 class="text-white md:w-4/5 md:pr-[30%] mx-auto z-10">{data.page.data.tagline}</h5>
+        <div class=" text-white w-full z-10 mb-12 md:w-4/5 mx-auto">
             <div class="w-full border-b-1 border-b-white flex justify-between pb-4">
-                <div>{services}</div>
+                <div class="font-extralight">{services}</div>
                 <div class="h-6 w-20 flex flex-row justify-between text-white">
                     {#if data.prevProject}
-                        <a href={"/portfolio/"+data.prevProject}> <i class="fa-solid fa-sharp fa-chevron-left"/></a>
+                        <a href={"/portfolio/"+data.prevProject.uid}> <i class="fa-thin fa-sharp fa-chevron-left fa-2xl"/></a>
                     {/if}
                     {#if data.nextProject}
-                        <a href={"/portfolio/"+data.nextProject}> <i class="fa-solid fa-sharp fa-chevron-right"/></a>
+                        <a href={"/portfolio/"+data.nextProject.uid}> <i class="fa-thin fa-sharp fa-chevron-right fa-2xl"/></a>
                     {/if}
                 </div>
             </div>
-            <h1 class="mt-4">{data.title}</h1>
+            <h1 class="mt-4">{data.heroHeading}</h1>
         </div>
     </ContentWidth>
 </div>
