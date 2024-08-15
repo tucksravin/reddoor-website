@@ -76,7 +76,7 @@
   <div class="w-screen text-center py-20 bg-white">
     <ContentWidth>
         <h4 class="text-primary">Serving our clients, near and far.</h4>
-        <p class="mt-12 max-w-screen-md">We work with clients across the US and occasionally around the globe. We have designers sprinkled across California, Texas and Idaho, conveniently located near the Los Angeles, San Antonio, and Boise metro areas. Regardless of your location, partnering with Reddoor Creative will give you the confidence in your brand that you've been needing. </p>
+        <p class="mt-8 max-w-screen-md">We work with clients across the US and occasionally around the globe. We have designers sprinkled across California, Texas and Idaho, conveniently located near the Los Angeles, San Antonio, and Boise metro areas. Regardless of your location, partnering with Reddoor Creative will give you the confidence in your brand that you've been needing. </p>
         <DefaultButton class="mt-6" click={()=>window.location.href="/contact"} bold filled text="MEET WITH US"/>
     </ContentWidth>
   </div>
@@ -85,13 +85,15 @@
     <ContentWidth class="flex flex-col md:flex-row justify-evenly">
         <div class="w-64 flex flex-col">
             <img src={tim} alt="tim" class="w-full aspect-square"/>
-            <p class="text-primary mt-2 large-body">Tim Holmes</p>
-            <div class="label">CA+ID Creative Director</div>
+            
+                <div class="text-primary large-body font-thin mt-2">Tim Holmes</div>
+                <p class="text-mid font-thin">CA+ID Creative Director</p>
+  
         </div>
         <div class="w-64 flex flex-col">
             <img src={erik} alt="erik" class="w-full aspect-square"/>
-            <p class="text-primary mt-2 large-body">Erik Svendsen</p>
-            <div class="label">TX Creative Director</div>
+            <p class="text-primary large-body mt-2 large-body">Erik Svendsen</p>
+            <div class="font-thin">TX Creative Director</div>
         </div>
 
     </ContentWidth>
@@ -102,32 +104,32 @@
         <h6 class="md:w-1/5 text-primary">Our Values</h6>
         <div class="w-full md:w-4/5 flex flex-row flex-wrap">
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px]">1</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px] h-full">1</h5></div>
                 <p class="large-body mt-4 text-primary">Compelling Solutions</p>
                 <p class="label">Well thought out creativity that tells a clear story.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>2</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">2</h5></div>
                 <p class="large-body mt-4 text-primary">On Your Behalf</p>
                 <p class="label">We exist to serve and care for our clients by helping them with our gifts and talents.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>3</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">3</h5></div>
                 <p class="large-body mt-4 text-primary">Instill Confidence</p>
                 <p class="label">Creating a boldness and pride for our clients that they didn't have before.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>4</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">4</h5></div>
                 <p class="large-body mt-4 text-primary">Beautiful Design</p>
                 <p class="label">We value, create and celebrate beautiful design.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>5</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">5</h5></div>
                 <p class="large-body mt-4 text-primary">Meaningful Work</p>
                 <p class="label">The work of our clients matters to us as does our own work.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>6</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">6</h5></div>
                 <p class="large-body mt-4 text-primary">Life Balance</p>
                 <p class="label">Encouraging a healthy work/life balance for ourselves and clients.</p>
             </div>
@@ -138,7 +140,7 @@
 
   </div>
 
-<div class="w-screen py-24 bg-white">
+<div class="w-screen pt-24 bg-white">
     <h4 class="text-primary text-center">The Reddoor Story</h4>
     <ContentWidth><img class="w-full" src={car} alt="a white car with a red door"/>
     </ContentWidth>
@@ -152,12 +154,12 @@
         <div class="w-full border-t-1 border-t-mid pt-6">
             <p class="large-body text-primary">The original "reddoor" taught us two things at Reddoor Creative:</p>
             <div class="w-full flex flex-col sm:flex-row gap-4 sm:gap-16  mt-12">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px]">1</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px] h-full">1</h5></div>
                 
                 <h5 class="sm:w-4/5">Find the unique quality within a business and tell that story in a compelling way.</h5>
             </div>
             <div class="w-full flex flex-col sm:flex-row gap-4 sm:gap-16 mt-12">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>2</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">2</h5></div>
                 <h5 class="sm:w-4/5">Champion our clients and remember that we exist to serve them with our talents. </h5>
             </div>
         </div>

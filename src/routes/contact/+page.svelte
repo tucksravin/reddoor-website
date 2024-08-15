@@ -23,7 +23,7 @@
                     <p>
                         Tim Holmes <br />
                         Creative Director <br />
-                        +1  310 341 3571
+                        +1  310-341-3571
                     </p>
                 </div>
                 <div class="flex flex-col w-1/2">
@@ -31,7 +31,7 @@
                     <p>
                         Erik Svendsen <br />
                         Creative Director <br />
-                        +1 310 418 9976
+                        +1 310-418-9976
                     </p>
                 </div>
 
