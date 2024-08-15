@@ -23,7 +23,7 @@
       <h6 class="text-primary">{slice.primary.label||''}</h6>
       <PrismicRichText field={slice.primary.body} />
     </div>
-    <div class="{slice.primary.isFullContentWidth? "w-full":"w-full md:w-4/5"} flex flex-row flex-wrap">
+    <div class="{slice.primary.isFullContentWidth? "w-full":"w-full md:w-4/5"} flex flex-row justify-center flex-wrap">
         
       
         {#each slice.primary.images as item}

@@ -79,7 +79,7 @@ sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
         {#each quintupledPropsArray as media, i (i)}
           <div class="h-full z-0" style="width: {sliderWidth}%;">
 
-            <PrismicImage field={media.image} />
+            <PrismicImage field={media.image} class="h-full w-full object-contain" />
           </div>
         {/each}
       </div>
