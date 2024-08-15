@@ -16,5 +16,7 @@ export async function load({ params, fetch, cookies }) {
 
 	return {
 		allProjects: allProjects,
+		title: "Portfolio | Reddoor Creative",
+		
 	};
 }

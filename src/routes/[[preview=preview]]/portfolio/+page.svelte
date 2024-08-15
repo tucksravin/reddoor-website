@@ -2,6 +2,11 @@
 export let data;
 </script>
 
+<svelte:head>
+    <title>
+        Portfolio | Reddoor Creative
+    </title>
+</svelte:head>
 
 <div class="flex flex-col items-center justify-center gap-8 my-24">
     {#each data.allProjects as project}
