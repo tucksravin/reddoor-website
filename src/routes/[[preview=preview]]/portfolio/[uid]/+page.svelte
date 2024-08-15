@@ -45,10 +45,10 @@ $: services = servicesArray.reduce((acc, service, index) => {
                 <div class="font-extralight">{services}</div>
                 <div class="h-6 w-20 flex flex-row justify-between text-white">
                     {#if data.prevProject}
-                        <a href={"/portfolio/"+data.prevProject.uid}> <i class="fa-thin fa-sharp fa-chevron-left fa-2xl"/></a>
+                        <a href={"/portfolio/"+data.prevProject.uid}> <i class="fa-thin fa-sharp fa-chevron-left fa-2xl bump hover:text-light"/></a>
                     {/if}
                     {#if data.nextProject}
-                        <a href={"/portfolio/"+data.nextProject.uid}> <i class="fa-thin fa-sharp fa-chevron-right fa-2xl"/></a>
+                        <a href={"/portfolio/"+data.nextProject.uid}> <i class="fa-thin fa-sharp fa-chevron-right fa-2xl bump hover:text-light"/></a>
                     {/if}
                 </div>
             </div>
