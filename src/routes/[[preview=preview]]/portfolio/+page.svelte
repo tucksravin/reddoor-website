@@ -18,6 +18,7 @@
   import type { ProjectDocument } from "../../../prismicio-types.js";
   import { flip } from "svelte/animate";
   import { scale } from "svelte/transition";
+  import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
   
 
   let ceoHero = ceoHeroDesktop;
@@ -268,10 +269,22 @@ line-height: 140%; /* 84px */
             </div>
         </ContentWidth>
         </section>
+        <section>
+            <div class="w-screen py-40 md:h-[80vh] bg-paper-red flex flex-col items-center justify-center">
+                <ContentWidth class="flex flex-col md:flex-row items-start justify-between">
+                    <h3 class="text-white md:w-3/5">Isn’t it time to arm your brand with a clear story and compelling design?</h3>
+                    <a href="/contact">
+                        <DefaultButton class="mt-6 text-white border-white border-1 hover:bg-mid hover:bg-opacity-10" text="MEET WITH US" filled={false} />
+                    </a>
+                </ContentWidth>
+            </div>
+           
+        
+        </section>
 
 <div class="py-24 bg-paper">
     <ContentWidth>
-        <div class="archive-title text-primary w-full text-left mb-12">Project Archive</div>
+        <div class="archive-title text-primary w-full text-left mb-12">but wait there's more!</div>
         <div class="w-full flex flex-row gap-4 mb-24">
             <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showBrand ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showBrand=!showBrand}>BRAND</button>
             <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPrint ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showPrint=!showPrint}>PRINT</button>
