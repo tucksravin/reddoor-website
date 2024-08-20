@@ -281,7 +281,7 @@ line-height: 140%; /* 84px */
             <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showDigital ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showDigital=!showDigital}>DIGITAL</button>
             <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showWeb ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showWeb=!showWeb}>WEB</button>
         </div>
-        <div class="w-full md:w-4/5 flex flex-row flex-wrap">
+        <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap">
         {#each data.allProjects as project (project.uid)}
         <div animate:flip={{duration:500}} transition:scale class="pr-6 pb-6 w-full lg:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)? "": "hidden"}">
             {#if showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)}

@@ -40,7 +40,7 @@
     {
       projectName:"SoCal Food Allergy",
       bodyText:"Website/branding with an approachable visual language for a cutting edge allergy clinic providing children with food freedom.",
-      projectLink:"/portfolio/socal-food-allergy",
+      projectLink:"/portfolio/scfai",
       image: scfaImage
 
     },
@@ -165,9 +165,13 @@
     <div class="w-full md:w-4/5 flex flex-col md:p-16 items-start">
       <h3 class="text-primary w-full ">Arm your brand with a clear story and compelling design.</h3>
       <div class="flex flex-row gap-6 mt-12">
-        <DefaultButton click={()=>window.location.href="/contact"} bold filled text="MEET WITH US"/>
-        <DefaultButton click={()=>window.location.href="/portfolio"} filled={false} class="border-1 border-dark text-dark hover:bg-mid hover:bg-opacity-20" text="VIEW WORK"/>
-      </div>
+        <a href="/contact">
+        <DefaultButton bold filled text="MEET WITH US"/>
+        </a>
+        <a href="/portfolio">
+        <DefaultButton filled={false} class="border-1 border-dark text-dark hover:bg-mid hover:bg-opacity-20" text="VIEW WORK"/>
+        </a>
+        </div>
     </div>
   </ContentWidth>
 </div>
@@ -237,8 +241,12 @@
 
             
                 <div  out:fade={{duration:300}} in:fade={{delay:300, duration:400}} class="flex flex-row gap-3 md:ml-[20%] lg:ml-[40%] mt-24">
-                  <DefaultButton class="text-primary border-primary border-1 transition hover:bg-mid hover:bg-opacity-20" filled={false}  text="OPEN" click={()=>window.location.href=projectArray[sliderIndex].projectLink}/>
-                    <DefaultButton class="text-mid border-mid border-1 transition hover:bg-mid hover:bg-opacity-20" filled={false} text="VIEW ALL" click={()=>window.location.href="/"}/>
+                  <a href={projectArray[sliderIndex].projectLink}>
+                    <DefaultButton class="text-primary border-primary border-1 transition hover:bg-mid hover:bg-opacity-20" filled={false}  text="OPEN" />
+                  </a>
+                  <a href="/portfolio">
+                    <DefaultButton class="text-mid border-mid border-1 transition hover:bg-mid hover:bg-opacity-20" filled={false} text="VIEW ALL" />
+                  </a>
                 </div>
               </div>
               {/key}

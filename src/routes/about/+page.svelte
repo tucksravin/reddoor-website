@@ -77,7 +77,9 @@
     <ContentWidth>
         <h4 class="text-primary">Serving our clients, near and far.</h4>
         <p class="mt-8 max-w-screen-md">We work with clients across the US and occasionally around the globe. We have designers sprinkled across California, Texas and Idaho, conveniently located near the Los Angeles, San Antonio, and Boise metro areas. Regardless of your location, partnering with Reddoor Creative will give you the confidence in your brand that you've been needing. </p>
-        <DefaultButton class="mt-6" click={()=>window.location.href="/contact"} bold filled text="MEET WITH US"/>
+        <a class="mt-6" href="/contact">
+            <DefaultButton bold filled text="MEET WITH US"/>
+        </a>
     </ContentWidth>
   </div>
 
