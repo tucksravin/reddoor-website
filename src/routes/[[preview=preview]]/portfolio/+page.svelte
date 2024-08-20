@@ -284,15 +284,15 @@ line-height: 140%; /* 84px */
 
 <div class="py-24 bg-paper">
     <ContentWidth>
-        <div class="archive-title text-primary w-full text-left mb-12">but wait there's more!</div>
+        <div class="archive-title text-primary w-full text-left mb-12">But wait there’s more!</div>
         <div class="w-full flex flex-row gap-4 mb-24">
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showBrand ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showBrand=!showBrand}>BRAND</button>
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPrint ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showPrint=!showPrint}>PRINT</button>
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showEnvironmental ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showEnvironmental=!showEnvironmental}>ENVIRONMENTAL</button>
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showProduct ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showProduct=!showProduct}>PRODUCT</button>
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPackaging ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showPackaging=!showPackaging}>PACKAGING</button>
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showDigital ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showDigital=!showDigital}>DIGITAL</button>
-            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showWeb ? "border-dark bg-dark  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showWeb=!showWeb}>WEB</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showBrand ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showBrand=!showBrand}>BRAND</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPrint ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showPrint=!showPrint}>PRINT</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showEnvironmental ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showEnvironmental=!showEnvironmental}>ENVIRONMENTAL</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showProduct ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showProduct=!showProduct}>PRODUCT</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPackaging ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showPackaging=!showPackaging}>PACKAGING</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showDigital ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showDigital=!showDigital}>DIGITAL</button>
+            <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showWeb ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-dark hover:text-dark"}" on:click={()=>showWeb=!showWeb}>WEB</button>
         </div>
         <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap">
         {#each data.allProjects as project (project.uid)}
