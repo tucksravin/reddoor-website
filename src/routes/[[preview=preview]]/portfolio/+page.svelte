@@ -17,6 +17,7 @@
   import ContentWidthImage from "$lib/components/ContentWidth/ContentWidthImage.svelte";
   import type { ProjectDocument } from "../../../prismicio-types.js";
   import { flip } from "svelte/animate";
+  import { scale } from "svelte/transition";
   
 
   let ceoHero = ceoHeroDesktop;
@@ -282,21 +283,21 @@ line-height: 140%; /* 84px */
         </div>
         <div class="w-full md:w-4/5 flex flex-row flex-wrap">
         {#each data.allProjects as project (project.uid)}
-        <div animate:flip={{duration:500}} class="pr-6 pb-6 w-full md:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)? "": "hidden"}">
+        <div animate:flip={{duration:500}} transition:scale class="pr-6 pb-6 w-full lg:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)? "": "hidden"}">
             {#if showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)}
-                <a href={project.url} class="h-full w-full flex flex-col justify-end relative">
-                    <img src={project.data.hero.url||''} alt={project.data.title} class="absolute w-full h-full object-cover"/>
+                <a href={"/portfolio/"+project.uid} class="h-full w-full flex flex-col justify-end relative">
+                    <img src={project.data.hero.url||''} alt={project.data.title  + " Hero Image"} class="absolute w-full h-full object-cover"/>
                     <div class="w-full h-full absolute top-0 left-0 hover:opacity-0 transition duration-700" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%)" />
-                    <div class="w-full flex flex-row justify-between px-6 z-10" >
+                    <div class="w-full flex flex-row justify-between p-6 z-10" >
                         <div>
                             <p class="text-white uppercase">{project.data.title}</p>
-                            <p class="text-light">{mediumString(project)}</p>
+                            <p class="text-light">{mediumString(project)||''}</p>
                         </div>
-                        <a href={project.url} class="brightness-200 hover:brightness-50 transition bump">
+                        <a href={"/portfolio/"+project.uid} class="brightness-200 hover:brightness-50 transition bump">
                             <img src={arrowButton} alt="go to page" class="h-full"/>
                         </a>
                     </div>
-                    {project.data.title}
+                    
                 </a>
             {/if}
         </div>
