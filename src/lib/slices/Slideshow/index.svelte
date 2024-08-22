@@ -21,6 +21,7 @@ const mediaArray = slice.primary.images;
   let sliderInterval: NodeJS.Timeout;
   let sliderWidth = 100 / mediaArray.length / 5;
   let isSlideAnimated = true;
+  let isSliding=true;
 
 
   const resetSlider = () => {
@@ -35,6 +36,8 @@ const mediaArray = slice.primary.images;
     sliderInterval = setInterval(()=>slideLeft(), SLIDER_INTERVAL_IN_MS);
       if(sliderIndex%mediaArray.length==0&&sliderIndex!==0) 
           resetSlider();
+
+      isSliding=true;
   }
 
   const slideRight = () => {
@@ -45,7 +48,7 @@ sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
   if(sliderIndex%mediaArray.length==0&&sliderIndex!==0 && sliderIndex<0)
       resetSlider();
 
-      console.log(sliderIndex);
+      isSliding=true;
   }
 
   const handleSwipe = (e:CustomEvent<{ direction: "left" | "top" | "right" | "bottom"; target: EventTarget; }>) => {
@@ -58,13 +61,24 @@ sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
 
   let backgroundColorString = 'bg-'+slice.primary.backgroundcolor;
 
+  const playOrPause = () => {
+
+    if(isSliding){
+      clearInterval(sliderInterval)
+      isSliding=false;
+    } else{
+      sliderInterval = setInterval(() => slideLeft(), SLIDER_INTERVAL_IN_MS);
+      isSliding=true;
+    }
+  }
+
   onMount(() => {
     sliderInterval = setInterval(() => slideLeft(), SLIDER_INTERVAL_IN_MS);
   });
 
   const quintupledPropsArray = [...mediaArray, ...mediaArray, ...mediaArray, ...mediaArray, ...mediaArray];
 
-  //TODO: play/pause button
+
 </script>
 
 <div class="w-full py-12 {backgroundColorString}">
@@ -94,6 +108,12 @@ sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
           <i class='-translate-y-[1.5px] fa-solid fa-chevron-right' />
         </button>
       </div>
+      <button on:click={playOrPause} class="absolute bottom-2 lg:bottom-6 right-2 lg:right-6 h-6 w-6 rounded-full border-mid border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-1  hover:bg-primary hover:border-primary hover:text-white">
+        {#if isSliding}
+        <i class="-translate-y-[1.5px] fa-solid fa-pause"/>
+          {:else}
+        <i class="-translate-y-[1.5px] translate-x-[1px] fa-solid fa-play"/>
+        {/if}</button>
     </div>
   </ContentWidth>
 </div>
