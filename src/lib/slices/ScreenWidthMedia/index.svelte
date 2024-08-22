@@ -5,6 +5,8 @@
   export let slice;
   let viewportHeight:number;
   let viewportWidth:number;
+
+  //TODO: add columns 
   
 </script>
 <svelte:window bind:innerHeight={viewportHeight} bind:innerWidth={viewportWidth} />

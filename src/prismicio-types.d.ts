@@ -384,7 +384,7 @@ export interface ContentWidthImageSliceDefaultPrimary {
   desktopcolumns: prismic.SelectField<"1" | "2" | "3", "filled">;
 
   /**
-   * padding field in *ContentWidthMedia → Default → Primary*
+   * slice vertical padding field in *ContentWidthMedia → Default → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
@@ -393,6 +393,17 @@ export interface ContentWidthImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hasPadding: prismic.BooleanField;
+
+  /**
+   * margin/gaps between images field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: content_width_image.default.primary.hasGap
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasGap: prismic.BooleanField;
 
   /**
    * images field in *ContentWidthMedia → Default → Primary*

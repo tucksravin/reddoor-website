@@ -68,9 +68,18 @@
         "hasPadding": {
           "type": "Boolean",
           "config": {
-            "label": "padding",
+            "label": "slice vertical padding",
             "placeholder_false": "no padding",
             "placeholder_true": "vertical padding",
+            "default_value": true
+          }
+        },
+        "hasGap": {
+          "type": "Boolean",
+          "config": {
+            "label": "margin/gaps between images",
+            "placeholder_false": "no gap",
+            "placeholder_true": "gap",
             "default_value": true
           }
         },

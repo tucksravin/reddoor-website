@@ -75,6 +75,8 @@ function mediumString (project:ProjectDocument<string>) {
   }
 
 export let data;
+
+//TODO: order archive: A-Z Z-A newest oldest
 </script>
 
 <svelte:window bind:innerWidth={viewportWidth} />

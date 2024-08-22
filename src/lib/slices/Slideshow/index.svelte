@@ -63,6 +63,8 @@ sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
   });
 
   const quintupledPropsArray = [...mediaArray, ...mediaArray, ...mediaArray, ...mediaArray, ...mediaArray];
+
+  //TODO: play/pause button
 </script>
 
 <div class="w-full py-12 {backgroundColorString}">
@@ -75,7 +77,7 @@ sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
       </div>
       <div class="{slice.primary.isFullContentWidth? "w-full":"w-full md:w-4/5"} flex flex-row flex-wrap">
     <div use:swipe on:swipe={handleSwipe} class="w-full h-full relative overflow-hidden aspect-video">
-      <div class="flex flex-row flex-nowrap  {isSlideAnimated ? 'transition-transform duration-500 ease-in-out' : ''}" style="width: {quintupledPropsArray.length * 100}%; transform: translateX(-{(sliderIndex+mediaArray.length) * sliderWidth}%);">
+      <div class="flex flex-row flex-nowrap  {isSlideAnimated ? 'transition-transform duration-[1600ms] ease-fast-slow' : ''}" style="width: {quintupledPropsArray.length * 100}%; transform: translateX(-{(sliderIndex+mediaArray.length) * sliderWidth}%);">
         {#each quintupledPropsArray as media, i (i)}
           <div class="h-full z-0" style="width: {sliderWidth}%;">
 
