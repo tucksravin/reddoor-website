@@ -57,7 +57,7 @@ button{
 }
 
 h1{
-    font-size: 120px;
+    font-size: 100px;
     font-style: normal;
     font-weight: 700;
     line-height: 130px; 
@@ -97,14 +97,14 @@ h6{
     line-height: 30px; 
 }
 
-p{
+p, .rich-text em, .rich-text i{
     font-size: 18px;
     font-style: normal;
     font-weight: 200;
     line-height: 30px;
 }
 
-.large-body{
+.large-body, .rich-text p{
     font-size: 23px;
     font-style: normal;
     font-weight: 200;

@@ -31,7 +31,7 @@ $: services = servicesArray.reduce((acc, service, index) => {
   return acc;
 }, "");
 
-        
+       //TODO: related projects 
 </script>
 
 
@@ -41,8 +41,8 @@ $: services = servicesArray.reduce((acc, service, index) => {
     <div class="w-full h-full absolute " style="background: linear-gradient(rgba(0, 0, 0, 0.42) 0%, rgba(215, 25, 32, 0.86) 100%); z-index: 0;"></div>
     <ContentWidth class="h-full flex flex-col justify-between items-start">
         <div />
-        <h5 class="text-white md:w-4/5 md:pr-[30%] mx-auto z-10">{data.page.data.tagline||''}</h5>
-        <div class=" text-white w-full z-10 mb-12 md:w-4/5 mx-auto">
+        <h5 class="text-white md:w-3/5 md:pr-[10%] mx-auto z-10">{data.page.data.tagline||''}</h5>
+        <div class=" text-white w-full z-10 mb-12 md:w-3/5 mx-auto">
             <div class="w-full border-b-1 border-b-white flex justify-between pb-4">
                 <div class="font-extralight">{services}</div>
                 <div class="h-6 w-20 flex flex-row justify-between text-white">
