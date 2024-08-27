@@ -38,6 +38,11 @@
 			"hasPadding": {
 				"__TYPE__": "BooleanContent",
 				"value": true
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "paper-red",
+				"type": "Select"
 			}
 		},
 		"items": []

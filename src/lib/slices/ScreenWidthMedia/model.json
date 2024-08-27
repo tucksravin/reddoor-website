@@ -44,6 +44,21 @@
             "placeholder_true": "vertical padding",
             "default_value": false
           }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "background",
+            "placeholder": "",
+            "options": [
+              "white",
+              "gray",
+              "red",
+              "paper",
+              "paper-red"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {}

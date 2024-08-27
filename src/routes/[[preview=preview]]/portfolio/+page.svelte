@@ -278,7 +278,7 @@ line-height: 140%; /* 84px */
 <section class="mt-16">
 <ScreenWidthImage image={stJames}/>
 <ContentWidth>
-    <div class="w-full md:w-4/5 md:ml-[20%] flex flex-col">
+    <div class="w-full mt-12 md:w-4/5 md:ml-[20%] flex flex-col">
         <div class="w-full flex flex-col-reverse lg:flex-row">
             <div class="bg-paper flex flex-col justify-between p-4 w-full lg:w-1/2  aspect-square">
                 <h5 class="font-sm text-primary" >A diverse, joyful, and inclusive community of young learners.</h5>
@@ -305,7 +305,7 @@ line-height: 140%; /* 84px */
 
 
     <ContentWidth>
-        <div class="mt-8 w-full md:w-4/5 md:ml-[20%]">
+        <div class="mt-24 w-full md:w-4/5 md:ml-[20%]">
             <FourByThreeImage src={dentist} />
         </div>
     </ContentWidth>

@@ -702,6 +702,20 @@ export interface ScreenWidthImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hasPadding: prismic.BooleanField;
+
+  /**
+   * background field in *ScreenWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: screen_width_image.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<
+    "white" | "gray" | "red" | "paper" | "paper-red",
+    "filled"
+  >;
 }
 
 /**
