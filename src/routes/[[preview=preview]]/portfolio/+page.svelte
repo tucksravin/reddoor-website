@@ -75,10 +75,58 @@ function mediumString (project:ProjectDocument<string>) {
   }
 
 let orderString = "A-Z"
+let isAlphabeticalDescending = true;
+let isAlphabeticalAscending = false;
+let isChronologicalDescending = false;
+let isChronologicalAscending = false;
+$: {
+
+    isAlphabeticalDescending = false;
+    isAlphabeticalAscending = false;
+    isChronologicalDescending = false;
+    isChronologicalAscending = false;
+    switch(orderString){
+        case "A-Z":{
+            isAlphabeticalDescending = true;
+            break;
+        }
+        case "Z-A":{
+            isAlphabeticalAscending = true;
+            break;
+        }
+        case "Latest-Earliest":{
+            isChronologicalDescending = true;
+            break;
+        }
+        case "Earliest-Latest":{
+            isChronologicalAscending = true;
+            break;
+        }
+    }
+}
 let isOrderSelectOpen = false;
+
+$: {
+  sortedProjects = [...data.allProjects].sort((a, b) => {
+    switch (orderString) {
+      case "A-Z":
+        return (a.data.title||'').localeCompare(b.data.title||'');
+      case "Z-A":
+        return (b.data.title||'').localeCompare(a.data.title||'');
+      case "Latest-Earliest":
+        return new Date(b.first_publication_date).getTime() - new Date(a.first_publication_date).getTime();
+      case "Earliest-Latest":
+        return new Date(a.first_publication_date).getTime() - new Date(b.first_publication_date).getTime();
+      default:
+        return 0;
+    }
+  });
+}
 
 
 export let data;
+
+let sortedProjects = data.allProjects;
 
 //TODO: order archive: A-Z Z-A newest oldest
 </script>
@@ -301,8 +349,15 @@ line-height: 140%; /* 84px */
                 <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showDigital ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showDigital=!showDigital}>DIGITAL</button>
                 <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showWeb ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showWeb=!showWeb}>WEB</button>
             </div>
-            <div class="relative">
-                <button class="z-20 pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 flex flex-row items-center justify-between {isOrderSelectOpen ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>isOrderSelectOpen=!isOrderSelectOpen}>
+            <div class="relative z-10">
+                <div class="w-48 h-12 bg-paper absolute z-20"></div>
+                {#if isOrderSelectOpen}
+                    <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[100%] {isAlphabeticalDescending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary bg-paper hover:text-primary"}" transition:slide on:click={()=>orderString="A-Z"}>A-Z</button>
+                    <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[200%] {isAlphabeticalAscending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary bg-paper hover:text-primary"}" transition:slide on:click={()=>orderString="Z-A"}>Z-A</button>
+                    <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[300%] {isChronologicalDescending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary bg-paper hover:text-primary"}" transition:slide on:click={()=>orderString="Latest-Earliest"}>Latest-Earliest</button>
+                    <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[400%] {isChronologicalAscending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary bg-paper hover:text-primary"}" transition:slide on:click={()=>orderString="Earliest-Latest"}>Earliest-Latest</button>
+                    {/if}
+                <button class="relative z-20  pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 flex flex-row items-center justify-between {isOrderSelectOpen ? "border-primary bg-primary  hover:text-light text-white":"border-light bg-paper text-light hover:border-primary hover:text-primary"}" on:click={()=>isOrderSelectOpen=!isOrderSelectOpen}>
                     <div>{orderString}</div>
                     <div class="h-12 w-12 relative">
                     {#if !isOrderSelectOpen}
@@ -313,14 +368,13 @@ line-height: 140%; /* 84px */
                     {/if}
                     </div>
                 </button>
-                {#if isOrderSelectOpen}
-                <button class="z-0 pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 mb-24 bg-paper flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[100%]" transition:slide>A-Z</button>
-                {/if}
+                
+               
             </div>
         </div>
         <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap">
-        {#each data.allProjects as project (project.uid)}
-        <div animate:flip={{duration:500}} transition:scale class="pr-6 pb-6 w-full lg:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)? "": "hidden"}">
+        {#each sortedProjects as project (project.uid)}
+        <div animate:flip={{delay:300, duration:500}} transition:scale={{duration:200}} class="pr-6 pb-6 w-full lg:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)? "": "hidden"}">
             {#if showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)}
                 <a href={"/portfolio/"+project.uid} class="h-full w-full flex flex-col justify-end relative">
                     <img src={project.data.hero.url||''} alt={project.data.title  + " Hero Image"} class="absolute w-full h-full object-cover"/>
