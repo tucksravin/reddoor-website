@@ -1,0 +1,98 @@
+{
+  "id": "screen_width_columns",
+  "type": "SharedSlice",
+  "name": "ScreenWidthColumns",
+  "description": "ScreenWidthColumns",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "background",
+            "placeholder": "",
+            "options": [
+              "white",
+              "gray",
+              "red",
+              "paper",
+              "paper-red"
+            ],
+            "default_value": "white"
+          }
+        },
+        "desktopcolumns": {
+          "type": "Select",
+          "config": {
+            "label": "desktopColumns",
+            "placeholder": "",
+            "options": [
+              "1",
+              "2",
+              "3"
+            ],
+            "default_value": "1"
+          }
+        },
+        "hasPadding": {
+          "type": "Boolean",
+          "config": {
+            "label": "slice vertical padding",
+            "placeholder_false": "no padding",
+            "placeholder_true": "vertical padding",
+            "default_value": true
+          }
+        },
+        "hasGap": {
+          "type": "Boolean",
+          "config": {
+            "label": "margin/gaps between images",
+            "default_value": false,
+            "placeholder_true": "true",
+            "placeholder_false": "false"
+          }
+        },
+        "media": {
+          "type": "Group",
+          "config": {
+            "label": "media",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "vimeoId": {
+                "type": "Text",
+                "config": {
+                  "label": "vimeoId",
+                  "placeholder": ""
+                }
+              },
+              "loopvideo": {
+                "type": "Boolean",
+                "config": {
+                  "label": "loopVideo",
+                  "default_value": false,
+                  "placeholder_true": "true",
+                  "placeholder_false": "false"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

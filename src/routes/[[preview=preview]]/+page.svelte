@@ -288,7 +288,7 @@
   </div>
   <ScreenWidthImage image={compositionTestimonial}>
 
-      <h4 class="text-white absolute md:w-4/5 bottom-36 md:left-[20%]">“I’ve depended on Reddoor Creative for the last four companies I’ve led. Is there a better testimonial than that?”</h4>
+      <h4 class="text-white absolute md:w-4/5 bottom-36 md:ml-[20%]">“I’ve depended on Reddoor Creative for the last four companies I’ve led. <br /> <br />Is there a better testimonial than that?”</h4>
       <div class="absolute h-40 md:left-[20%] -bottom-24 flex flex-row justify-start items-end gap-8">
         <img src={jeff} alt="Jeff Luchonok" class="h-40 w-40 rounded-full">
 

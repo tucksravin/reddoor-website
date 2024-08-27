@@ -2,6 +2,7 @@
 
 import ContentWidthMedia from "./ContentWidthMedia/index.svelte";
 import RichText from "./RichText/index.svelte";
+import ScreenWidthColumns from "./ScreenWidthColumns/index.svelte";
 import ScreenWidthMedia from "./ScreenWidthMedia/index.svelte";
 import Slideshow from "./Slideshow/index.svelte";
 import ValueBlock from "./ValueBlock/index.svelte";
@@ -9,6 +10,7 @@ import ValueBlock from "./ValueBlock/index.svelte";
 export const components = {
   content_width_image: ContentWidthMedia,
   rich_text: RichText,
+  screen_width_columns: ScreenWidthColumns,
   screen_width_image: ScreenWidthMedia,
   slideshow: Slideshow,
   value_block: ValueBlock,

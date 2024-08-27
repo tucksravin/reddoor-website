@@ -35,6 +35,15 @@
             "placeholder_true": "true",
             "placeholder_false": "false"
           }
+        },
+        "hasPadding": {
+          "type": "Boolean",
+          "config": {
+            "label": "slice vertical padding",
+            "placeholder_false": "no padding",
+            "placeholder_true": "vertical padding",
+            "default_value": false
+          }
         }
       },
       "items": {}

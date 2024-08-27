@@ -93,6 +93,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "screen_width_columns": {
+              "type": "SharedSlice"
+            },
             "slideshow": {
               "type": "SharedSlice"
             },

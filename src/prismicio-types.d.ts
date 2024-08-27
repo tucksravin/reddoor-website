@@ -77,6 +77,7 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 type ProjectDocumentDataSlicesSlice =
+  | ScreenWidthColumnsSlice
   | SlideshowSlice
   | ValueBlockSlice
   | ScreenWidthImageSlice
@@ -527,6 +528,136 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *ScreenWidthColumns → Default → Primary → media*
+ */
+export interface ScreenWidthColumnsSliceDefaultPrimaryMediaItem {
+  /**
+   * image field in *ScreenWidthColumns → Default → Primary → media*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: screen_width_columns.default.primary.media[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * vimeoId field in *ScreenWidthColumns → Default → Primary → media*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: screen_width_columns.default.primary.media[].vimeoId
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  vimeoId: prismic.KeyTextField;
+
+  /**
+   * loopVideo field in *ScreenWidthColumns → Default → Primary → media*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: screen_width_columns.default.primary.media[].loopvideo
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  loopvideo: prismic.BooleanField;
+}
+
+/**
+ * Primary content in *ScreenWidthColumns → Default → Primary*
+ */
+export interface ScreenWidthColumnsSliceDefaultPrimary {
+  /**
+   * background field in *ScreenWidthColumns → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: screen_width_columns.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<
+    "white" | "gray" | "red" | "paper" | "paper-red",
+    "filled"
+  >;
+
+  /**
+   * desktopColumns field in *ScreenWidthColumns → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 1
+   * - **API ID Path**: screen_width_columns.default.primary.desktopcolumns
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  desktopcolumns: prismic.SelectField<"1" | "2" | "3", "filled">;
+
+  /**
+   * slice vertical padding field in *ScreenWidthColumns → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: screen_width_columns.default.primary.hasPadding
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasPadding: prismic.BooleanField;
+
+  /**
+   * margin/gaps between images field in *ScreenWidthColumns → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: screen_width_columns.default.primary.hasGap
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasGap: prismic.BooleanField;
+
+  /**
+   * media field in *ScreenWidthColumns → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: screen_width_columns.default.primary.media[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  media: prismic.GroupField<
+    Simplify<ScreenWidthColumnsSliceDefaultPrimaryMediaItem>
+  >;
+}
+
+/**
+ * Default variation for ScreenWidthColumns Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScreenWidthColumnsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ScreenWidthColumnsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ScreenWidthColumns*
+ */
+type ScreenWidthColumnsSliceVariation = ScreenWidthColumnsSliceDefault;
+
+/**
+ * ScreenWidthColumns Shared Slice
+ *
+ * - **API ID**: `screen_width_columns`
+ * - **Description**: ScreenWidthColumns
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScreenWidthColumnsSlice = prismic.SharedSlice<
+  "screen_width_columns",
+  ScreenWidthColumnsSliceVariation
+>;
+
+/**
  * Primary content in *ScreenWidthMedia → Default → Primary*
  */
 export interface ScreenWidthImageSliceDefaultPrimary {
@@ -560,6 +691,17 @@ export interface ScreenWidthImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   loopvideo: prismic.BooleanField;
+
+  /**
+   * slice vertical padding field in *ScreenWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: screen_width_image.default.primary.hasPadding
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasPadding: prismic.BooleanField;
 }
 
 /**
@@ -798,6 +940,11 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ScreenWidthColumnsSlice,
+      ScreenWidthColumnsSliceDefaultPrimaryMediaItem,
+      ScreenWidthColumnsSliceDefaultPrimary,
+      ScreenWidthColumnsSliceVariation,
+      ScreenWidthColumnsSliceDefault,
       ScreenWidthImageSlice,
       ScreenWidthImageSliceDefaultPrimary,
       ScreenWidthImageSliceVariation,
