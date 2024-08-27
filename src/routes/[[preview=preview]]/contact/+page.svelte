@@ -1,12 +1,27 @@
 <script lang="ts">
     import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
     import { Turnstile } from 'svelte-turnstile';
+  import { fade } from "svelte/transition";
+
+    export let data
 
 
-</script>
+    </script>
 <svelte:head>
     <title>Contact | Reddoor Creative</title>
 </svelte:head>
+
+{#if data.submitted}
+<a class="h-screen w-screen fixed bg-black bg-opacity-20 z-50 flex justify-center items-center" href="/contact" transition:fade>
+    
+
+
+    <div class="w-[68vw] h-[68vh] bg-paper-red flex items-center justify-center p-32 relative">
+        <i class="fa-solid fa-thin fa-close fa-2xl text-white hover:text-light transition absolute top-8 right-5" />
+        <h4 class="text-white">Thanks for reaching out! <br/> <br/>We'll get back to you as soon as we can.</h4>
+    </div>
+</a>
+{/if}
 
 <div class="w-screen h-[50vh] max-h-96 relative bg-paper">
     <ContentWidth class="h-full flex flex-col justify-evenly items-start">
@@ -45,7 +60,7 @@
         <h6 class="md:w-1/5 text-primary my-4">Via Email</h6>
         <div class="w-full md:w-4/5 flex flex-col gap-8">
             <h5>Complete this form and we'll get back to you.</h5>
-            <form class="w-full h-full flex flex-col md:flex-row px-8"  name="contact" method="POST" action="/contact?submitted" data-netlify="true"  data-netlify-honeypot="bot-field">
+            <form class="w-full h-full flex flex-col md:flex-row px-8"  name="contact" method="POST" action="/contact?submitted=true" data-netlify="true"  data-netlify-honeypot="bot-field">
                 <Turnstile siteKey="0x4AAAAAAAh2fGW6xIcdsqNr" />
                 <input type="hidden" name="form-name" value="contact" />
                     <div class="h-full w-full mt-8 md:mt-0 md:w-2/3 flex flex-col gap-4 items-start">
