@@ -17,8 +17,7 @@
   pageData.environmental,
   pageData.packaging,
   pageData.digital,
-  pageData.web,
-  pageData.social
+ 
 
 ];
 
@@ -26,7 +25,7 @@
 $: services = servicesArray.reduce((acc, service, index) => {
   if (service) {
     if (acc) acc += ", ";
-    acc += ["Brand", "Product", "Print", "Environmental", "Packaging", "Digital", "Web","Social"][index];
+    acc += ["Brand", "Product", "Print", "Environmental", "Packaging", "Digital"][index];
   }
   return acc;
 }, "");

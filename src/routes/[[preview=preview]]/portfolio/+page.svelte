@@ -65,14 +65,12 @@ function mediumString (project:ProjectDocument<string>) {
   project.data.environmental,
   project.data.packaging,
   project.data.digital,
-  project.data.web,
-  project.data.social
 
 ];
     return servicesArray.reduce((acc, service, index) => {
   if (service) {
     if (acc) acc += ", ";
-    acc += ["Brand", "Product", "Print", "Environmental", "Packaging", "Digital", "Web","Social"][index];
+    acc += ["Brand", "Product", "Print", "Environmental", "Packaging", "Digital"][index];
   }
   return acc;
 }, "");
@@ -340,7 +338,7 @@ line-height: 140%; /* 84px */
         
         </section>
 
-<div class="py-24 bg-paper">
+<div class="py-24 bg-paper">å
     <ContentWidth>
         <div class="archive-title text-primary w-full text-left mb-12">But wait, there’s more!</div>
         <div class="flex flex-row justify-between w-full">
@@ -349,10 +347,9 @@ line-height: 140%; /* 84px */
                 <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPrint ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showPrint=!showPrint}>PRINT</button>
                 <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showEnvironmental ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showEnvironmental=!showEnvironmental}>ENVIRONMENTAL</button>
                 <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showProduct ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showProduct=!showProduct}>PRODUCT</button>
-                <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPackaging ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showPackaging=!showPackaging}>PACKAGING</button>
+                <!-- <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showPackaging ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showPackaging=!showPackaging}>PACKAGING</button> -->
                 <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showDigital ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showDigital=!showDigital}>DIGITAL</button>
-                <button class="px-5 py-[10px] transition-colors duration-500 border-1  {showWeb ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light hover:border-primary hover:text-primary"}" on:click={()=>showWeb=!showWeb}>WEB</button>
-            </div>
+              </div>
             <div class="relative z-10">
                 <div class="w-48 h-12 bg-paper absolute z-20"></div>
                 {#if isOrderSelectOpen}
@@ -378,8 +375,8 @@ line-height: 140%; /* 84px */
         </div>
         <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap">
         {#each sortedProjects as project, i (project.uid)}
-        <div animate:flip={{delay:300, duration:3000, easing: expoOut}} class="pr-6 pb-6 w-full lg:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)? "": "hidden"}">
-            {#if showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.web&&showWeb)||(project.data.packaging&&showPackaging)}
+        <div animate:flip={{delay:300, duration:3000, easing: expoOut}} class="pr-6 pb-6 w-full lg:w-1/2 relative aspect-[4/3] {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.packaging&&showPackaging)? "": "hidden"}">
+            {#if showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.packaging&&showPackaging)}
                 <a href={"/portfolio/"+project.uid} class="h-full w-full flex flex-col justify-end relative">
                     <img src={project.data.hero.url||''} alt={project.data.title  + " Hero Image"} class="absolute w-full h-full object-cover"/>
                     <div class="w-full h-full absolute top-0 left-0 hover:opacity-0 transition duration-700" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%)" />

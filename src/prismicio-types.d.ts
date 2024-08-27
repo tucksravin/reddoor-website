@@ -193,30 +193,6 @@ interface ProjectDocumentData {
   digital: prismic.BooleanField;
 
   /**
-   * web field in *project*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: project.web
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  web: prismic.BooleanField;
-
-  /**
-   * social field in *project*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: project.social
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  social: prismic.BooleanField;
-
-  /**
    * Slice Zone field in *project*
    *
    * - **Field Type**: Slice Zone
