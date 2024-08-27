@@ -388,7 +388,7 @@ line-height: 140%; /* 84px */
                             <p class="text-white uppercase">{project.data.title}</p>
                             <p class="text-light">{mediumString(project)||''}</p>
                         </div>
-                        <a href={"/portfolio/"+project.uid} class="brightness-200 hover:brightness-50 transition">
+                        <a href={"/portfolio/"+project.uid} class="brightness-200 hover:brightness-50 transition bump">
                             <img src={arrowButton} alt="go to page" class="h-full"/>
                         </a>
                     </div>
