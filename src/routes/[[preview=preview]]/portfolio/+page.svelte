@@ -51,6 +51,7 @@
     } else{
         showAll=true;
     }
+    isOrderSelectOpen=false;
   }
 
   
@@ -123,6 +124,8 @@ $: {
         return 0;
     }
   });
+
+  isOrderSelectOpen=false;
 }
 
 
