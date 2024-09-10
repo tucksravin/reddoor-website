@@ -14,7 +14,6 @@
   import stJames from "$lib/assets/images/stJames.jpg"
   import report from "$lib/assets/images/annualReport.png"
   import dentist from "$lib/assets/images/1800dentist.png"
-  import ContentWidthImage from "$lib/components/ContentWidth/ContentWidthImage.svelte";
   import type { ProjectDocument } from "../../../prismicio-types.js";
   import { flip } from "svelte/animate";
   import { fade, scale, slide } from "svelte/transition";

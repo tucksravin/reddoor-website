@@ -3,9 +3,7 @@
   import ContentBox from "$lib/components/FullWidth/ContentBox.svelte";
   import SquareImage from "$lib/components/FullWidth/SquareImage.svelte";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
-  import placeholder from '$lib/assets/images/image_placeholder.svg'
-  import chevronRight from '$lib/assets/icons/chevron-right.svg'
-  import chevronLeft from '$lib/assets/icons/chevron-left.svg'
+  import AnimateIn from "$lib/components/AnimateIn.svelte";
   import { onMount } from "svelte";
   import { swipe } from "svelte-gestures";
   import { fade,slide } from "svelte/transition";
@@ -192,31 +190,33 @@
     <img src={applause} alt="applause" class="aspect-[4/3] md:absolute top-0 right-0 md:w-2/5 object-cover"/>
   </div>
 </div>
-<div class="relative w-screen bg-white pb-16">
-  <div class='w-screen pt-32 md:pt-8 md:h-1/2 pb-8'>
+<div class="relative w-screen bg-white pb-16 z-10">
+  <AnimateIn class='w-screen pt-32 md:pt-8 md:h-1/2 pb-8'>
     <ContentWidth class="flex flex-row items-end">
       <div class="flex flex-col md:flex-row w-full">
         <div class="label w-1/5 pt-2"><span class="text-primary">02 </span>/ 03</div>
         <h3 class="text-primary w-4/5">Catalyst <br /> for Sales</h3>
       </div>
     </ContentWidth>
-  </div>
-  <div class="h-1/2">
+  </AnimateIn>
+  <AnimateIn class="h-1/2">
     <ContentWidth class="flex flex-col md:flex-row relative h-full items-start py-8">
       <div class="w-1/5" />
       <p class="w-4/5 md:w-2/5 md:pr-20">When you have a brand that is clear and compelling, you can't help but be confident in any sales situation. Your clients sense this and are attracted to your offering.</p>
     </ContentWidth>
     <img src={graph} alt="applause" class=" md:absolute top-1/2 right-0 md:-translate-y-1/2 md:w-2/5"/>
-  </div>
+  </AnimateIn>
 </div>
 <div class="relative w-screen bg-white">
   <div class='w-screen bg-white pb-16'>
-    <ContentWidth class="flex flex-row items-end">
+  
+    <ContentWidth class="flex flex-row items-end" animateIn>
       <div class="flex flex-col md:flex-row w-full">
         <div class="label w-1/5 pt-2">03 / 03</div>
         <h3 class="text-primary w-4/5">Stand <br /> Out</h3>
       </div>
     </ContentWidth>
+    
   </div>
 </div>
 
@@ -272,12 +272,14 @@
   </div>  
   </div>
   <div class="w-screen bg-paper">
-    <ContentWidth class="my-0">
+   
+    <ContentWidth class="my-0" animated>
       <h3 class="text-primary md:ml-[20%] w-fit py-32">Join these brands in <br /> fighting mediocrity.</h3>
     </ContentWidth>
+  
   </div>
   <div class="bg-white">
-    <ContentWidth class="flex flex-col gap-8 md:gap-0 md:flex-row justify-around flex-wrap py-32">
+    <ContentWidth animateIn class="flex flex-col gap-8 md:gap-0 md:flex-row justify-around flex-wrap py-32">
       <img class="h-48 aspect-square object-contain" src={progressLogo} alt="progress lighting logo" />
       <img class="h-48 aspect-square object-contain" src={huluLogo} alt="hulu logo" />
       <img class="h-48 aspect-square object-contain" src={toyotaLogo} alt="toyota logo" />
@@ -285,8 +287,9 @@
       <img class="h-48 aspect-square object-contain" src={tosaLogo} alt="tosa logo" />
       <img class="h-48 aspect-square object-contain" src={worthLogo} alt="worthe logo" />
     </ContentWidth>
+
   </div>
-  <ScreenWidthImage image={compositionTestimonial}>
+  <ScreenWidthImage image={compositionTestimonial} class="z-20">
 
       <h4 class="text-white absolute md:w-3/5 bottom-36 md:ml-[20%]">“I’ve depended on Reddoor Creative for the last four companies I’ve led. Is there a better testimonial than that?”</h4>
       <div class="absolute h-40 md:left-[20%] -bottom-24 flex flex-row justify-start items-end gap-8">
@@ -297,14 +300,17 @@
           <p class="text-mid font-thin">COMPOSITION HOSPITALITY</p>
         </div>
       </div>
-      
+
 
   </ScreenWidthImage>
 
   <div class="w-screen bg-paper pt-64 pb-16">
+    <AnimateIn>
     <ContentWidth class="flex flex-row relative  pb-12 md:pb-36">
       <h3 class="text-primary w-4/5 md:ml-[20%]">Let’s Begin</h3>
     </ContentWidth>
+  </AnimateIn>
+  <AnimateIn>
     <ContentWidth class="flex flex-col md:flex-row justify-between relative">
       <div class="w-3/5 lg:w-1/5 pr-8 mb-8">
         <h6 class="text-primary">We have a plan to help your brand reach success.</h6>
@@ -330,11 +336,15 @@
         </div>
       </div>
     </ContentWidth>
+    </AnimateIn>
+    <AnimateIn>
     <ContentWidth class="pt-32">
       <h1 class="text-primary">Better design <br/>means better <br/>business.</h1>
     </ContentWidth>
+  </AnimateIn>
   </div>
   <div class="bg-white w-screen">
+    <AnimateIn>
     <ContentWidth>
       <p class="md:mx-[20%] mt-32 large-body">You want your business to succeed. So do we. You have something unique and valuable to offer. We can help you tell the world about it in a way that stand out from the noise. It's proven, companies that utilize "design thinking" are some of the most successful companies in any market. </p>
       {#if isReadMoreOpen}
@@ -352,33 +362,38 @@ Working with Reddoor Creative will finally give you confidence in your brand and
         <DefaultButton click={()=>window.location.href="/contact"} bold filled text="MEET WITH US"/>
       </div>
     </ContentWidth>
+    </AnimateIn>
   </div>
   
   <div class="w-screen bg-white pb-8">
+    <AnimateIn>
     <ContentWidth class="flex flex-col relative">
       <h3 class="text-primary md:w-4/5 md:ml-[20%]">Still not on board?</h3>
       <h5 class="md:w-3/5 md:mx-[20%] mt-8">You've made is this far. Here's what will probably happen if you continue with “business as usual:”</h5>
     </ContentWidth>
+  </AnimateIn>
   </div>
 <div class="w-screen bg-paper">
+
   <ContentWidth>
-    <div class="w-full flex flex-col md:flex-row py-16">
+    
+    <AnimateIn class="w-full flex flex-col md:flex-row py-16">
       <div class="label w-1/5 mt-1"><span class="text-primary">01 </span>/ 03</div>
       <h6 class="text-primary text-left mt-4 md:mt-0  md:w-1/5">Death by DIY</h6>
       <div class="mt-4 md:mt-0 md:w-2/5 flex flex-col">
         <p class="">Your valuable time has been wasted on design and branding yourself, instead of hiring a pro and focusing on the unique contribution you make to your business.</p>
         <a class=" text-primary mt-8 font-thin" href="/contact">{"Help! Save Me >"}</a>
       </div>
-    </div>
-    <div class="w-full flex flex-col md:flex-row py-16">
+    </AnimateIn>
+    <AnimateIn class="w-full flex flex-col md:flex-row py-16">
       <div class="label md:w-1/5 mt-1"><span class="text-primary">02 </span>/ 03</div>
       <h6 class="text-primary text-left md:w-1/5 mt-4 md:mt-0 ">Mediocrity</h6>
       <div class="md:w-2/5 flex flex-col mt-4 md:mt-0 ">
         <p class="">Doing things yourself often leads to unremarkable results. You continue to spend time (you don't have) working to get noticed by your customers.</p>
         <a class=" text-primary mt-8 font-thin" href="/contact">{"Hire a pro >"}</a>
       </div>
-    </div>
-    <div class="w-full flex flex-col md:flex-row py-16">
+    </AnimateIn>
+    <AnimateIn class="w-full flex flex-col md:flex-row py-16">
       <div class="label md:w-1/5 mt-1"><span class="text-primary">03 </span>/ 03</div>
       <h6 class="text-primary text-left md:w-1/5 mt-4 md:mt-0 ">"Shhhh."</h6>
       <div class="md:w-2/5 flex flex-col mt-4 md:mt-0 ">
@@ -386,16 +401,18 @@ Working with Reddoor Creative will finally give you confidence in your brand and
           Your product or service remains your industry's "best kept secret" (not in a good way). You're left with confusing messaging and marketing.</p>
         <a class="text-primary mt-8 font-thin" href="/contact">{"Stand Out, Be Heard >"}</a>
       </div>
-    </div>
+    </AnimateIn>
   </ContentWidth>
 </div>
 
 <!-- footer -->
 <div class="w-screen py-40 md:h-[80vh] bg-paper-red flex flex-col items-center justify-center">
+  <AnimateIn>
   <ContentWidth class="flex flex-col md:flex-row items-start justify-between">
       <h3 class="text-white md:w-3/5">Isn’t it time to arm your brand with a clear story and compelling design?</h3>
       <a href="/contact">
       <DefaultButton class="mt-6 text-white border-white border-1 hover:bg-mid hover:bg-opacity-10" text="MEET WITH US" filled={false} />
       </a>
   </ContentWidth>
+  </AnimateIn>
 </div>
