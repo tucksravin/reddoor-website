@@ -18,7 +18,7 @@ export async function load({ params, fetch, cookies }) {
 export async function entries() {
 	const client = createClient();
 
-	const pages = await client.getAllByType('project');
+	const pages = await client.getAllByType('showcase');
 
 	return pages.map((page) => {
 		return { uid: page.uid };
