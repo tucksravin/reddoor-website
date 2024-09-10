@@ -84,7 +84,7 @@
   </div>
 
   <div class="w-screen pb-20 bg-white">
-    <ContentWidth class="flex flex-col md:flex-row justify-evenly">
+    <ContentWidth class="flex flex-col md:flex-row items-center gap-12 md:gap-0 justify-evenly">
         <div class="w-64 flex flex-col">
             <img src={tim} alt="tim" class="w-full aspect-square"/>
             
@@ -106,32 +106,32 @@
         <h6 class="md:w-1/5 text-primary">Our Values</h6>
         <div class="w-full md:w-4/5 flex flex-row flex-wrap">
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px] h-full">1</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px]">1</h5></div>
                 <p class="large-body mt-4 text-primary">Compelling Solutions</p>
                 <p class="label">Well thought out creativity that tells a clear story.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">2</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>2</h5></div>
                 <p class="large-body mt-4 text-primary">On Your Behalf</p>
                 <p class="label">We exist to serve and care for our clients by helping them with our gifts and talents.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">3</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>3</h5></div>
                 <p class="large-body mt-4 text-primary">Instill Confidence</p>
                 <p class="label">Creating a boldness and pride for our clients that they didn't have before.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">4</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 >4</h5></div>
                 <p class="large-body mt-4 text-primary">Beautiful Design</p>
                 <p class="label">We value, create and celebrate beautiful design.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">5</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>5</h5></div>
                 <p class="large-body mt-4 text-primary">Meaningful Work</p>
                 <p class="label">The work of our clients matters to us as does our own work.</p>
             </div>
             <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex flex-col">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">6</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>6</h5></div>
                 <p class="large-body mt-4 text-primary">Life Balance</p>
                 <p class="label">Encouraging a healthy work/life balance for ourselves and clients.</p>
             </div>
@@ -156,12 +156,12 @@
         <div class="w-full border-t-1 border-t-mid pt-6">
             <p class="large-body text-primary">The original "reddoor" taught us two things at Reddoor Creative:</p>
             <div class="w-full flex flex-col sm:flex-row gap-4 sm:gap-16  mt-12">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px] h-full">1</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="-translate-x-[1px]">1</h5></div>
                 
                 <h5 class="sm:w-4/5">Find the unique quality within a business and tell that story in a compelling way.</h5>
             </div>
             <div class="w-full flex flex-col sm:flex-row gap-4 sm:gap-16 mt-12">
-                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5 class="h-full">2</h5></div>
+                <div class="text-mid border-1 border-mid rounded-full w-12 h-12 flex justify-center items-center"><h5>2</h5></div>
                 <h5 class="sm:w-4/5">Champion our clients and remember that we exist to serve them with our talents. </h5>
             </div>
         </div>
