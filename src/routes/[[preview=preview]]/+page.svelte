@@ -228,7 +228,7 @@
         <div class="w-full lg:w-1/2 mt-8 lg:left-0 flex justify-center items-center">
           <h6 class="text-primary absolute top-8 left-0 md:left-[20%] ">Featured <br /> Design</h6>
             <div class="w-full h-full relative">
-              
+              <div class="absolute w-full h-full">
               {#key sliderIndex}
               <div class="w-full h-full absolute" out:fade={{duration:300}} in:fade={{delay:300, duration:400}}>
                 {#if innerWidth<=1024}
@@ -250,6 +250,7 @@
                 </div>
               </div>
               {/key}
+            </div>
 
         </div>
         </div>
@@ -279,13 +280,25 @@
   
   </div>
   <div class="bg-white">
-    <ContentWidth animateIn class="flex flex-col gap-8 md:gap-0 md:flex-row justify-around flex-wrap py-32">
+    <ContentWidth class="flex flex-col gap-8 md:gap-0 md:flex-row justify-around flex-wrap py-32">
+      <AnimateIn transitionDelayMax={2400}>
       <img class="h-48 aspect-square object-contain" src={progressLogo} alt="progress lighting logo" />
+      </AnimateIn>
+      <AnimateIn transitionDelayMax={2400}>
       <img class="h-48 aspect-square object-contain" src={huluLogo} alt="hulu logo" />
+      </AnimateIn>
+      <AnimateIn transitionDelayMax={2400}>
       <img class="h-48 aspect-square object-contain" src={toyotaLogo} alt="toyota logo" />
+      </AnimateIn>
+      <AnimateIn transitionDelayMax={2400}>
       <img class="h-48 aspect-square object-contain" src={innoceanLogo} alt="innocean logo" />
+      </AnimateIn>
+      <AnimateIn transitionDelayMax={2400}>
       <img class="h-48 aspect-square object-contain" src={tosaLogo} alt="tosa logo" />
-      <img class="h-48 aspect-square object-contain" src={worthLogo} alt="worthe logo" />
+      </AnimateIn>
+      <AnimateIn transitionDelayMax={2400}>
+        <img class="h-48 aspect-square object-contain" src={worthLogo} alt="worthe logo" />
+      </AnimateIn>
     </ContentWidth>
 
   </div>
@@ -305,38 +318,38 @@
   </ScreenWidthImage>
 
   <div class="w-screen bg-paper pt-64 pb-16">
-    <AnimateIn>
-    <ContentWidth class="flex flex-row relative  pb-12 md:pb-36">
+  
+    <ContentWidth animateIn class="flex flex-row relative  pb-12 md:pb-36">
       <h3 class="text-primary w-4/5 md:ml-[20%]">Let’s Begin</h3>
     </ContentWidth>
-  </AnimateIn>
-  <AnimateIn>
+
+
     <ContentWidth class="flex flex-col md:flex-row justify-between relative">
-      <div class="w-3/5 lg:w-1/5 pr-8 mb-8">
+      <AnimateIn maxTransitionDelay={1200} class="w-3/5 lg:w-1/5 pr-8 mb-8">
         <h6 class="text-primary">We have a plan to help your brand reach success.</h6>
-      </div>
+      </AnimateIn>
       <div class="lg:w-4/5 flex flex-row flex-wrap justify-around items-center">
-        <div class="h-[320px] w-[320px] flex flex-col pr-6">
+        <AnimateIn maxTransitionDelay={1200} class="h-[320px] w-[320px] flex flex-col pr-6">
           <div class="label"><span class="text-primary">01 </span>/ 03</div>
           <h5 class="text-primary mt-8">Call us, <br /> let’s talk</h5>
           <p class="mt-4">Everything we do starts and ends with you. Your problems, your goals, your story. We begin with a conversation to see how we can help you succeed.</p>
 
-        </div>
-        <div class="h-[320px] w-[320px] flex flex-col pr-6">
+        </AnimateIn>
+        <AnimateIn maxTransitionDelay={1200} class="h-[320px] w-[320px] flex flex-col pr-6">
           <div class="label"><span class="text-primary">02 </span>/ 03</div>
           <h5 class="text-primary mt-8">We help solve <br /> your problem</h5>
           <p class="mt-4">After establishing clear goals that solve your brand’s problem we get to work on establishing a clear story and developing a compelling design.</p>
 
-        </div>
-        <div class="h-[320px] w-[320px] flex flex-col pr-6">
+        </AnimateIn>
+        <AnimateIn maxTransitionDelay={1200} class="h-[320px] w-[320px] flex flex-col pr-6">
           <div class="label"><span class="text-primary">03 </span>/ 03</div>
           <h5 class="text-primary mt-8">Stand out <br /> from the noise.</h5>
           <p class="mt-4">You envisioned success and now you finally have confidence in your brand. We’ve equipped you to increase sales the way you’ve always hoped.</p>
 
-        </div>
+        </AnimateIn>
       </div>
     </ContentWidth>
-    </AnimateIn>
+    
     <AnimateIn>
     <ContentWidth class="pt-32">
       <h1 class="text-primary">Better design <br/>means better <br/>business.</h1>
@@ -344,8 +357,8 @@
   </AnimateIn>
   </div>
   <div class="bg-white w-screen">
-    <AnimateIn>
-    <ContentWidth>
+  
+    <ContentWidth animateIn>
       <p class="md:mx-[20%] mt-32 large-body">You want your business to succeed. So do we. You have something unique and valuable to offer. We can help you tell the world about it in a way that stand out from the noise. It's proven, companies that utilize "design thinking" are some of the most successful companies in any market. </p>
       {#if isReadMoreOpen}
       <p class="md:mx-[20%] large-body" transition:slide>
@@ -362,7 +375,7 @@ Working with Reddoor Creative will finally give you confidence in your brand and
         <DefaultButton click={()=>window.location.href="/contact"} bold filled text="MEET WITH US"/>
       </div>
     </ContentWidth>
-    </AnimateIn>
+
   </div>
   
   <div class="w-screen bg-white pb-8">
@@ -410,9 +423,11 @@ Working with Reddoor Creative will finally give you confidence in your brand and
   <AnimateIn>
   <ContentWidth class="flex flex-col md:flex-row items-start justify-between">
       <h3 class="text-white md:w-3/5">Isn’t it time to arm your brand with a clear story and compelling design?</h3>
+      <AnimateIn transitionDelayMax={1600}>
       <a href="/contact">
       <DefaultButton class="mt-6 text-white border-white border-1 hover:bg-mid hover:bg-opacity-10" text="MEET WITH US" filled={false} />
       </a>
+      </AnimateIn>
   </ContentWidth>
   </AnimateIn>
 </div>
