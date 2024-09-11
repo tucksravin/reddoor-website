@@ -274,13 +274,52 @@ export type ProjectDocument<Lang extends string = string> =
     Lang
   >;
 
-type ShowcaseDocumentDataSlicesSlice =
-  | RichTextSlice
-  | ScreenWidthColumnsSlice
-  | SlideshowSlice
-  | ValueBlockSlice
-  | ScreenWidthImageSlice
-  | ContentWidthImageSlice;
+/**
+ * Item in *showcase → projects*
+ */
+export interface ShowcaseDocumentDataProjectsItem {
+  /**
+   * project field in *showcase → projects*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.projects[].project
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project: prismic.ContentRelationshipField<"project">;
+
+  /**
+   * set image field in *showcase → projects*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.projects[].imageOverride
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  imageOverride: prismic.ImageField<never>;
+
+  /**
+   * set title field in *showcase → projects*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: optional
+   * - **API ID Path**: showcase.projects[].titleOverride
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titleOverride: prismic.KeyTextField;
+
+  /**
+   * set subtitle field in *showcase → projects*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: optional
+   * - **API ID Path**: showcase.projects[].subtitleOverride
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitleOverride: prismic.KeyTextField;
+}
+
+type ShowcaseDocumentDataSlicesSlice = never;
 
 /**
  * Content for showcase documents
@@ -318,6 +357,72 @@ interface ShowcaseDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   hero: prismic.ImageField<never>;
+
+  /**
+   * body field in *showcase*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * featuredProject field in *showcase*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.featuredproject
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  featuredproject: prismic.ContentRelationshipField<"project">;
+
+  /**
+   * set featured image field in *showcase*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.featuredImageOverride
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  featuredImageOverride: prismic.ImageField<never>;
+
+  /**
+   * set featured title field in *showcase*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: optional
+   * - **API ID Path**: showcase.featuredTitleOverride
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  featuredTitleOverride: prismic.KeyTextField;
+
+  /**
+   * set featured subtitle title field in *showcase*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: optional
+   * - **API ID Path**: showcase.featuredSubtitleOverride
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  featuredSubtitleOverride: prismic.KeyTextField;
+
+  /**
+   * projects field in *showcase*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.projects[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  projects: prismic.GroupField<Simplify<ShowcaseDocumentDataProjectsItem>>;
 
   /**
    * Slice Zone field in *showcase*
@@ -1105,6 +1210,7 @@ declare module "@prismicio/client" {
       ProjectDocumentDataSlicesSlice,
       ShowcaseDocument,
       ShowcaseDocumentData,
+      ShowcaseDocumentDataProjectsItem,
       ShowcaseDocumentDataSlicesSlice,
       AllDocumentTypes,
       ContentWidthImageSlice,

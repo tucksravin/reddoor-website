@@ -55,7 +55,7 @@
 		"src/routes/+layout.server.js"
 	],
 	"/[[preview=preview]]/showcase/[uid]": [
-		"src/routes/[[preview=preview]]/showcase/[uid]/+page.server.js",
+		"src/routes/[[preview=preview]]/showcase/[uid]/+page.server.ts",
 		"src/routes/+layout.server.js"
 	],
 	"/slice-simulator": [

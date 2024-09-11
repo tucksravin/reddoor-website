@@ -34,30 +34,89 @@
           "thumbnails": []
         }
       },
+      "body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "featuredproject": {
+        "type": "Link",
+        "config": {
+          "label": "featuredProject",
+          "select": "document",
+          "customtypes": ["project"]
+        }
+      },
+      "featuredImageOverride": {
+        "type": "Image",
+        "config": {
+          "label": "set featured image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "featuredTitleOverride": {
+        "type": "Text",
+        "config": {
+          "label": "set featured title",
+          "placeholder": "optional"
+        }
+      },
+      "featuredSubtitleOverride": {
+        "type": "Text",
+        "config": {
+          "label": "set featured subtitle title",
+          "placeholder": "optional"
+        }
+      },
+      "projects": {
+        "type": "Group",
+        "config": {
+          "label": "projects",
+          "repeat": true,
+          "fields": {
+            "project": {
+              "type": "Link",
+              "config": {
+                "label": "project",
+                "select": "document",
+                "customtypes": ["project"]
+              }
+            },
+            "imageOverride": {
+              "type": "Image",
+              "config": {
+                "label": "set image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "titleOverride": {
+              "type": "Text",
+              "config": {
+                "label": "set title",
+                "placeholder": "optional"
+              }
+            },
+            "subtitleOverride": {
+              "type": "Text",
+              "config": {
+                "label": "set subtitle",
+                "placeholder": "optional"
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "rich_text": {
-              "type": "SharedSlice"
-            },
-            "screen_width_columns": {
-              "type": "SharedSlice"
-            },
-            "slideshow": {
-              "type": "SharedSlice"
-            },
-            "value_block": {
-              "type": "SharedSlice"
-            },
-            "screen_width_image": {
-              "type": "SharedSlice"
-            },
-            "content_width_image": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
