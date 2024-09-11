@@ -4,6 +4,7 @@
     let isInView = false;
     let el:HTMLElement | null;
     let transitionDelay = 0;
+    export let style ="";
 
     export let transitionDelayMax = 400;
 
@@ -28,6 +29,6 @@
 
    
 
-        <div bind:this={el} class="transition duration-[2000ms] ease-fast-slow {isInView ? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"} {$$props.class || ''}" style="transition-delay:{transitionDelay}ms">
+        <div bind:this={el} class="transition duration-[2000ms] ease-fast-slow {isInView ? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"} {$$props.class || ''}" style="transition-delay:{transitionDelay}ms; {style}">
             <slot />
         </div>
