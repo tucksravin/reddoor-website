@@ -106,7 +106,7 @@ function mediumString (project:ProjectDocument<string>) {
       <div class="w-full md:w-2/5 md:pr-2 aspect-[4/3] relative">
         <a href={"/portfolio/"+(data.relatedProjectOne.uid||'')} class="h-full w-full flex flex-col justify-end relative">
           <img src={data.relatedProjectOne.data.hero.url||''} alt={data.relatedProjectOne.data.title||''  + " Hero Image"} class="absolute w-full h-full object-cover"/>
-          <div class="w-full h-full absolute top-0 left-0 hover:opacity-0 transition duration-700" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%)" />
+          <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
           <div class="w-full flex flex-row justify-between p-6 z-10" >
               <div>
                   <p class="text-white uppercase">{data.relatedProjectOne.data.title||''}</p>
@@ -121,7 +121,7 @@ function mediumString (project:ProjectDocument<string>) {
       <div class="w-full md:w-2/5 md:pl-2 aspect-[4/3] relative">
         <a href={"/portfolio/"+data.relatedProjectTwo.uid} class="h-full w-full flex flex-col justify-end relative">
           <img src={data.relatedProjectTwo.data.hero.url||''} alt={data.relatedProjectTwo.data.title||''  + " Hero Image"} class="absolute w-full h-full object-cover"/>
-          <div class="w-full h-full absolute top-0 left-0 hover:opacity-0 transition duration-700" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%)" />
+          <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
           <div class="w-full flex flex-row justify-between p-6 z-10" >
               <div>
                   <p class="text-white uppercase">{data.relatedProjectTwo.data.title||''}</p>
