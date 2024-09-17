@@ -200,7 +200,7 @@ line-height: 140%; /* 84px */
 <section class="max-w-screen overflow-x-clip">
     <div class="right-0 max-h-screen aspect-video relative {viewportHeight * 16 > viewportWidth * 9 ? 'h-screen min-w-full' : 'w-screen min-h-full'}">
 
-            <img src={ceoHero} alt="ceo name tag" class="absolute h-full w-full max-w-screen object-cover object-left" style="object-position:{viewportWidth<1440&&viewportWidth>768? viewportWidth-viewportHeight*16/9 + 480 :0}px center"/>
+            <img src={ceoHero} alt="ceo name tag" class="absolute h-full w-full max-w-screen object-cover object-left" style="object-position:{viewportWidth<1440&&viewportWidth>768? viewportWidth-viewportHeight*16/9 + 240 :0}px center"/>
     
         <div class="w-full max-w-[100vw] h-full max-h-screen relative">
         <ContentWidth class='{$$props.class || ''} h-full z-10 relative'>
