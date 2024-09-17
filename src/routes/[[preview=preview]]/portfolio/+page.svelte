@@ -130,6 +130,10 @@ $: {
 
 }
 
+let viewportHeight:number;
+
+	
+
 
 export let data;
 
@@ -137,7 +141,7 @@ let sortedProjects = data.allProjects;
 
 </script>
 
-<svelte:window bind:innerWidth={viewportWidth} />
+<svelte:window bind:innerWidth={viewportWidth} bind:innerHeight={viewportHeight} />
 
 <style>
     h4{
@@ -182,6 +186,7 @@ line-height: 140%; /* 84px */
     </title>
 </svelte:head>
 
+
 <section class="w-screen max-h-[720px] flex flex-col justify-between lg:aspect-video pt-24">
     <div/>
     <ContentWidth>
@@ -192,7 +197,15 @@ line-height: 140%; /* 84px */
    </ContentWidth>
 
 </section>
-<ScreenWidthImage image={ceoHero} class="object-top-right">
+<section class="max-w-screen overflow-x-clip">
+    <div class="right-0 max-h-screen aspect-video relative {viewportHeight * 16 > viewportWidth * 9 ? 'h-screen min-w-full' : 'w-screen min-h-full'}">
+
+            <img src={ceoHero} alt="ceo name tag" class="absolute h-full w-full max-w-screen object-cover object-left" style="object-position:{viewportWidth<1440&&viewportWidth>768? viewportWidth-viewportHeight*16/9 + 480 :0}px center"/>
+    
+        <div class="w-full max-w-[100vw] h-full max-h-screen relative">
+        <ContentWidth class='{$$props.class || ''} h-full z-10 relative'>
+            <slot />
+        
     <h4 class="md:w-3/5 absolute left-0 top-20 text-white">
         The “buck stops here” with a branding system overhaul of LA County's CEO
     </h4>
@@ -206,7 +219,10 @@ line-height: 140%; /* 84px */
             <img src={arrowButton} alt="go to page" class="h-full"/>
         </a>
     </div>
-</ScreenWidthImage>
+</ContentWidth>
+</div>
+</div>
+</section>
 <section class="my-24">
     <ContentWidth>
         <div class="w-full md:w-4/5 md:ml-[20%] flex flex-col">
