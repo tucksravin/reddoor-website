@@ -61,37 +61,12 @@
 
 
   let sliderIndex = 0;
-      
-      let isSlideAnimated = true;
 
-      const resetSliderToStart = () => {
-          setTimeout(()=>isSlideAnimated=false, SLIDER_TRANSITION_LENGTH_IN_MS)
-          setTimeout(()=> sliderIndex=0, SLIDER_TRANSITION_LENGTH_IN_MS+20)
-          setTimeout(()=>isSlideAnimated=true,SLIDER_TRANSITION_LENGTH_IN_MS+40)
-      }
-
-      const resetSliderToEnd = () => {
-          setTimeout(()=>isSlideAnimated=false, SLIDER_TRANSITION_LENGTH_IN_MS)
-          setTimeout(()=> sliderIndex=projectArray.length-1, SLIDER_TRANSITION_LENGTH_IN_MS+20)
-          setTimeout(()=>isSlideAnimated=true,SLIDER_TRANSITION_LENGTH_IN_MS+40)
-      }
-  
-      const slideRight = () => {
      
-        if(sliderIndex<0){
-        resetSliderToEnd();}else{
-          sliderIndex--;
-        }
-          
-          clearInterval(sliderInterval);
-	        sliderInterval = setInterval(()=>slideRight(), SLIDER_INTERVAL_IN_MS);
-      
-    
-      }
       const slideLeft = () => {
 
         if(sliderIndex==projectArray.length-1){
-        resetSliderToStart();}else{
+        sliderIndex=0;}else{
           sliderIndex++;
         }
           
@@ -116,8 +91,7 @@
          sliderInterval = setInterval(()=>slideLeft(), SLIDER_INTERVAL_IN_MS);
       });
   
-      const tripledImages = projectArray.concat(projectArray).concat(projectArray)
-      const tripledProjects = projectArray.concat(projectArray).concat(projectArray)
+
 
 
 </script>
@@ -189,24 +163,24 @@
   </div>
 </div>
 
-<div class="w-full relative bg-paper h-[120vh] sm:h-[175vh] lg:h-screen xl:h-[80vh]">
+<div class="w-screen relative bg-paper h-[120vh] sm:h-[175vh] lg:h-screen overflow-hidden">
   <div class="w-full h-full absolute">
       
-    <ContentWidth class="flex flex-col lg:flex-row relative">
+    <ContentWidth class="flex flex-col lg:flex-row h-full">
 
         <div class="w-full lg:w-1/2 mt-8 lg:left-0 flex justify-center items-center">
           <h6 class="text-primary absolute top-8 left-0 md:left-[20%] ">Featured <br /> Design</h6>
             <div class="w-full h-full relative">
               <div class="absolute w-full h-full">
               {#key sliderIndex}
-              <div class="w-full h-full absolute" out:fade={{duration:300}} in:fade={{delay:280, duration:400}}>
+              <div class="w-full h-full min-h-[640px] absolute" out:fade={{duration:300}} in:fade={{delay:280, duration:400}}>
                 {#if viewportWidth<=1024}
                 <div out:fade={{duration:300}} in:fade={{delay:280, duration:400}}>
                   <SquareImage  src={projectArray[sliderIndex].image} />
                 </div>
                 {/if}
-                <p  class="md:ml-[20%] lg:ml-[40%] mt-24" out:fade={{duration:300}} in:fade={{delay:280, duration:400}}>{tripledProjects[sliderIndex].bodyText}</p>
-                <h1 out:fade={{duration:300}} in:fade={{delay:280, duration:400}} class="text-primary mt-24">{tripledProjects[sliderIndex].projectName}</h1>
+                <p  class="md:ml-[20%] lg:ml-[40%] mt-24" out:fade={{duration:300}} in:fade={{delay:280, duration:400}}>{projectArray[sliderIndex].bodyText}</p>
+                <h1 out:fade={{duration:300}} in:fade={{delay:280, duration:400}} class="text-primary mt-24">{projectArray[sliderIndex].projectName}</h1>
 
             
                 <div  out:fade={{duration:300}} in:fade={{delay:280, duration:400}} class="flex flex-row gap-3 md:ml-[20%] lg:ml-[40%] mt-24">
@@ -226,12 +200,12 @@
         <div class="w-0 h-0 lg:w-1/2"></div>
     </ContentWidth>
     {#if viewportWidth>1024}
-    <div class="w-2/5 absolute top-0 right-0 ">
+    <div class="w-2/5 absolute top-0 right-0 min-h-[640px]">
         {#key sliderIndex}
             <div out:fade={{duration:300}} in:fade={{delay:280, duration:300}}>
-                {#each tripledProjects as project, i }
+                {#each projectArray as project, i }
                     {#if i===sliderIndex%projectArray.length}
-                        <SquareImage src={project.image}/>
+                        <SquareImage src={project.image} />
                     {/if}     
                 {/each}
             </div>
@@ -241,6 +215,8 @@
     {/if}
   </div>  
   </div>
+
+
   <div class="w-screen bg-paper">
    
     <ContentWidth class="my-0" animateIn>

@@ -25,33 +25,35 @@ export const nodes = [
 	() => import('./nodes/21'),
 	() => import('./nodes/22'),
 	() => import('./nodes/23'),
-	() => import('./nodes/24')
+	() => import('./nodes/24'),
+	() => import('./nodes/25')
 ];
 
 export const server_loads = [0];
 
 export const dictionary = {
 		"/[[preview=preview]]/about": [~4],
-		"/blogs": [9],
-		"/contacts": [10],
+		"/blogs": [10],
+		"/contacts": [11],
 		"/[[preview=preview]]/contact": [~5],
-		"/content": [11],
-		"/ctas": [12],
-		"/faqs": [13],
-		"/footers": [14],
-		"/lists": [15],
-		"/mastheads": [16],
-		"/navs": [17],
-		"/plans": [18],
-		"/portfolios": [19],
+		"/content": [12],
+		"/ctas": [13],
+		"/faqs": [14],
+		"/footers": [15],
+		"/lists": [16],
+		"/mastheads": [17],
+		"/navs": [18],
+		"/plans": [19],
+		"/portfolios": [20],
 		"/[[preview=preview]]/portfolio": [~6],
 		"/[[preview=preview]]/portfolio/[uid]": [~7],
 		"/[[preview=preview]]/showcase/[uid]": [~8],
-		"/slice-simulator": [20],
-		"/sliders": [21],
-		"/teams": [22],
-		"/testimonials": [23],
-		"/values": [24],
+		"/slice-simulator": [21],
+		"/[[preview=preview]]/slider-test": [9],
+		"/sliders": [22],
+		"/teams": [23],
+		"/testimonials": [24],
+		"/values": [25],
 		"/[[preview=preview]]": [~2],
 		"/[[preview=preview]]/[uid]": [~3]
 	};

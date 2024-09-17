@@ -43,10 +43,18 @@
     const handleScroll = () =>{
             showNav=scrollY>300;
     }
+    function disableScrollRestoration() {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  
+  window.scrollTo(0, 0);
+}
 
     onMount(()=>{
  
         window.addEventListener('scroll', handleScroll);
+        disableScrollRestoration();
     });
 
 
