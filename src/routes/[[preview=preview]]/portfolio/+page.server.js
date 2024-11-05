@@ -1,4 +1,5 @@
 import { createClient } from '$lib/prismicio';
+import { filter } from '@prismicio/client';
 
 export async function load({ params, fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
@@ -9,7 +10,8 @@ export async function load({ params, fetch, cookies }) {
 		orderings: {
 		  field: 'document.first_publication_date',
 		  direction: 'asc'
-		}
+		},
+		filters: [filter.not('document.tags', ['hide'])]
 	  });
 
 	  

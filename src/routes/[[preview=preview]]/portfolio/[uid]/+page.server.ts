@@ -1,5 +1,5 @@
 import { createClient } from '$lib/prismicio';
-import { isFilled } from '@prismicio/client';
+import { isFilled, filter } from '@prismicio/client';
 
 export async function load({ params, fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
@@ -10,7 +10,9 @@ export async function load({ params, fetch, cookies }) {
 		orderings: {
 		  field: 'document.first_publication_date',
 		  direction: 'desc'
-		}
+		},
+		
+		filters: [filter.not('document.tags', ['hide'])]
 	  });
 
 	  const currentIndex = allProjects.findIndex(project => project.uid === params.uid);

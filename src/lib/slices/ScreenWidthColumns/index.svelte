@@ -18,7 +18,7 @@
       
         {#each slice.primary.media as item}
         {#if isFilled.link(item.link)}
-        <AnimateIn class="{slice.primary.hasGap ? "pr-6 pb-6" : ""} relative w-full flex flex-col items-center justify-start {slice.primary.desktopcolumns==="2" ? "md:w-1/2":""} {slice.primary.desktopcolumns==="3" ? "md:w-1/3":""}">
+        <AnimateIn isOff={slice.primary.isAnimated!==null&&!slice.primary.isAnimated} class="{slice.primary.hasGap ? "pr-6 pb-6" : ""} relative w-full flex flex-col items-center justify-start {slice.primary.desktopcolumns==="2" ? "md:w-1/2":""} {slice.primary.desktopcolumns==="3" ? "md:w-1/3":""}">
         <a href={item.link.url} class="relative w-full flex flex-col items-center justify-start">
           {#if item.label}
             <div class="w-full border-b-1 border-dark label mb-8">{item.label}</div>
@@ -40,7 +40,7 @@
         </AnimateIn>
         {:else}
         
-        <AnimateIn class="{slice.primary.hasGap ? "pr-6 pb-6" : ""} relative w-full flex flex-col items-center justify-start {slice.primary.desktopcolumns==="2" ? "md:w-1/2":""} {slice.primary.desktopcolumns==="3" ? "md:w-1/3":""}">
+        <AnimateIn isOff={slice.primary.isAnimated!==null&&!slice.primary.isAnimated} class="{slice.primary.hasGap ? "pr-6 pb-6" : ""} relative w-full flex flex-col items-center justify-start {slice.primary.desktopcolumns==="2" ? "md:w-1/2":""} {slice.primary.desktopcolumns==="3" ? "md:w-1/3":""}">
           {#if item.label}
             <div class="w-full border-b-1 border-dark label mb-8">{item.label}</div>
           {/if}

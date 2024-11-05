@@ -605,6 +605,17 @@ export interface ContentWidthImageSliceDefaultPrimary {
   desktopcolumns: prismic.SelectField<"1" | "2" | "3", "filled">;
 
   /**
+   * animate in field in *ContentWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: content_width_image.default.primary.isAnimated
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isAnimated: prismic.BooleanField;
+
+  /**
    * slice vertical padding field in *ContentWidthMedia → Default → Primary*
    *
    * - **Field Type**: Boolean
@@ -739,6 +750,17 @@ export interface RichTextSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hasPadding: prismic.BooleanField;
+
+  /**
+   * animate in field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: rich_text.default.primary.isAnimated
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isAnimated: prismic.BooleanField;
 }
 
 /**
@@ -866,6 +888,17 @@ export interface ScreenWidthColumnsSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hasPadding: prismic.BooleanField;
+
+  /**
+   * animate in field in *ScreenWidthColumns → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: screen_width_columns.default.primary.isAnimated
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isAnimated: prismic.BooleanField;
 
   /**
    * margin/gaps between images field in *ScreenWidthColumns → Default → Primary*
@@ -1198,6 +1231,17 @@ declare module "@prismicio/client" {
       repositoryNameOrEndpoint: string,
       options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>;
+  }
+
+  interface CreateWriteClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options: prismic.WriteClientConfig,
+    ): prismic.WriteClient<AllDocumentTypes>;
+  }
+
+  interface CreateMigration {
+    (): prismic.Migration<AllDocumentTypes>;
   }
 
   namespace Content {

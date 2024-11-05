@@ -10,7 +10,6 @@
 	const float = slice.primary.float;
 	const width = slice.primary.width;
 
-
 </script>
 
 
@@ -19,15 +18,16 @@
 		{float==="right"?"items-end":""}
 		{float==="center"?"items-center":""}
 		{float==="left"?"items-start":""}
-	"
-	animateIn
+		"
+		animateIn={slice.primary.isAnimated===null||slice.primary.isAnimated}
 	>
 	<div class="
 		{width==="4/5"? "w-full md:w-4/5":""}
 		{width==="3/5"? "w-full md:w-3/5":""}
 		pr-6
 		rich-text
-	">
+		"
+	>
 		
 			<PrismicRichText
 			field={slice.primary.content}

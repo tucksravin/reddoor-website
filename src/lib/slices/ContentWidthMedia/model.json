@@ -65,6 +65,15 @@
             "default_value": "1"
           }
         },
+        "isAnimated": {
+          "type": "Boolean",
+          "config": {
+            "label": "animate in",
+            "placeholder_false": "not animated",
+            "placeholder_true": "animated",
+            "default_value": true
+          }
+        },
         "hasPadding": {
           "type": "Boolean",
           "config": {

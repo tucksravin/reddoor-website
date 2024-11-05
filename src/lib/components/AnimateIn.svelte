@@ -9,6 +9,7 @@
 
     export let transitionDelayMax = 400;
     export let transitionDuration = 2400;
+    export let isOff = false;
 
     const checkViewport = () => {
         if(window&&el){
@@ -20,6 +21,7 @@
     let checking:NodeJS.Timeout;
 
     onMount(()=>{
+        if(!isOff){
         checkViewport()
 
         checking = setInterval(()=>{
@@ -27,28 +29,35 @@
         }
     ,4000)
        
-
-        window.addEventListener('scroll', checkViewport)
+       
+        window.addEventListener('scroll', checkViewport);
+        }
     })
 
     onDestroy(()=>{
+        if(!isOff){
         if(typeof window !== 'undefined'){
         window.removeEventListener('scroll', checkViewport)
        
         if(checking)
             clearInterval(checking);
         }}
+    }
     )
 </script>
 
-
-   
-{#if href}
-<a {href} bind:this={el} class="transition ease-fast-slow {isInView ? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"} {$$props.class || ''}" style="transition-delay:{transitionDelay}ms; transition-duration:{transitionDuration}ms; {style}">
-    <slot />
-</a>
+{#if isOff}
+    <div class={$$props.class || ''}>
+        <slot />
+    </div>
 {:else}
+    {#if href}
+        <a {href} bind:this={el} class="transition ease-fast-slow {isInView ? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"} {$$props.class || ''}" style="transition-delay:{transitionDelay}ms; transition-duration:{transitionDuration}ms; {style}">
+            <slot />
+        </a>
+    {:else}
         <div bind:this={el} class="transition ease-fast-slow {isInView ? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"} {$$props.class || ''}" style="transition-delay:{transitionDelay}ms; transition-duration:{transitionDuration}ms; {style}">
             <slot />
         </div>
+    {/if}
 {/if}
