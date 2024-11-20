@@ -10,7 +10,7 @@
 
 	import ContentWidth from '$lib/components/ContentWidth/ContentWidth.svelte';
   import { onMount } from 'svelte';
-  import DefaultButton from '$lib/components/Buttons/DefaultButton.svelte';
+
 
     const NAV_LINKS=[
         {
@@ -102,9 +102,9 @@ afterNavigate(() => {
 <main out:fade={{duration:500}} in:fade={{delay:700, duration:700}}>
     {#if !showNav}
 
-    <div class="h-12 w-screen top-0 absolute z-20 bg-transparent mix-blend-difference" transition:fly={{y:-64, delay:500}}>
+    <div class="h-12 w-screen top-0 absolute z-20 bg-transparent {data.pathname.includes("portfolio/")||data.pathname.includes("about") ?"text-white":"text-black"}" transition:fly={{y:-64, delay:500}}>
         <ContentWidth class="flex flex-row justify-between items-center h-full">
-            <a href="/" class="hover:opacity-80 transition-all duration-500 bump label text-white">
+            <a href="/" class="hover:opacity-80 transition-all duration-500 bump label ">
                 Reddoor Creative
             </a>
             
@@ -113,7 +113,7 @@ afterNavigate(() => {
                 <div class="hidden lg:flex flex-row justify-between items-center gap-10">
                     {#each NAV_LINKS as item, i}
           
-                        <a class="label hover:opacity-80 transition-opacity text-white" href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
+                        <a class="label hover:opacity-80 transition-opacity " href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
                       
                     {/each}
                 </div>
