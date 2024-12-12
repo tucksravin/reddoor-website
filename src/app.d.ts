@@ -2,10 +2,12 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface Platform {}
+		interface Locals {
+			prismic: {
+			  client: PrismicClient
+			  previewData: { ref: string } | null
+			}
+		  }
 	}
 }
 

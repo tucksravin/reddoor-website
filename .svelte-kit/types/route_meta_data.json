@@ -7,7 +7,7 @@
 		"src/routes/+layout.server.js"
 	],
 	"/api/preview": [
-		"src/routes/api/preview/+server.js"
+		"src/routes/api/preview/+server.ts"
 	],
 	"/blogs": [
 		"src/routes/+layout.server.js"

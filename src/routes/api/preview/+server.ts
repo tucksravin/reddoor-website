@@ -18,8 +18,8 @@ export async function GET({ fetch, request, cookies }) {
 	try {
 	  const response = await redirectToPreviewURL({ client, request, cookies });
 	  return response;
-	} catch (error) {
-	  // Return error response instead of throwing
+	} catch (error:any) {
+
 	  return new Response(`Preview Error: ${error.message}`, {
 		status: 500,
 		headers
