@@ -25,22 +25,7 @@ const routes = [
 		type: 'page',
 		path: '/:uid'
 	},
-	{
-        type: 'portfolio',
-        path: '/portfolio/:uid'
-      },
-      {
-        type: 'showcase',
-        path: '/showcase/:uid'
-      },
-      {
-        type: 'about',
-        path: '/about'
-      },
-      {
-        type: 'contact',
-        path: '/contact'
-      }
+	
 ];
 
 /**
