@@ -1,28 +1,35 @@
-import { redirectToPreviewURL } from '@prismicio/svelte/kit';
-import { createClient } from '$lib/prismicio.js';
+// src/routes/preview/+server.ts
+import { redirectToPreviewURL } from '@prismicio/svelte/kit'
+import { createClient } from '$lib/prismicio'
 
-// src/routes/preview/+server.js
 export async function GET({ fetch, request, cookies }) {
-	// Add a response header for debugging
-	const headers = new Headers();
-	headers.append('x-debug-url', request.url);
+  const client = createClient({ fetch })
+  
+  try {
+    const response = await redirectToPreviewURL({ 
+      client, 
+      request,
+      cookies
+    })
 
-	cookies.set('io.prismic.preview', '', {
-		path: '/',
-		secure: true,
-		sameSite: 'lax'
-	  });
-	
-	
-	const client = createClient({ fetch });
-	try {
-	  const response = await redirectToPreviewURL({ client, request, cookies });
-	  return response;
-	} catch (error:any) {
+    // Explicitly set preview ref in cookie before redirect
+    const url = new URL(request.url)
+    const token = url.searchParams.get('token')
+    if (token) {
+      cookies.set('io.prismic.preview', token, {
+        path: '/',
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax'
+      })
+    }
 
-	  return new Response(`Preview Error: ${error.message}`, {
-		status: 500,
-		headers
-	  });
-	}
+    return response
+  } catch (error:any) {
+    console.error('Preview error:', error)
+    return new Response(JSON.stringify({ error: error.message }), { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
+}

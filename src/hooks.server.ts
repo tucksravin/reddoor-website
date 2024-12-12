@@ -4,26 +4,23 @@ import type { Handle } from '@sveltejs/kit'
 import type { CookieSerializeOptions } from 'cookie'
 
 export const handle: Handle = async ({ event, resolve }) => {
-  // Set preview cookie defaults
-  const previewCookie = event.cookies.get('io.prismic.preview') || ''
-  const previewSessionCookie = event.cookies.get('io.prismic.previewSession') || ''
+  // Get the preview ref from either cookie
+  const previewRef = event.cookies.get('io.prismic.preview') || event.cookies.get('io.prismic.previewSession')
 
-  // Set secure cookie attributes
-  const cookieOptions: CookieSerializeOptions & { path: string } = {
-    path: '/',
-    secure: true,
-    sameSite: 'lax',
-    httpOnly: true
+  const client = createClient({ fetch: event.fetch })
+
+  // If we have a preview ref, update the client to use it
+  if (previewRef) {
+    client.enableAutoPreviewsFromReq(event.request)
   }
-
-  event.cookies.set('io.prismic.preview', previewCookie, cookieOptions)
-  event.cookies.set('io.prismic.previewSession', previewSessionCookie, cookieOptions)
 
   // Initialize Prismic client with preview data
   event.locals.prismic = {
-    client: createClient({ fetch: event.fetch }),
-    previewData: previewCookie ? { ref: previewCookie } : null
+    client,
+    previewData: previewRef ? { ref: previewRef } : null
   }
 
-  return resolve(event)
+  // Resolve with preview data if available
+  const response = await resolve(event)
+  return response
 }
