@@ -5,7 +5,7 @@ import type { CookieSerializeOptions } from 'cookie'
 
 export const handle: Handle = async ({ event, resolve }) => {
   const previewRef = event.cookies.get('io.prismic.preview') || event.cookies.get('io.prismic.previewSession')
-
+  
   const domain = event.url.hostname === 'localhost' ? 'localhost' : '.reddoorla.com'
 
   const cookieOptions: CookieSerializeOptions & { 
@@ -14,15 +14,19 @@ export const handle: Handle = async ({ event, resolve }) => {
   } = {
     path: '/',
     secure: true,
-    sameSite: 'none',
+    sameSite: 'none',  // Set to 'none' to allow cross-site
     httpOnly: true,
     domain: domain
   }
 
-  if (previewRef) {
-    event.cookies.set('io.prismic.preview', previewRef, cookieOptions)
-    event.cookies.set('io.prismic.previewSession', previewRef, cookieOptions)
-  }
+  // Handle all potential cookies that need cross-site access
+  const cookies = event.cookies.getAll()
+  cookies.forEach(cookie => {
+    if (cookie.name.includes('dd_cookie_test') || 
+        cookie.name.includes('prismic')) {
+      event.cookies.set(cookie.name, cookie.value, cookieOptions)
+    }
+  })
 
   const client = createClient({ fetch: event.fetch })
   
