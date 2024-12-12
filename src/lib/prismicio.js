@@ -25,7 +25,14 @@ const routes = [
 		type: 'page',
 		path: '/:uid'
 	},
-	
+	{
+        type: 'project',
+        path: '/portfolio/:uid'
+      },
+      {
+        type: 'showcase',
+        path: '/showcase/:uid'
+      },
 ];
 
 /**
