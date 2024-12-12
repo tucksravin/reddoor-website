@@ -6,15 +6,17 @@ import type { CookieSerializeOptions } from 'cookie'
 export const handle: Handle = async ({ event, resolve }) => {
   const previewRef = event.cookies.get('io.prismic.preview') || event.cookies.get('io.prismic.previewSession')
 
+  const domain = event.url.hostname === 'localhost' ? 'localhost' : '.reddoorla.com'
+
   const cookieOptions: CookieSerializeOptions & { 
     path: string;
-    partitioned?: boolean;
+    domain: string;
   } = {
     path: '/',
     secure: true,
-    sameSite: 'none',  // Changed from 'lax' to 'none' for cross-site
+    sameSite: 'none',
     httpOnly: true,
-    partitioned: true  // Add partitioned attribute
+    domain: domain
   }
 
   if (previewRef) {
