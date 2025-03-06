@@ -129,7 +129,7 @@
               -moz-transform: scale({doorScale}) translate({doorTranslateLeft}px,{doorTranslateTop}px) rotate3d(0,1,0,{doorRotate}deg);  
               -webkit-transform: scale({doorScale}) translate({doorTranslateLeft}px,{doorTranslateTop}px) rotate3d(0,1,0,{doorRotate}deg);
             left:{doorOriginLeft}px; top:{doorOriginTop}px; " 
-            class="origin-left absolute w-full h-fit md:w-1/5  max-w-24 max-h-[67.67px] mt-3"
+            class="origin-left absolute w-full h-fit md:w-1/5  max-w-24 max-h-[67.67px] mt-3 transition-transform"
         />
     <ContentWidth class="flex flex-col justify-center h-full -z-10">
       <div class="flex flex-col md:flex-row justify-between" bind:this={initialContent}>
