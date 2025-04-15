@@ -12,6 +12,7 @@
   import { onMount } from 'svelte';
 
   import { isTop } from '$lib/stores/isTop';
+  import LandscapeModal from '$lib/components/LandscapeModal.svelte';
 
 
     const NAV_LINKS=[
@@ -100,6 +101,7 @@ afterNavigate(() => {
     </button>
 </div>
 {/if}
+<LandscapeModal />
 {#key data.pathname}
 <main out:fade={{duration:500}} in:fade={{delay:700, duration:700}}>
     {#if !showNav &&!$isTop}
