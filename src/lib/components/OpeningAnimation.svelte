@@ -1,39 +1,93 @@
 <script lang="ts">
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
-  import { fade } from "svelte/transition";
+  import { fade, fly } from "svelte/transition";
   import { onMount } from "svelte";
-  import backgroundImageUrl from '$lib/assets/images/stJames.jpg'
+  import stJames from '$lib/assets/images/openingBgs/stJamesBg.jpg?as=run';
+  import enzos from '$lib/assets/images/openingBgs/enzosBg.jpg?as=run';
+  import fyf from '$lib/assets/images/openingBgs/fyfBg.jpg?as=run';
+  import sonder from '$lib/assets/images/openingBgs/sonderBg.jpg?as=run';
+
   import printedReddoorLogo from '$lib/assets/icons/logos/printedReddoor.png'
   import { isTop } from "$lib/stores/isTop";
+  import Img from "@zerodevx/svelte-img";
+  import PillButton from "./Buttons/PillButton.svelte";
+  import AnimateInTriggered from "./AnimateInTriggered.svelte";
+
   
   let viewportHeight: number;
   let viewportWidth: number;
   let transitioning = true;
   let openingSection: HTMLElement;
   let percentageScrolled = 0;
-  let maskScale = 0.1; // Start with a very small mask
+  let maskScale = 0.2; // Start with a very small mask
+  let showCompelling = false;
+  let showButtons = false;
 
+  const backgrounds = [
+    {name: "St James' School" ,
+    src: stJames,
+    media: 'Branding, Print, Digital'},
+    {name: 'Enzo\'s Hand Wash',
+    src: enzos,
+    media: 'Branding, Print, Digital'},
+    {name: 'Freedom Youth Foundation',
+    src: fyf,
+    media: 'Branding, Print, Digital'},
+    {name: 'Gallery Sonder',
+    src: sonder,
+    media: 'Branding, Print, Digital'},
+  ];
   
+  let currentImageIndex = 0;
+  const changeBackgroundImage = () => {
+    currentImageIndex = (currentImageIndex + 1) % backgrounds.length;
+  };
+
+  let hideTopImage = false;
+
+  $: {
+    currentImageIndex;
+    hideTopImage = false;
+    setTimeout(() => {
+      
+        hideTopImage = true;
+    }, 5000);
+
+    console.log('currentImageIndex', currentImageIndex);
+  }
   const handleScroll = () => {
     const containerRect = openingSection.getBoundingClientRect();
     percentageScrolled = 100 - (containerRect.bottom - viewportHeight) / (containerRect.height - viewportHeight) * 100;
     percentageScrolled = Math.min(Math.max(percentageScrolled, 0), 100);
 
-    maskScale = 0.2 + (percentageScrolled / 100) * 20; 
+    maskScale = 0.2 + (percentageScrolled / 100) * 9; 
     if(percentageScrolled<95){
       isTop.set(true)
     }else{
       isTop.set(false)
     }
+
+    if (percentageScrolled > 45) {
+      showCompelling = true;
+      showButtons = true;
+    } else {
+      showCompelling = false;
+      showButtons = false;
+    }
+
+    console.log('percentageScrolled', percentageScrolled);
   };
   
   onMount(() => {
     isTop.set(true)
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     setTimeout(() => transitioning = false, 100);
+    const rotateImageInterval = setInterval(changeBackgroundImage, 7000); // Change image every 7 seconds
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(rotateImageInterval);
     };
   });
  </script>
@@ -45,33 +99,56 @@
  <svelte:window bind:innerWidth={viewportWidth} bind:innerHeight={viewportHeight} />
  
  {#if transitioning}
-   <div class="bg-white w-screen h-screen fixed top-0 left-0 z-50" transition:fade/>
+   <div class="bg-white w-screen h-dvh fixed top-0 left-0 z-50" transition:fade/>
  {/if}
  
  <div class="w-screen" bind:this={openingSection}>
-   <div class="h-screen w-screen fixed bottom-0 left-0 bg-paper-red">
+   <div class="h-dvh w-screen fixed bottom-0 left-0 bg-paper-red">
      <ContentWidth class="flex flex-col justify-center items-center h-full z-10 relative">
-       <div class="absolute w-full h-full flex justify-center items-center">
-         <h4 class="text-white text-right absolute" style="transform: translate(calc(-50% - 64px), 0)">Arm your brand with</h4>
-         <h4 class="text-white text-left absolute" style="transform: translate(calc(50% + 64px), 0)">a clear story</h4>
+       <div class="absolute w-fit lg:w-1/2 right-0 top-1/2 lg:-translate-x-12 translate-y-20 h-full">
+         <h1 class="text-white text-left w-fit">Arm your brand with</h1>
+         <h1 class="text-white text-left w-fit">a clear story...</h1>
+         
        </div>
      </ContentWidth>
      
-     <div class="fixed top-0 left-0 w-screen h-screen overflow-hidden z-20">
+     <div class="fixed top-0 left-0 w-screen h-dvh overflow-hidden z-20">
        <div
          class="fixed top-0 left-0 w-full h-full z-20"
          style="clip-path: url(#mask-path);"
+
        >
-        <img
-            src={backgroundImageUrl}
-            alt="Background"
-            class="absolute h-full w-full object-cover"
-        />
-         <img
-           src={backgroundImageUrl}
+      
+          <Img
+              src={backgrounds[(currentImageIndex+1)%backgrounds.length].src}
+              alt="Background"
+              class="absolute h-full w-full object-cover"
+          />
+   
+          {#if !hideTopImage}
+          <div out:fade>
+         <Img
+           src={backgrounds[currentImageIndex].src}
            alt="Background"
            class="absolute h-full w-full object-cover"
          />
+      
+          </div>
+          
+          {/if}
+ 
+          {#key currentImageIndex}
+          <div class='hidden lg:block h-dvh w-screen fixed top-0 left-0 {hideTopImage?'opacity-0':''}' in:fly={{y:'100%', duration: 500}}>
+           <ContentWidth class="flex flex-col items-start justify-end h-full pb-4 lg:pb-16">
+             <p class='text-white text-left underline underline-offset-4'>{backgrounds[currentImageIndex].name}</p>
+             <p class='text-white text-left'>{backgrounds[currentImageIndex].media}</p>
+ 
+           </ContentWidth>
+           </div>
+           {/key}
+
+        
+         
          <div class="w-96 bg-paper-red h-96 absolute -top-[280px] -left-32 rotate-[-30deg]">
 
          </div>
@@ -79,11 +156,31 @@
          <img src={printedReddoorLogo} alt="reddoor logo" class="absolute top-8 left-8 w-16 opacity-20" />
          
 
-         <ContentWidth class="flex flex-col justify-center items-center h-full z-10 relative">
-           <div class="absolute w-full h-full flex justify-center items-center">
-             <h4 class="text-white text-right absolute" style="transform: translate(calc(-50% - 56px), 0)">Arm your brand with</h4>
-             <h4 class="text-white text-left absolute" style="transform: translate(calc(50% + 72px), 0)">and compelling design.</h4>
+         <ContentWidth class="flex flex-col justify-center items-center h-full z-20 relative">
+          <div class="absolute w-fit lg:w-1/2 right-0 top-1/2 lg:-translate-x-12 translate-y-20 h-full">
+            <h1 class="text-white text-left md:translate-x-[14.5px] lg:translate-x-[7.5px]">Arm your brand with</h1>
+            <h1 class="text-white text-left md:translate-x-[14.5px] lg:translate-x-[7.5px] transition duration-1000 ease-fast-slow {showCompelling? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"}">compelling design</h1>
+            <div class="w-full flex flex-col md:flex-row md:gap-4 mt-8 transition duration-1000 ease-fast-slow {showButtons? "opacity-100 translate-y-0 delay-1000":"opacity-0 translate-y-[50%]"}">
+              <PillButton
+                href="/contact"
+                text="Meet With Us"
+                red={false}
+                />
+              <PillButton
+                href="/portfolio"
+                text="View Our Work"
+              />
+            </div>
+            <!-- {#key currentImageIndex}
+          <div class='w-fit {hideTopImage?'opacity-0':''}' in:fly={{y:'100%', duration: 500}}>
+           
+             <p class='text-white text-left underline underline-offset-4'>{backgrounds[currentImageIndex].name}</p>
+             <p class='text-white text-left'>{backgrounds[currentImageIndex].media}</p>
+
            </div>
+          {/key} -->
+          </div>
+          <div>
          </ContentWidth>
        </div>
        
@@ -102,8 +199,8 @@
    </div>
    
    <!-- Scrollable space to enable scrolling -->
-   <div class="h-screen w-screen"></div>
-   <div class="h-screen w-screen"></div>
-   <div class="h-screen w-screen"></div>
-   <div class="h-screen w-screen"></div>
+   <div class="h-dvh w-screen"></div>
+   <div class="h-dvh w-screen"></div>
+   <div class="h-dvh w-screen"></div>
+   <div class="h-dvh w-screen"></div>
  </div>
