@@ -124,7 +124,7 @@
           <Img
               src={background.src}
               alt="Background"
-              class="absolute h-full w-full object-cover will-change-contents transition-opacity duration-1000 ease-fast-slow {index === currentImageIndex ? 'opacity-100' : 'opacity-0'}"
+              class="absolute h-full w-full object-cover will-change-contents transition-opacity duration-1000 ease-fast-slow {index === currentImageIndex ? 'opacity-100' : ' delay-1000 opacity-0'}"
           />
         {/each}
       
