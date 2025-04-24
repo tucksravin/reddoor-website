@@ -34,7 +34,7 @@
         {text}
 </button>
 {:else}
-<a href={href} target="_blank" rel="noopener noreferrer">
+<a href={href} rel="noopener noreferrer">
     <button 
         class="{red ?
          "bg-primary border-1 border-primary hover:bg-primary-dark active:bg-black text-white" 
