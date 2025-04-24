@@ -213,6 +213,6 @@
    <!-- Scrollable space to enable scrolling -->
    <div class="h-lvh w-screen"></div>
    <div class="h-lvh w-screen"></div>
-   <div class="h-lvh w-screen"></div>
-   <div class="h-lvh w-screen"></div>
+   <div class="md:h-lvh w-screen"></div>
+   <div class="md:h-lvh w-screen"></div>
  </div>
