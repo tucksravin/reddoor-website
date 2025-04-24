@@ -84,7 +84,7 @@
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     setTimeout(() => transitioning = false, 100);
-    const rotateImageInterval = setInterval(changeBackgroundImage, 7000); // Change image every 7 seconds
+    const rotateImageInterval = setInterval(changeBackgroundImage, 5000); // Change image every 7 seconds
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(rotateImageInterval);
