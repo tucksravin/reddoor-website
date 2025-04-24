@@ -99,11 +99,11 @@
  <svelte:window bind:innerWidth={viewportWidth} bind:innerHeight={viewportHeight} />
  
  {#if transitioning}
-   <div class="bg-white w-screen h-dvh fixed top-0 left-0 z-50" transition:fade/>
+   <div class="bg-white w-screen h-lvh fixed top-0 left-0 z-50" transition:fade/>
  {/if}
  
  <div class="w-screen" bind:this={openingSection}>
-   <div class="h-dvh w-screen fixed bottom-0 left-0 bg-paper-red">
+   <div class="h-lvh w-screen fixed bottom-0 left-0 bg-paper-red">
      <ContentWidth class="flex flex-col justify-center items-center h-full z-10 relative {percentageScrolled > 30 ? "opacity-0 ": 'opacity-100'}">  
        <div class="absolute w-fit lg:w-1/2 right-0 top-1/2 lg:-translate-x-12 translate-y-20 h-full">
          <h1 class="text-white text-left w-fit">Arm your brand with</h1>
@@ -113,7 +113,7 @@
        <i class="fa-light fa-arrow-down fa-2xl opacity-50 absolute bottom-12 text-white bob-always" />
      </ContentWidth>
      
-     <div class="fixed top-0 left-0 w-screen h-dvh overflow-hidden z-20">
+     <div class="fixed top-0 left-0 w-screen h-lvh overflow-hidden z-20">
        <div
          class="fixed top-0 left-0 w-full h-full z-20"
          style="clip-path: url(#mask-path);"
@@ -145,10 +145,10 @@
           </div>
            
           {/if} -->
-          <div class='w-screen h-dvh bg-black opacity-25 fixed'></div>
+          <div class='w-screen h-lvh bg-black opacity-25 fixed'></div>
  
           {#key currentImageIndex}
-          <div class='hidden lg:block h-dvh w-screen fixed top-0 left-0' in:fly={{y:'100%', duration: 800}} out:fade>
+          <div class='hidden lg:block h-lvh w-screen fixed top-0 left-0' in:fly={{y:'100%', duration: 800}} out:fade>
            <ContentWidth class="flex flex-col items-start justify-end h-full pb-4 lg:pb-16">
              <p class='text-white text-left underline underline-offset-4'>{backgrounds[currentImageIndex].name}</p>
              <p class='text-white text-left'>{backgrounds[currentImageIndex].media}</p>
@@ -211,8 +211,8 @@
    </div>
    
    <!-- Scrollable space to enable scrolling -->
-   <div class="h-dvh w-screen"></div>
-   <div class="h-dvh w-screen"></div>
-   <div class="h-dvh w-screen"></div>
-   <div class="h-dvh w-screen"></div>
+   <div class="h-lvh w-screen"></div>
+   <div class="h-lvh w-screen"></div>
+   <div class="h-lvh w-screen"></div>
+   <div class="h-lvh w-screen"></div>
  </div>
