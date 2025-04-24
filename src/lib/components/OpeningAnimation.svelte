@@ -8,7 +8,7 @@
   import fyf from '$lib/assets/images/openingBgs/fyfBg.jpg?as=run';
   import sonder from '$lib/assets/images/openingBgs/sonderBg.jpg?as=run';
 
-  import printedReddoorLogo from '$lib/assets/icons/logos/printedReddoor.png'
+  import printedReddoorLogo from '$lib/assets/icons/logos/reddoor_logo.png'
   import { isTop } from "$lib/stores/isTop";
   import Img from "@zerodevx/svelte-img";
   import PillButton from "./Buttons/PillButton.svelte";
@@ -62,7 +62,7 @@
     percentageScrolled = Math.min(Math.max(percentageScrolled, 0), 100);
 
     maskScale = 0.2 + (percentageScrolled / 100) * 10; 
-    if(percentageScrolled<95){
+    if(percentageScrolled<99){
       isTop.set(true)
     }else{
       isTop.set(false)
@@ -150,8 +150,9 @@
            {/key}
 
 
-
-         <img src={printedReddoorLogo} alt="reddoor logo" class="absolute top-8 left-8 w-16" />
+           {#if $isTop}
+            <img src={printedReddoorLogo} alt="reddoor logo" class="absolute top-8 left-8 w-12" in:fade={{delay:400}} out:fade/>
+          {/if}
          
 
          <ContentWidth class="flex flex-col justify-center items-center h-full z-20 relative">
