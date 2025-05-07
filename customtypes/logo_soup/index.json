@@ -1,0 +1,69 @@
+{
+  "format": "custom",
+  "id": "logo_soup",
+  "label": "Logo Soup",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "brands": {
+        "type": "Group",
+        "config": {
+          "label": "brands",
+          "repeat": true,
+          "fields": {
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "name",
+                "placeholder": ""
+              }
+            },
+            "services": {
+              "type": "Text",
+              "config": {
+                "label": "services",
+                "placeholder": ""
+              }
+            },
+            "logo_color": {
+              "type": "Image",
+              "config": {
+                "label": "logo color",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "logo_negative": {
+              "type": "Image",
+              "config": {
+                "label": "logo negative",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "active_background": {
+              "type": "Image",
+              "config": {
+                "label": "active background",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "project_link": {
+              "type": "Link",
+              "config": {
+                "label": "project link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

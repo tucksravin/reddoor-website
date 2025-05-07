@@ -4,6 +4,109 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Logo Soup → brands*
+ */
+export interface LogoSoupDocumentDataBrandsItem {
+  /**
+   * name field in *Logo Soup → brands*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * services field in *Logo Soup → brands*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[].services
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  services: prismic.KeyTextField;
+
+  /**
+   * logo color field in *Logo Soup → brands*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[].logo_color
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_color: prismic.ImageField<never>;
+
+  /**
+   * logo negative field in *Logo Soup → brands*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[].logo_negative
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_negative: prismic.ImageField<never>;
+
+  /**
+   * active background field in *Logo Soup → brands*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[].active_background
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  active_background: prismic.ImageField<never>;
+
+  /**
+   * project link field in *Logo Soup → brands*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[].project_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Logo Soup documents
+ */
+interface LogoSoupDocumentData {
+  /**
+   * brands field in *Logo Soup*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_soup.brands[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  brands: prismic.GroupField<Simplify<LogoSoupDocumentDataBrandsItem>>;
+}
+
+/**
+ * Logo Soup document from Prismic
+ *
+ * - **API ID**: `logo_soup`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LogoSoupDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LogoSoupDocumentData>,
+    "logo_soup",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
 /**
@@ -484,6 +587,7 @@ export type ShowcaseDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | LogoSoupDocument
   | PageDocument
   | ProjectDocument
   | ShowcaseDocument;
@@ -541,7 +645,7 @@ export interface ContentWidthImageSliceDefaultPrimaryImagesItem {
    * - **API ID Path**: content_width_image.default.primary.images[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -846,7 +950,7 @@ export interface ScreenWidthColumnsSliceDefaultPrimaryMediaItem {
    * - **API ID Path**: screen_width_columns.default.primary.media[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -1246,6 +1350,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      LogoSoupDocument,
+      LogoSoupDocumentData,
+      LogoSoupDocumentDataBrandsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

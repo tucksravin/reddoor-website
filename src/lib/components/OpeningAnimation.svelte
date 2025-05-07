@@ -61,7 +61,7 @@
     percentageScrolled = 100 - (containerRect.bottom - viewportHeight) / (containerRect.height - viewportHeight) * 100;
     percentageScrolled = Math.min(Math.max(percentageScrolled, 0), 100);
 
-    maskScale = 0.2 + (percentageScrolled / 100) * 10; 
+    maskScale = 0.2 + (percentageScrolled / 100) * 14; 
     if(percentageScrolled<99){
       isTop.set(true)
     }else{
@@ -106,7 +106,7 @@
    <div class="h-lvh w-screen fixed bottom-0 left-0 bg-paper-red">
      <ContentWidth class="flex flex-col justify-center items-center h-full z-10 relative {percentageScrolled > 30 ? "opacity-0 ": 'opacity-100'}">  
        <div class="absolute w-fit lg:w-1/2 right-0 top-1/2 lg:-translate-x-12 translate-y-20 h-full">
-         <h1 class="text-white text-left w-fit">Arm your brand with</h1>
+         <h1 class="text-white text-left w-fit opacity-0">Arm your brand with</h1>
          <h1 class="text-white text-left w-fit">a clear story...</h1>
          
        </div>
@@ -127,24 +127,7 @@
               class="absolute h-full w-full object-cover will-change-contents transition-opacity duration-1000 ease-fast-slow {index === currentImageIndex ? 'opacity-100' : ' delay-1000 opacity-0'}"
           />
         {/each}
-      
-          <!-- <Img
-              src={backgrounds[(currentImageIndex+1)%backgrounds.length].src}
-              alt="Background"
-              class="absolute h-full w-full object-cover will-change-contents"
-          />
-   
-          {#if !hideTopImage}
-          <div out:fade>
-         <Img
-           src={backgrounds[currentImageIndex].src}
-           alt="Background"
-           class="absolute h-full w-full object-cover will-change-contents"
-         />
-      
-          </div>
-           
-          {/if} -->
+
           <div class='w-screen h-lvh bg-black opacity-25 fixed'></div>
  
           {#key currentImageIndex}
@@ -165,19 +148,12 @@
 
          <ContentWidth class="flex flex-col justify-center items-center h-full z-20 relative">
           <div class="absolute w-fit lg:w-1/2 right-0 top-1/2 lg:-translate-x-12 translate-y-20 h-full">
-            <h1 class="text-white text-left md:translate-x-[14.5px] lg:translate-x-[7.5px]">Arm your brand with</h1>
-            <h1 class="text-white text-left md:translate-x-[14.5px] lg:translate-x-[7.5px] transition duration-1000 ease-fast-slow {showCompelling? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"}">compelling design</h1>
+            <h1 class="text-white text-left md:translate-x-[14.5px] lg:translate-x-[7.5px] opacity-0">Arm your brand with</h1>
+            <h1 class="text-white text-left transition duration-1000 ease-fast-slow {showCompelling? "opacity-100 translate-y-0":"opacity-0 translate-y-[50%]"}">compelling design</h1>
             <div class="w-full flex flex-col md:flex-row md:gap-4 mt-8 transition duration-1000 ease-fast-slow {showButtons? "opacity-100 translate-y-0 delay-1000":"opacity-0 translate-y-[50%]"}">
+             
               <DefaultButton
-                filled={false}
-                class='border-1 border-white text-primary bg-white hover:bg-primary hover:text-white'
-                href="/contact"
-                text="Meet With Us"
-                red={false}
-                />
-              <DefaultButton
-                filled={true}
-                bold={true}
+
                 href="/portfolio"
                 text="View Our Work"
 
@@ -210,9 +186,21 @@
      </div>
    </div>
    
+   <div class="h-lvh w-screen fixed bottom-0 left-0 pointer-events-none">
+    <ContentWidth class="flex flex-col justify-center items-center h-full z-20 relative">  
+      <div class="absolute w-fit lg:w-1/2 right-0 top-1/2 lg:-translate-x-12 translate-y-20 h-full">
+        <h1 class="text-white text-left w-fit ">Arm your brand with</h1>
+       
+        
+      </div>
+      <i class="fa-light fa-arrow-down fa-2xl opacity-50 absolute bottom-12 text-white bob-always" />
+    </ContentWidth>
+   </div>
+   
    <!-- Scrollable space to enable scrolling -->
    <div class="h-lvh w-screen"></div>
    <div class="h-lvh w-screen"></div>
    <div class="md:h-lvh w-screen"></div>
    <div class="md:h-lvh w-screen"></div>
+   <div class="lg:h-lvh w-screen"></div>
  </div>

@@ -65,9 +65,11 @@ line-height: normal;
 }
 
 h2{
-    font-size: 90px;
-    font-weight: 700;
-    line-height: 100px; 
+    font-family: 'Besley', serif;
+font-size: 60px;
+font-style: normal;
+font-weight: 300;
+line-height: 125%; 
 }
 
 h3{
