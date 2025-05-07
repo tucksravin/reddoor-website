@@ -174,7 +174,7 @@ afterNavigate(() => {
 
     <ContentWidth class="pb-4 flex flex-row justify-end items-end z-20 relative">
             
-        <div class="flex flex-col tracking-wide label gap-16 w-full md:w-1/3 lg:w-1/5">
+        <div class="flex flex-col tracking-wide label gap-8 w-full md:w-1/3 lg:w-1/5">
             
             <div class="flex flex-col gap-1">
                 <a href="/" class="-translate-x-[8%] w-3/5 md:w-full"><img src={rotatingReddoor} alt='reddoor drawn in multiple styles'/></a>

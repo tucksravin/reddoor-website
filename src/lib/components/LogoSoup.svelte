@@ -65,9 +65,11 @@ import type { LogoSoupDocument } from "../../prismicio-types";
          <AnimateIn class="absolute  bottom-[20%] left-0 w-64">
         <div class='pt-10' on:mouseenter={() => {showImage = true}} on:mouseleave={() => {showImage = false}}>
             {#key brandIndex}
+            <PrismicLink field={brands[brandIndex].project_link} >
                 <p class='underline underline-offset-4 text-white transition duration-300 ease-fast-slow' in:fade>
                     {showImage?brands[brandIndex].name:''}
                 </p>
+            </PrismicLink>
                 <p class='{showImage?'text-white':'text-red'} transition duration-300 ease-fast-slow' in:fade>
                     {showImage?brands[brandIndex].services:'Browse Our Work'}
                 </p>

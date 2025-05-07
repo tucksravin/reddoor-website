@@ -104,8 +104,9 @@
   <section class='w-screen py-32'>
     <ContentWidth class="flex flex-col relative">
       <img src={megaphone} alt="megaphone" class="w-4/5 md:w-1/4 lg:w-1/5 mix-blend-multiply opacity-50" />
-      
-      <h2 class='-mt-24 w-4/5 md:w-2/5 text-primary'>Better Design Means Better Business</h2>
+      <AnimateIn class='-mt-24 w-4/5 md:w-2/5 text-primary'>
+        <h2 >Better Design Means Better Business</h2>
+      </AnimateIn>
       <AnimateIn class='h-[1px] bg-primary w-full my-8'></AnimateIn>
       <div class='w-full flex flex-col md:flex-row justify-end'>
         <AnimateIn class='w-full md:w-1/3 lg:w-1/5 pr-6 pb-6'>
@@ -134,11 +135,20 @@
         <img src={pencil} alt="megaphone" class="w-3/5 md:w-1/4 lg:w-1/5 mix-blend-multiply opacity-50" />
         
         <div class='w-full flex flex-row justify-end'>
-          <h2 class='md:mt-12 w-full md:w-2/5 text-primary'>Let’s Begin</h2>
+          <AnimateIn class='md:mt-12 w-full md:w-2/5 text-primary'>
+            <h2 >Let’s Begin</h2>
+          </AnimateIn>
           <div class='w-full lg:w-3/5 md:flex flex-row items-end hidden'>
-            <p class='w-1/3'><span class='text-primary'>01</span> / 03</p>
-            <p class='w-1/3'><span class='text-primary'>02</span> / 03</p>
-            <p class='w-1/3'><span class='text-primary'>03</span> / 03</p>
+            <AnimateIn class='w-1/3'>
+            <p><span class='text-primary'>01</span> / 03</p>
+            </AnimateIn>
+            <AnimateIn class='w-1/3'>
+            <p><span class='text-primary'>02</span> / 03</p>
+          </AnimateIn>
+          <AnimateIn class='w-1/3'>
+            <p><span class='text-primary'>03</span> / 03</p>
+          </AnimateIn>
+          
           </div>
         </div>
         <AnimateIn class='h-[1px] bg-primary w-full my-8'></AnimateIn>
@@ -163,7 +173,7 @@
 </div>
 
 <section class="w-screen bg-paper-red relative">
-  <ContentWidth class="h-0 z-20">
+  <ContentWidth class="h-0 z-20" animateIn>
     <div class='absolute top-32 w-72 z-20'>
       <h6 class='text-white'>We pride ourselves in a hands-on approach to producing compelling design that excites our clients.</h6>
       <DefaultButton href='/about' class='mt-8' >About Us</DefaultButton>
@@ -178,7 +188,7 @@
 </section>
 
 <section class="relative w-screen bg-paper py-16 md:py-32">
-  <ContentWidth class='flex flex-col'>
+  <ContentWidth class='flex flex-col' animateIn>
     <h2 class='text-primary w-3/5'>Feel confidence when you share your story with the world.</h2>
     <div class='flex flex-row mt-16 gap-8'>
       <DefaultButton red href='/contact'>Meet with Us</DefaultButton>
