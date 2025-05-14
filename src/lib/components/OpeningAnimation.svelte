@@ -61,7 +61,7 @@
         hideTopImage = true;
     }, 5000);
 
-    console.log('currentImageIndex', currentImageIndex);
+
   }
   const handleScroll = () => {
     const containerRect = openingSection.getBoundingClientRect();
@@ -83,7 +83,7 @@
       showButtons = false;
     }
 
-    console.log('percentageScrolled', percentageScrolled);
+
   };
   
   onMount(() => {
