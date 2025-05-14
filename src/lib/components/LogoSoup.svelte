@@ -53,6 +53,32 @@
     }
   }
 
+    // Function to navigate to a specific brand
+function navigateToBrand(index: number) {
+  if (isMobile) {
+    // Calculate and scroll to the position for the selected brand
+    const targetScrollPosition = calculateScrollPositionForBrand(index);
+    window.scrollTo({
+      top: targetScrollPosition,
+    });
+  }
+}
+
+function calculateScrollPositionForBrand(index: number) {
+  if (!isMobile || !section) return 0;
+  
+  const sectionHeight = section.offsetHeight;
+  const sectionTop = section.getBoundingClientRect().top;
+  const currentAbsolutePosition = window.scrollY + sectionTop;
+  
+  // Calculate target position based on brand index
+  // We add 2 to compensate for the -2 offset in the handleScroll function
+  const targetProgress = (index + 2) / (brands.length + 2);
+  const targetScrollPosition = currentAbsolutePosition + (targetProgress * sectionHeight) - viewportHeight;
+  
+  return targetScrollPosition;
+}
+
   // Watch for resize to detect mobile
   function checkMobile() {
     isMobile = viewportWidth < 768; // Standard mobile breakpoint
@@ -227,7 +253,7 @@
 
       <div class="absolute bottom-0 left-0 w-screen h-lvh bg-black opacity-25"></div>
       <div
-        class="h-lvh w-screen flex flex-col items-center justify-center absolute top-0 left-0"
+        class="h-lvh w-screen flex flex-col items-center justify-evenly absolute top-0 left-0"
       >
         <h6
           class="text-center mb-12 transition duration-300 ease-fast-slow {mobileScrollActive
@@ -245,9 +271,7 @@
             >
               <PrismicLink field={brand.project_link}>
                 <PrismicImage
-                  field={mobileScrollActive && brandIndex === i
-                    ? brand.logo_negative
-                    : brand.logo_color}
+                  field={brand.logo_negative}
                   class="h-24 w-auto transition-opacity duration-300 ease-fast-slow object-contain {mobileScrollActive &&
                   brandIndex === i
                     ? ''
@@ -284,12 +308,12 @@
         </div>
 
         <!-- Progress indicator -->
-        <div class="absolute bottom-8 left-0 w-full flex justify-center">
-          <div class="flex gap-2">
+        <div class="absolute bottom-1/2 translate-y-1/2 left-6 flex justify-center">
+          <div class="flex flex-col gap-2">
             {#each brands as _, i}
-              <div class="w-2 h-2 rounded-full transition-all duration-300 
+              <button on:click={()=>navigateToBrand(i+1)} class="w-3 h-3 rounded-full transition-all duration-300 z-20 
                 {i === brandIndex ? 'bg-white scale-125' : 'bg-white/50 scale-100'}">
-              </div>
+              </button>
             {/each}
           </div>
         </div>
