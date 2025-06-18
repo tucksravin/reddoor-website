@@ -181,8 +181,8 @@ afterNavigate(() => {
                 <a href="/portfolio" class="text-primary underline">Portfolio</a>
                 <a href="/about" class="text-primary underline">About</a>
                 <a href="/contact" class="text-primary underline">Meet with Us</a>
-                <a href="https://www.linkedin.com/company/reddoor-creative" class="">LinkedIn</a>
-                <a href="https://www.instagram.com/reddoorla/" class="">Instagram</a>
+                <a href="https://www.linkedin.com/company/reddoor-creative" class="text-primary underline">LinkedIn</a>
+                <a href="https://www.instagram.com/reddoorla/" class="text-primary underline">Instagram</a>
             </div>
             <div class="flex flex-col">
                 <div>CONTACT</div>
