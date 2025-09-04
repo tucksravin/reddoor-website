@@ -254,7 +254,7 @@ line-height: 140%; /* 84px */
 
 </section>
 
-<ScreenWidthImage src={longHollow} />
+<ScreenWidthImage src={longHollow} alt="longhollow ranch"/>
 <section class="bg-paper pt-16 pb-60 -mb-56">
 <ContentWidth>
     <div class="w-full md:w-4/5 md:ml-[20%]">
@@ -276,7 +276,7 @@ line-height: 140%; /* 84px */
 </section>
 <ContentWidth animateIn>
     <div class="w-full md:w-4/5 md:ml-[20%]">
-        <FourByThreeImage src={hq} />
+        <FourByThreeImage src={hq} alt="rustic headquarters sign"/>
     </div>
 </ContentWidth>
 <ContentWidth>
@@ -301,7 +301,7 @@ line-height: 140%; /* 84px */
     </div>
 </ContentWidth>
 <section class="mt-16">
-<ScreenWidthImage src={stJames}/>
+<ScreenWidthImage src={stJames} alt="st james' stairwell"/>
 <ContentWidth>
     <div class="w-full mt-12 md:w-4/5 md:ml-[20%] flex flex-col">
         <div class="w-full flex flex-col-reverse lg:flex-row">
@@ -331,7 +331,7 @@ line-height: 140%; /* 84px */
 
     <ContentWidth animateIn>
         <div class="mt-24 w-full md:w-4/5 md:ml-[20%]">
-            <FourByThreeImage src={dentist} />
+            <FourByThreeImage src={dentist} alt="a dentist"/>
         </div>
     </ContentWidth>
     <section class="bg-paper pb-16 pt-60 -mt-56">
@@ -358,7 +358,7 @@ line-height: 140%; /* 84px */
                     <AnimateIn>
                     <h3 class="text-white md:w-3/5">Isn’t it time to arm your brand with a clear story and compelling design?</h3>
                     </AnimateIn>
-                    <AnimateIn transitionDelayMax={1200}>
+                    <AnimateIn>
                     <a href="/contact">
                         <DefaultButton class="mt-6 text-white border-white border-1 hover:bg-mid hover:bg-opacity-10" text="MEET WITH US" filled={false} />
                     </a>
@@ -440,7 +440,7 @@ line-height: 140%; /* 84px */
         <AnimateIn>
         <h3 class="text-white md:w-3/5">It's time to arm your brand with a clear story and compelling design</h3>
         </AnimateIn>
-        <AnimateIn transitionDelayMax={800}>
+        <AnimateIn>
         <a href="/contact">
         <DefaultButton class="mt-6 text-white border-white border-1 hover:bg-mid hover:bg-opacity-10" text="MEET WITH US" filled={false} />
         </a>

@@ -94,14 +94,14 @@
   <div class="w-screen pb-20 bg-white">
     <ContentWidth class="flex flex-col md:flex-row items-center gap-12 md:gap-0 justify-evenly">
         <AnimateIn class="w-64 flex flex-col">
-            <img src={tim} alt="tim" class="w-full aspect-square"/>
+            <img src={tim} alt="tim holmes" class="w-full aspect-square"/>
             
                 <div class="text-primary large-body font-thin mt-2">Tim Holmes</div>
                 <p class="text-mid font-thin">CA+ID Creative Director</p>
   
         </AnimateIn>
         <AnimateIn class="w-64 flex flex-col">
-            <img src={erik} alt="erik" class="w-full aspect-square"/>
+            <img src={erik} alt="Erik Svendsen" class="w-full aspect-square"/>
             <p class="text-primary large-body mt-2 large-body">Erik Svendsen</p>
             <div class="font-thin">TX Creative Director</div>
         </AnimateIn>
@@ -185,7 +185,7 @@
 <div class="w-screen py-40 md:h-[80vh] bg-paper-red flex flex-col items-center justify-center">
     <ContentWidth class="flex flex-col md:flex-row items-start justify-between" animateIn>
         <h3 class="text-white md:w-3/5">Isn’t it time to arm your brand with a clear story and compelling design?</h3>
-        <AnimateIn transitionDelayMax={1600}>
+        <AnimateIn>
             <a href="/contact">
             <DefaultButton class="mt-6 text-white border-white border-1 hover:bg-mid hover:bg-opacity-10" text="MEET WITH US" filled={false} />
             </a>

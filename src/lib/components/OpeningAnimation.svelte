@@ -135,7 +135,7 @@
        {#each backgrounds as background, index}
           <Img
               src={background.src}
-              alt="Background"
+              alt={background.name}
               class="absolute h-full w-full object-cover will-change-contents transition-opacity duration-1000 ease-fast-slow {index === currentImageIndex ? 'opacity-100' : ' delay-1000 opacity-0'}"
           />
         {/each}
@@ -173,20 +173,12 @@
 
               />
             </div>
-            <!-- {#key currentImageIndex}
-          <div class='w-fit {hideTopImage?'opacity-0':''}' in:fly={{y:'100%', duration: 500}}>
-           
-             <p class='text-white text-left underline underline-offset-4'>{backgrounds[currentImageIndex].name}</p>
-             <p class='text-white text-left'>{backgrounds[currentImageIndex].media}</p>
 
-           </div>
-          {/key} -->
           </div>
           <div>
          </ContentWidth>
        </div>
-       
-       <!-- SVG with clip path definition -->
+
        <svg class="pointer-events-none w-0 h-0">
          <defs>
            <clipPath id="mask-path">
