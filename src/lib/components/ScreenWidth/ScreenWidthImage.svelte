@@ -22,23 +22,7 @@
 	showVideo=false;
 
   }
-  
-  // Fallback timeout - hide video if it doesn't load
-  let timeoutId: NodeJS.Timeout;
-  
-  $: if (vimeoId) {
-    timeoutId = setTimeout(() => {
-      if (!videoLoaded) {
-        showVideo = false;
-      }
-    }, 8000); // 8 second timeout
-  }
-  
-  // Clear timeout when component is destroyed
-  import { onDestroy } from 'svelte';
-  onDestroy(() => {
-    if (timeoutId) clearTimeout(timeoutId);
-  });
+
 </script>
 
 <svelte:window
@@ -73,7 +57,6 @@
       />
     {/if}
 
-    <!-- Video - only show if vimeoId exists and hasn't failed -->
     {#if vimeoId}
       <iframe
         title="background video"
