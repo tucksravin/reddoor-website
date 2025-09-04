@@ -1,5 +1,6 @@
 import { createClient } from '$lib/prismicio';
 import { filter } from '@prismicio/client';
+import metaImage from "$lib/assets/icons/logos/printedReddoor.png"
 
 export async function load({ params, fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
@@ -19,6 +20,9 @@ export async function load({ params, fetch, cookies }) {
 	return {
 		allProjects: allProjects,
 		title: "Portfolio | Reddoor Creative",
+		meta_description: "We design beautiful marketing materials that help you thrive. See our work.",
+		meta_title: "Portfolio | Reddoor Creative",
+		meta_image: metaImage
 		
 	};
 }

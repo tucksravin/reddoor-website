@@ -111,6 +111,22 @@
                   "placeholder": "",
                   "select": null
                 }
+              },
+              "aspect": {
+                "type": "Select",
+                "config": {
+                  "label": "aspect",
+                  "placeholder": "",
+                  "options": [
+                    "free",
+                    "square",
+                    "4/3",
+                    "3/4",
+                    "16/9",
+                    "9/16"
+                  ],
+                  "default_value": "free"
+                }
               }
             }
           }

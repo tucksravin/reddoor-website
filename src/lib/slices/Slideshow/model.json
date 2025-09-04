@@ -77,6 +77,24 @@
             "placeholder_true": "hidden",
             "default_value": false
           }
+        },
+        "isAnimated": {
+          "type": "Boolean",
+          "config": {
+            "label": "animate in",
+            "placeholder_false": "not animated",
+            "placeholder_true": "animated",
+            "default_value": true
+          }
+        },
+        "hasNavDots": {
+          "type": "Boolean",
+          "config": {
+            "label": "hasNavDots",
+            "placeholder_false": "no dots",
+            "placeholder_true": "dots",
+            "default_value": true
+          }
         }
       },
       "items": {}

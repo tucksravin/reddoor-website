@@ -67,6 +67,14 @@
 			"hide": {
 				"__TYPE__": "BooleanContent",
 				"value": false
+			},
+			"isAnimated": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"hasNavDots": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

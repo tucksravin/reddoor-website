@@ -68,6 +68,14 @@
 										"url": "https://prismic.io"
 									}
 								}
+							],
+							[
+								"aspect",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "9/16",
+									"type": "Select"
+								}
 							]
 						]
 					}

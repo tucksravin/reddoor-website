@@ -68,6 +68,22 @@
             "placeholder_true": "hidden",
             "default_value": false
           }
+        },
+        "aspect": {
+          "type": "Select",
+          "config": {
+            "label": "aspect",
+            "placeholder": "",
+            "options": [
+              "free",
+              "square",
+              "4/3",
+              "3/4",
+              "16/9",
+              "9/16"
+            ],
+            "default_value": "free"
+          }
         }
       },
       "items": {}

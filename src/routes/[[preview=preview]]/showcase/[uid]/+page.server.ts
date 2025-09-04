@@ -1,6 +1,7 @@
 import { createClient } from '$lib/prismicio';
 import { isFilled } from '@prismicio/client';
 import type { ProjectDocument } from '../../../../prismicio-types.js';
+import metaImage from "$lib/assets/icons/logos/printedReddoor.png"
 
 export async function load({ params, fetch, cookies }) {
   const client = createClient({ fetch, cookies });
@@ -20,9 +21,9 @@ export async function load({ params, fetch, cookies }) {
     featuredProject,
     projects,
     title: page.data.title + " | Reddoor Creative",
-    meta_description: page.data.meta_description,
-    meta_title: page.data.meta_title,
-    meta_image: page.data.meta_image.url
+    meta_description: page.data.meta_description || page.data.title + " | Better design means better business",
+    meta_title: page.data.meta_title || page.data.title + " | Reddoor Creative",
+    meta_image: page.data.meta_image.url || metaImage
   }
 }
 

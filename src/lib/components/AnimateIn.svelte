@@ -7,14 +7,14 @@
     export let style ="";
     export let href="";
 
-    export let transitionDelayMax = 400;
+    export let transitionDelayMax = 200;
     export let transitionDuration = 2400;
     export let isOff = false;
 
     const checkViewport = () => {
         if(window&&el){
                 let rect = el.getBoundingClientRect();
-                isInView = rect.bottom <= window.innerHeight + rect.height
+                isInView = rect.top - rect.height/2 <= window.innerHeight * 0.9
                 transitionDelay= transitionDelayMax * (rect.left/window.innerWidth)
             }
     }
@@ -45,6 +45,7 @@
     }
     )
 </script>
+
 
 {#if isOff}
     <div class={$$props.class || ''}>

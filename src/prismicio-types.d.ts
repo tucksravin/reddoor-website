@@ -667,6 +667,20 @@ export interface ContentWidthImageSliceDefaultPrimaryImagesItem {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * aspect field in *ContentWidthMedia → Default → Primary → images*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: free
+   * - **API ID Path**: content_width_image.default.primary.images[].aspect
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  aspect: prismic.SelectField<
+    "free" | "square" | "4/3" | "3/4" | "16/9" | "9/16",
+    "filled"
+  >;
 }
 
 /**
@@ -994,6 +1008,20 @@ export interface ScreenWidthColumnsSliceDefaultPrimaryMediaItem {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * aspect field in *ScreenWidthColumns → Default → Primary → media*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: free
+   * - **API ID Path**: screen_width_columns.default.primary.media[].aspect
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  aspect: prismic.SelectField<
+    "free" | "square" | "4/3" | "3/4" | "16/9" | "9/16",
+    "filled"
+  >;
 }
 
 /**
@@ -1182,6 +1210,20 @@ export interface ScreenWidthImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hide: prismic.BooleanField;
+
+  /**
+   * aspect field in *ScreenWidthMedia → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: free
+   * - **API ID Path**: screen_width_image.default.primary.aspect
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  aspect: prismic.SelectField<
+    "free" | "square" | "4/3" | "3/4" | "16/9" | "9/16",
+    "filled"
+  >;
 }
 
 /**
@@ -1298,6 +1340,28 @@ export interface SlideshowSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hide: prismic.BooleanField;
+
+  /**
+   * animate in field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: slideshow.default.primary.isAnimated
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isAnimated: prismic.BooleanField;
+
+  /**
+   * hasNavDots field in *Slideshow → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: slideshow.default.primary.hasNavDots
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hasNavDots: prismic.BooleanField;
 }
 
 /**

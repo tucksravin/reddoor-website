@@ -76,6 +76,14 @@
 									"value": "swept",
 									"type": "Text"
 								}
+							],
+							[
+								"aspect",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "free",
+									"type": "Select"
+								}
 							]
 						]
 					}

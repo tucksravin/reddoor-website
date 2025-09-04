@@ -47,6 +47,11 @@
 			"hide": {
 				"__TYPE__": "BooleanContent",
 				"value": false
+			},
+			"aspect": {
+				"__TYPE__": "FieldContent",
+				"value": "free",
+				"type": "Select"
 			}
 		},
 		"items": []
