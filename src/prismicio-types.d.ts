@@ -451,6 +451,8 @@ type ShowcaseDocumentDataSlicesSlice =
   | ScreenWidthImageSlice
   | RichTextSlice;
 
+type ShowcaseDocumentDataSlices1Slice = never;
+
 /**
  * Content for showcase documents
  */
@@ -595,6 +597,17 @@ interface ShowcaseDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * `slices1` field in *showcase*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.slices1[]
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices1: prismic.SliceZone<ShowcaseDocumentDataSlices1Slice>;
 }
 
 /**
@@ -1520,6 +1533,7 @@ declare module "@prismicio/client" {
       ShowcaseDocumentData,
       ShowcaseDocumentDataProjectsItem,
       ShowcaseDocumentDataSlicesSlice,
+      ShowcaseDocumentDataSlices1Slice,
       AllDocumentTypes,
       ContentWidthImageSlice,
       ContentWidthImageSliceDefaultPrimaryImagesItem,
