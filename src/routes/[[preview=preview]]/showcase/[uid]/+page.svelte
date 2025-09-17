@@ -66,17 +66,17 @@
 <ContentWidth class="flex flex-col items-end">
 	<div class="w-full md:w-4/5">
 		<div class="w-full md:pr-6 aspect-[4/3] lg:aspect-[16/9] relative">
-			<a href={"/portfolio/"+data.featuredProject?.uid || ''} class="h-full w-full flex flex-col justify-end relative">
+			<a href={"/portfolio/"+data.featuredProject?.uid || ''} class="h-full w-full flex flex-col justify-end items-end relative">
 			  <img src={pageData.featuredImageOverride.url||featuredProject.data.hero.url||''} alt={featuredProject.data.title||''  + " Hero Image"} class="absolute w-full h-full object-cover"/>
 			  <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
 			  <div class="w-full flex flex-row justify-between p-6 z-10" >
-				  <div>
+				  <div class="w-4/5">
 					  <p class="text-white uppercase">{pageData.featuredTitleOverride||featuredProject.data.title||''}</p>
 					  <p class="text-light">{pageData.featuredSubtitleOverride ||mediumString(featuredProject)||''}</p>
 				  </div>
-				  <a href={"/portfolio/"+data.featuredProject?.uid || ''} class="brightness-200 hover:brightness-50 transition bump">
+				  <dive class="brightness-200 hover:brightness-50 transition bump w-12 h-12">
 					  <img src={arrowButton} alt="go to page" class="h-full"/>
-				  </a>
+				  </dive>
 			  </div>  
 			</a>
 		  </div>
