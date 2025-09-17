@@ -71,8 +71,8 @@
 			  <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
 			  <div class="w-full flex flex-row justify-between p-6 z-10" >
 				  <div>
-					  <p class="text-white uppercase">{featuredProject.data.title||''}</p>
-					  <p class="text-light">{mediumString(featuredProject)||''}</p>
+					  <p class="text-white uppercase">{pageData.featuredTitleOverride||featuredProject.data.title||''}</p>
+					  <p class="text-light">{pageData.featuredSubtitleOverride ||mediumString(featuredProject)||''}</p>
 				  </div>
 				  <a href={"/portfolio/"+data.featuredProject?.uid || ''} class="brightness-200 hover:brightness-50 transition bump">
 					  <img src={arrowButton} alt="go to page" class="h-full"/>
@@ -95,7 +95,7 @@
 						<p class="text-light">{pageData.projects[i].subtitleOverride||mediumString(project)||''}</p>
 					</div>
 					<a href={"/portfolio/"+project.uid} class="brightness-200 hover:brightness-50 transition bump">
-						<img src={arrowButton} alt="go to page" class="h-full"/>
+						<img src={arrowButton} alt="go to page" class="h-full aspect-square"/>
 					</a>
 				</AnimateIn>
 				
