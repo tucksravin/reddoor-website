@@ -89,14 +89,14 @@
 				<div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
 			   
 				
-				<AnimateIn class="w-full flex flex-row justify-between p-6 z-10" transitionDelayMax={800}>
-					<div>
+				<AnimateIn class="w-full flex flex-row justify-between items-end p-6 z-10" transitionDelayMax={800}>
+					<div class="w-4/5">
 						<p class="text-white uppercase">{pageData.projects[i].titleOverride||project.data.title}</p>
 						<p class="text-light">{pageData.projects[i].subtitleOverride||mediumString(project)||''}</p>
 					</div>
-					<a href={"/portfolio/"+project.uid} class="brightness-200 hover:brightness-50 transition bump">
-						<img src={arrowButton} alt="go to page" class="h-full aspect-square"/>
-					</a>
+					<div class="brightness-200 hover:brightness-50 transition bump w-12 h-12">
+						<img src={arrowButton} alt="go to page" class="w-full"/>
+					</div>
 				</AnimateIn>
 				
 			</a>
