@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     font-family: "pragmatica", "helvetica", sans-serif;
     transition-property: all;
@@ -13,6 +15,7 @@ body{
     overflow-y: auto;
     color: #6D6E71;
     background-color: white;
+    scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar { 
@@ -36,12 +39,17 @@ body::-webkit-scrollbar {
 
 }
 
-.bump{
+.bump, .negative-bump{
     transition: transform 150ms ease-out, color 300ms ease-out, background-color 300ms ease-out, filter 300ms ease-out;
 }
 
 .bump:active{
     transform: translateY(-5px);
+}
+
+
+.bump:active{
+    transform: translateY(5px);
 }
 
 a{

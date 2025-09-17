@@ -20,12 +20,17 @@
   import { fade, scale, slide } from "svelte/transition";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
   import { expoOut } from "svelte/easing";
+  import type { HtmlTagDescriptor } from "vite";
+  import { onMount } from "svelte";
 
   
 
   let ceoHero = ceoHeroDesktop;
+  let projectsDiv:HTMLElement;
 
   let viewportWidth:number;
+  let viewportHeight:number;
+  let showAllProjectsButton = true;
 
   $: {
     if(viewportWidth<768){
@@ -54,7 +59,24 @@
     isOrderSelectOpen=false;
   }
 
-  
+  // Scroll listener to hide/show the "All Projects" button
+  onMount(() => {
+    const handleScroll = () => {
+      if (projectsDiv) {
+        const rect = projectsDiv.getBoundingClientRect();
+        const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+        showAllProjectsButton = !isInView;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 
 function mediumString (project:ProjectDocument<string>) {
     let acc = "";
@@ -77,10 +99,10 @@ function mediumString (project:ProjectDocument<string>) {
 }, "");
   }
 
-let orderString = "A-Z"
-let isAlphabeticalDescending = true;
+let orderString = "Latest-Earliest"
+let isAlphabeticalDescending = false;
 let isAlphabeticalAscending = false;
-let isChronologicalDescending = false;
+let isChronologicalDescending = true;
 let isChronologicalAscending = false;
 $: {
 
@@ -129,11 +151,6 @@ $: {
   isOrderSelectOpen=false;
 
 }
-
-let viewportHeight:number;
-
-	
-
 
 export let data;
 
@@ -186,6 +203,18 @@ line-height: 140%; /* 84px */
     </title>
 </svelte:head>
 
+{#if showAllProjectsButton}
+<a 
+  class="fixed z-20 bottom-12 right-12 flex flex-col items-center justify-center gap-2 border-light hover:border-primary text-light hover:text-primary transition-opacity duration-300" 
+  href="#projectsDiv"
+  transition:fade={{ duration: 300 }}
+>
+    <div class="text-[8px]">All Projects</div>
+    <div class="w-12 h-12 rounded-full border-2 transition-colors duration-300 flex items-center justify-center">
+        <i class="fa-solid fa-light fa-arrow-down fa-2xl" />
+    </div>
+</a>
+{/if}
 
 <section class="w-screen max-h-[720px] flex flex-col justify-between lg:aspect-video pt-24 bg-paper">
     <div/>
@@ -207,7 +236,7 @@ line-height: 140%; /* 84px */
             <slot />
         
     <h4 class="md:w-3/5 absolute left-0 top-20 text-white">
-        The “buck stops here” with a branding system overhaul of LA County's CEO
+        The "buck stops here" with a branding system overhaul of LA County's CEO
     </h4>
 
     <div class="absolute bottom-20 flex justify-between w-full md:w-2/5">
@@ -306,10 +335,10 @@ line-height: 140%; /* 84px */
     <div class="w-full mt-12 md:w-4/5 md:ml-[20%] flex flex-col">
         <div class="w-full flex flex-col-reverse lg:flex-row">
             <AnimateIn transitionDelayMax={0} class="bg-paper flex flex-col justify-between p-4 w-full lg:w-1/2  aspect-square">
-                <h5 class="font-sm text-primary" >A diverse, joyful, and inclusive community of young learners.</h5>
+                <h5 class="font-sm text-primary" >A diverse, joyful, and inclusive community of young learners.</h5>
                 <div class="w-full flex flex-row justify-between">
                     <div>
-                        <p class="text-primary uppercase">St. james’ episcopal school</p>
+                        <p class="text-primary uppercase">St. james' episcopal school</p>
                         <p class="text-light">brand, digital, environmental, print</p>
                     </div>
                     <a href="/portfolio/st-james-episcopal-school" class="hover:brightness-50 transition bump">
@@ -356,7 +385,7 @@ line-height: 140%; /* 84px */
             <div class="w-screen py-40 md:h-[80vh] bg-paper-red flex flex-col items-center justify-center">
                 <ContentWidth class="flex flex-col md:flex-row items-start justify-between">
                     <AnimateIn>
-                    <h3 class="text-white md:w-3/5">Isn’t it time to arm your brand with a clear story and compelling design?</h3>
+                    <h3 class="text-white md:w-3/5">Isn't it time to arm your brand with a clear story and compelling design?</h3>
                     </AnimateIn>
                     <AnimateIn>
                     <a href="/contact">
@@ -369,10 +398,10 @@ line-height: 140%; /* 84px */
         
         </section>
 
-<div class="py-24 bg-paper">
+<div class="py-24 bg-paper" bind:this={projectsDiv} id='projectsDiv'>
     <ContentWidth>
         <AnimateIn class="w-full">
-            <div class="archive-title text-primary w-full text-left mb-12">But wait, there’s more!</div>
+            <div class="archive-title text-primary w-full text-left mb-12">But wait, there's more!</div>
         </AnimateIn>
         <div class="flex flex-row justify-between w-full">
             <AnimateIn class="flex flex-row gap-4 mb-24 flex-wrap max-w-full">
@@ -406,7 +435,7 @@ line-height: 140%; /* 84px */
                
             </AnimateIn>
         </div>
-        <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap">
+        <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap" >
         {#each sortedProjects as project, i (project.uid)}
         <div animate:flip={{ duration:4500, easing: expoOut}}  class="md:pr-6 pb-6 w-full lg:w-1/2 aspect-[4/3] transition-opacity duration-700 {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.packaging&&showPackaging)? "relative": "absolute top-1/2 left-1/2 opacity-0 pointer-events-none"}">
           
