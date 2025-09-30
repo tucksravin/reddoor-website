@@ -1,12 +1,20 @@
 import { asText } from '@prismicio/client';
-
 import { createClient } from '$lib/prismicio';
+import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
-
-	const page = await client.getByUID('page', params.uid);
-
+	
+	let page;
+	
+	try {
+		page = await client.getByUID('page', params.uid);
+	} catch (err) {
+		throw error(404, {
+			message: 'Page Not Found'
+		});
+	}
+	
 	return {
 		page,
 		title: asText(page.data.title),
@@ -18,9 +26,8 @@ export async function load({ params, fetch, cookies }) {
 
 export async function entries() {
 	const client = createClient();
-
 	const pages = await client.getAllByType('page');
-
+	
 	return pages.map((page) => {
 		return { uid: page.uid };
 	});

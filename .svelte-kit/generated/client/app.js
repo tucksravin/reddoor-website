@@ -10,20 +10,25 @@ export const nodes = [
 	() => import('./nodes/6'),
 	() => import('./nodes/7'),
 	() => import('./nodes/8'),
-	() => import('./nodes/9')
+	() => import('./nodes/9'),
+	() => import('./nodes/10'),
+	() => import('./nodes/11'),
+	() => import('./nodes/12'),
+	() => import('./nodes/13')
 ];
 
 export const server_loads = [0];
 
 export const dictionary = {
-		"/[[preview=preview]]/about": [~4],
-		"/[[preview=preview]]/contact": [~5],
-		"/[[preview=preview]]/portfolio": [~6],
-		"/[[preview=preview]]/portfolio/[uid]": [~7],
-		"/[[preview=preview]]/showcase/[uid]": [~8],
-		"/slice-simulator": [9],
-		"/[[preview=preview]]": [~2],
-		"/[[preview=preview]]/[uid]": [~3]
+		"/[[preview=preview]]/about": [~7],
+		"/[[preview=preview]]/contact": [~8],
+		"/[[preview=preview]]/portfolio": [~9],
+		"/[[preview=preview]]/portfolio/[uid]": [~10,[],[3]],
+		"/[[preview=preview]]/showcase": [11],
+		"/[[preview=preview]]/showcase/[uid]": [~12,[],[4]],
+		"/slice-simulator": [13],
+		"/[[preview=preview]]": [~5],
+		"/[[preview=preview]]/[uid]": [~6,[],[2]]
 	};
 
 export const hooks = {

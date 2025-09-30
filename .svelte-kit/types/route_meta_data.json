@@ -21,6 +21,9 @@
 		"src/routes/[[preview=preview]]/portfolio/[uid]/+page.server.ts",
 		"src/routes/+layout.server.js"
 	],
+	"/[[preview=preview]]/showcase": [
+		"src/routes/+layout.server.js"
+	],
 	"/[[preview=preview]]/showcase/[uid]": [
 		"src/routes/[[preview=preview]]/showcase/[uid]/+page.server.ts",
 		"src/routes/+layout.server.js"

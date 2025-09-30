@@ -1,11 +1,20 @@
 import { createClient } from '$lib/prismicio';
 import { isFilled, filter } from '@prismicio/client';
+import { error } from '@sveltejs/kit';
 import metaImage from "$lib/assets/icons/logos/printedReddoor.png"
 
 export async function load({ params, fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
 
-	let page = await client.getByUID('project', params.uid);
+	let page;
+	
+	try {
+		page = await client.getByUID('project', params.uid);
+	} catch (err) {
+		throw error(404, {
+			message: 'Project Not Found'
+		});
+	}
 
 	const allProjects = await client.getAllByType('project', {
 		orderings: {
