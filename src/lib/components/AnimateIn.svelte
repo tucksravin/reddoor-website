@@ -26,7 +26,7 @@
 
         checking = setTimeout(()=>{
             checkViewport()
-        },400)
+        },500)
        
        
         window.addEventListener('scroll', checkViewport);
