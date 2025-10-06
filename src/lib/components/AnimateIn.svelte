@@ -24,10 +24,9 @@
         if(!isOff){
         checkViewport()
 
-        checking = setInterval(()=>{
+        checking = setTimeout(()=>{
             checkViewport()
-        }
-    ,4000)
+        },400)
        
        
         window.addEventListener('scroll', checkViewport);
