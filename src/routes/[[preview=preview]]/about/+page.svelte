@@ -152,7 +152,7 @@
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
-            on:mouseenter={()=>popupText="by being enemies of mediocrity."} 
+            on:mouseenter={()=>popupText="since we define ourselves as enemies of mediocrity."} 
             class="underline underline-offset-[25%]  cursor-default">
             create compelling design
         </span>
