@@ -116,15 +116,15 @@
       <div class="flex flex-col gap-4 absolute" in:fade={{duration:400, delay:420}} out:fade={{duration:400}}>
         <p class="mt-8">01/03</p>
         <h5 class="text-primary">
-          We value our ability to
+          We will
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
             on:mouseenter={()=>popupText="by using our creative expertise to serve."} 
             class="underline underline-offset-[25%]  cursor-default">
-            act on your behalf,
+            act on your behalf
         </span>
-        <br /> therefore we
+        <br /> by choosing to
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
@@ -148,15 +148,15 @@
        <div class="flex flex-col gap-4 absolute" in:fade={{duration:400, delay:420}} out:fade={{duration:400}}>
         <p class="mt-8">02/03</p>
         <h5 class="text-primary">
-          We value our ability to
+          We will
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
             on:mouseenter={()=>popupText="by being enemies of mediocrity."} 
             class="underline underline-offset-[25%]  cursor-default">
-            create compelling design,
+            create compelling design
         </span>
-        <br /> therefore we
+        <br /> by choosing to
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
@@ -180,15 +180,15 @@
        <div class="flex flex-col gap-4 absolute" in:fade={{duration:400, delay:420}} out:fade={{duration:400}}>
         <p class="mt-8">03/03</p>
         <h5 class="text-primary">
-          We value our ability to
+          We will
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
             on:mouseenter={()=>popupText="so we may care deeply about it."} 
             class="underline underline-offset-[25%]  cursor-default">
-            do meaningful work,
+            do meaningful work
         </span>
-        <br /> therefore we
+        <br /> by choosing to
           <span 
             role="tooltip" 
             on:mouseleave={()=>popupText=""} 
