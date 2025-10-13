@@ -115,7 +115,7 @@ onMount(() => {
           joining us on the journey!
         </p>
         <div class="w-2/3 h-2 relative overflow-hidden rounded-full mt-4 bg-mid">
-            <div class="w-full h-full bg-primary absolute -left-[100%]" style="transform: translateX({100*cardStackProgress}%);"/>
+            <div class="w-full h-full bg-primary absolute -left-[100%] rounded-xl" style="transform: translateX({100*cardStackProgress}%);"/>
         </div>
       </div>
       <div class="w-[125%] md:w-3/5 aspect-square p-6 sm:translate-y-0 -translate-x-[10%] md:translate-x-0" >
@@ -140,11 +140,16 @@ onMount(() => {
                     class="w-full h-full object-cover"
                   />
                 {/if}
+
+                
                 <h1
                   class="text-primary mix-blend-multiply absolute top-0 right-0 xl:right-9 xl:top-9 number"
                 >
                   {card.number.toString().padStart(2, "0")}
                 </h1>
+                <div class="opacity-0 hover:opacity-100 bg-dark/20 backdrop-blur-lg h-full w-full absolute top-0 left-0 transition-all duration-300 flex items-center justify-center">
+                    <p class="text-white text-center">{card.body||"Go to project!"}</p>
+                </div>
               </div>
               <div
                 class="w-full h-full flex flex-col justify-between pt-4 xl:pt-6"
