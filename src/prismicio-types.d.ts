@@ -380,6 +380,17 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * featured image field in *project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.featured_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  featured_image: prismic.ImageField<never>;
 }
 
 /**
@@ -626,11 +637,127 @@ export type ShowcaseDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Twenty for Twenty documents
+ */
+interface TwentyForTwentyDocumentData {
+  /**
+   * number field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.number
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  number: prismic.NumberField;
+
+  /**
+   * project field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.project
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project: prismic.ContentRelationshipField<"project">;
+
+  /**
+   * body field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  body: prismic.KeyTextField;
+
+  /**
+   * dates field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.dates
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  dates: prismic.KeyTextField;
+
+  /**
+   * name override field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.name_override
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name_override: prismic.KeyTextField;
+
+  /**
+   * image override field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.image_override
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_override: prismic.ImageField<never>;
+
+  /**
+   * mediums override field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.mediums_override
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  mediums_override: prismic.KeyTextField;
+
+  /**
+   * link override field in *Twenty for Twenty*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: twenty_for_twenty.link_override
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_override: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Twenty for Twenty document from Prismic
+ *
+ * - **API ID**: `twenty_for_twenty`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TwentyForTwentyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TwentyForTwentyDocumentData>,
+    "twenty_for_twenty",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | LogoSoupDocument
   | PageDocument
   | ProjectDocument
-  | ShowcaseDocument;
+  | ShowcaseDocument
+  | TwentyForTwentyDocument;
 
 /**
  * Item in *ContentWidthMedia → Default → Primary → images*
@@ -1534,6 +1661,8 @@ declare module "@prismicio/client" {
       ShowcaseDocumentDataProjectsItem,
       ShowcaseDocumentDataSlicesSlice,
       ShowcaseDocumentDataSlices1Slice,
+      TwentyForTwentyDocument,
+      TwentyForTwentyDocumentData,
       AllDocumentTypes,
       ContentWidthImageSlice,
       ContentWidthImageSliceDefaultPrimaryImagesItem,

@@ -32,7 +32,7 @@
 		"src/routes/+layout.server.js"
 	],
 	"/[[preview=preview]]/twenty-for-twenty": [
-		"src/routes/[[preview=preview]]/twenty-for-twenty/+page.server.js",
+		"src/routes/[[preview=preview]]/twenty-for-twenty/+page.server.ts",
 		"src/routes/+layout.server.js"
 	],
 	"/[[preview=preview]]": [

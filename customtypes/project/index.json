@@ -156,6 +156,14 @@
           "thumbnails": []
         },
         "type": "Image"
+      },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "featured image",
+          "constraint": {},
+          "thumbnails": []
+        }
       }
     }
   }
