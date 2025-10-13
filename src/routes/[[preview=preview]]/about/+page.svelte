@@ -69,14 +69,14 @@
   }
 
  onMount(() => {
-    if (browser || typeof window !== 'undefined') {
+    if (browser && typeof window !== 'undefined') {
       window.addEventListener('scroll', handleScroll);
       window.addEventListener('mousemove', handleMouseMove);
     }
   });
 
   onDestroy(()=>{
-    if (browser || typeof window !== 'undefined') {
+    if (browser && typeof window !== 'undefined') {
      window.removeEventListener('scroll', handleScroll)
     window.removeEventListener('mousemove', handleMouseMove)
     }
