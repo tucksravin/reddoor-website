@@ -21,7 +21,7 @@
   let carRef:HTMLImageElement;
 
   const handleScroll = () =>{
-    if(!carRef||!window)return;
+    if(!carRef|| typeof window === 'undefined')return;
 
     const carRect = carRef.getBoundingClientRect();
 
@@ -67,9 +67,10 @@
 
   onMount(()=>{
     if(window){
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('mousemove', handleMouseMove)}
-  });
+      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('mousemove', handleMouseMove)}
+    }
+);
 
   onDestroy(()=>{
      window.removeEventListener('scroll', handleScroll)
