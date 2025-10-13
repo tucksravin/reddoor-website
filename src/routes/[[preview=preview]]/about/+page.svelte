@@ -21,7 +21,8 @@
   let carRef:HTMLImageElement;
 
   const handleScroll = () =>{
-    if(!carRef|| typeof window === 'undefined')return;
+    if (typeof window === 'undefined') return;
+    if (!carRef) return;
 
     const carRect = carRef.getBoundingClientRect();
 
@@ -65,12 +66,12 @@
     setTimeout(()=>isValuesTransitioning=false, 1000)
   }
 
-  onMount(()=>{
-    if(window){
-      window.addEventListener('scroll', handleScroll)
-      window.addEventListener('mousemove', handleMouseMove)}
+ onMount(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('mousemove', handleMouseMove);
     }
-);
+  });
 
   onDestroy(()=>{
      window.removeEventListener('scroll', handleScroll)
