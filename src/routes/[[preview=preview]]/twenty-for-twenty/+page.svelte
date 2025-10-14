@@ -7,7 +7,7 @@
   import { PrismicImage } from "@prismicio/svelte";
   import { onMount } from "svelte";
 
-    export let data;
+  export let data;
 
   type ProjectCard = {
     number: number;
@@ -19,47 +19,58 @@
     href: string | null | undefined;
   };
 
-
-
-   let projectCardArray: ProjectCard[] = data.projectCards || []; 
+  let projectCardArray: ProjectCard[] = data.projectCards || []; 
   let cardStackProgress = 0;
-  let cardsSection:HTMLElement;
-  let viewportHeight:number;
+  let targetProgress = 0;
+  let cardsSection: HTMLElement;
+  let viewportHeight: number;
+  let animationFrameId: number;
 
- const handleScroll = () => {
-    if(!cardsSection||typeof window === 'undefined')return;
+  // Smooth interpolation
+  const lerp = (start: number, end: number, factor: number) => {
+    return start + (end - start) * factor;
+  };
 
+  const calculateTargetProgress = () => {
+    if (!cardsSection || typeof window === 'undefined') return;
 
     const cardsRect = cardsSection.getBoundingClientRect();
+    const pageScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const sectionOffsetTop = cardsSection.offsetTop;
+    
+    const scrollStart = sectionOffsetTop;
+    const scrollEnd = sectionOffsetTop + cardsRect.height - viewportHeight;
+    const scrollRange = scrollEnd - scrollStart;
+    
+    const rawProgress = (pageScrollTop - scrollStart) / scrollRange;
+    targetProgress = Math.max(0, Math.min(1, rawProgress));
+  };
 
+  const animate = () => {
+    cardStackProgress = lerp(cardStackProgress, targetProgress, 0.15);
+    
+    animationFrameId = requestAnimationFrame(animate);
+  };
 
+  const handleScroll = () => {
+    calculateTargetProgress();
+  };
 
-            
-        const pageScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const sectionOffsetTop = cardsSection.offsetTop;
-        
-        const scrollStart = sectionOffsetTop;
-        const scrollEnd = sectionOffsetTop + cardsRect.height - viewportHeight;
-        const scrollRange = scrollEnd - scrollStart;
-        
-        const rawProgress = (pageScrollTop - scrollStart) / scrollRange;
+  onMount(() => {
+    projectCardArray = data.projectCards;
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
     
 
-    cardStackProgress = Math.max(0, Math.min(1, rawProgress));
+    animationFrameId = requestAnimationFrame(animate);
 
-  }
-
-
-
-onMount(() => {
-     projectCardArray = data.projectCards;
-     window.addEventListener("scroll", handleScroll);
-     
-     return () => {
-       window.removeEventListener("scroll", handleScroll);
-     };
-   });
-
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(animationFrameId);
+    };
+  });
 </script>
 
 <svelte:window bind:innerHeight={viewportHeight} />
@@ -106,25 +117,27 @@ onMount(() => {
   bind:this={cardsSection}
 >
   <div class="h-screen w-screen sticky top-0 overflow-hidden">
-    <ContentWidth class="flex flex-col md:flex-row  py-24">
+    <ContentWidth class="flex flex-col md:flex-row py-24">
       <div class="md:w-2/5">
         <p class="w-full max-w-sm">
-          We’ll continue to build on this collection throughout the year,
+          We'll continue to build on this collection throughout the year,
           leading up to our 20th anniversary on October 2, 2026. Thanks for
           joining us on the journey!
         </p>
         <div class="w-2/3 h-2 relative overflow-hidden rounded-full mt-4 bg-mid">
-            <div class="w-full h-full bg-primary absolute -left-[100%] rounded-xl" style="transform: translateX({100*cardStackProgress}%);"/>
+          <div 
+            class="progress-bar w-full h-full bg-primary absolute rounded-xl" 
+            style="transform: translate3d({-100 + (100*cardStackProgress)}%, 0, 0);"
+          />
         </div>
       </div>
-      <div class="w-[125%] md:w-3/5 aspect-square p-6 sm:translate-y-0 -translate-x-[2%] md:translate-x-0" >
-        <div class="h-full w-4/5 relative">
- 
+      <div class="w-[125%] md:w-3/5 aspect-square p-6 sm:translate-y-0 -translate-x-[2%] md:translate-x-0">
+        <div class="h-full w-4/5 relative cards-container">
           {#each projectCardArray as card, i}
             <a
               href={card.href}
-              class="absolute top-0 sm:left-12 w-full h-full flex flex-col justify-between bg-paper shadow-md shadow-black/20 hover:shadow-lg hover:z-10 hover:shadow-black/40 p-5 md:p-9 hover:scale-[102%] hover:-translate-y-2 active:shadow-black/90 active:-translate-y-8 active:rotate-0 transition-all duration-200 ease-out -rotate-3"
-              style="transform: translateX( calc( 100vh - {cardStackProgress * 100}vh ) ) rotate({((2*(i%2)-1))*(i+1)/projectCardArray.length*6}deg);"
+              class="card-item absolute top-0 sm:left-12 w-full h-full flex flex-col justify-between bg-paper shadow-md shadow-black/20 p-5 md:p-9 -rotate-3"
+              style="transform: translate3d({100 - (cardStackProgress * 100)}vh, 0, 0) rotate({((2*(i%2)-1))*(i+1)/projectCardArray.length*6}deg);"
             >
               <div class="w-full aspect-square relative inset-shadow">
                 {#if typeof card.image === "string"}
@@ -132,6 +145,7 @@ onMount(() => {
                     src={card.image}
                     alt="stack of catalogs"
                     class="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 {:else}
                   <PrismicImage
@@ -140,14 +154,13 @@ onMount(() => {
                   />
                 {/if}
 
-                
                 <h1
                   class="text-primary mix-blend-multiply absolute top-0 right-0 xl:right-9 xl:top-9 number"
                 >
                   {card.number.toString().padStart(2, "0")}
                 </h1>
-                <div class="opacity-0 hover:opacity-100 bg-dark/20 backdrop-blur-lg h-full w-full absolute top-0 left-0 transition-all duration-300 flex items-center justify-center">
-                    <p class="text-white text-center">{card.body||"Go to project!"}</p>
+                <div class="card-overlay opacity-0 bg-dark/20 backdrop-blur-lg h-full w-full absolute top-0 left-0 flex items-center justify-center">
+                  <p class="text-white text-center">{card.body||"Go to project!"}</p>
                 </div>
               </div>
               <div
@@ -163,7 +176,6 @@ onMount(() => {
               </div>
             </a>
           {/each}
-         
         </div>
       </div>
     </ContentWidth>
@@ -196,14 +208,60 @@ onMount(() => {
     font-size: 240px;
     font-style: normal;
     font-weight: 700;
-    line-height: 100%; /* 247.555px */
+    line-height: 100%;
   }
+  
   h2 {
     font-family: Besley;
     font-size: 55px;
     font-style: normal;
     font-weight: 400;
-    line-height: 125%; /* 68.75px */
+    line-height: 125%;
+  }
+
+  /* Performance optimizations for iOS Safari */
+  .cards-container {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .card-item {
+    will-change: transform;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+    isolation: isolate;
+  }
+
+  @media (hover: hover) {
+    .card-item:hover {
+      z-index: 10;
+      transform: scale(1.02) translateY(-0.5rem);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease-out;
+    }
+
+    .card-item:hover .card-overlay {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  .card-item:active {
+    transform: translateY(-2rem);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+  }
+
+  .progress-bar {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .card-overlay {
+    -webkit-backdrop-filter: blur(16px);
+    pointer-events: none;
   }
 
   @media only screen and (max-width: 1200px) {
@@ -215,7 +273,7 @@ onMount(() => {
   @media only screen and (max-width: 1024px) {
     h1.number {
       font-size: 80px;
-      line-height: 125%; /* 68.75px */
+      line-height: 125%;
     }
   }
 
