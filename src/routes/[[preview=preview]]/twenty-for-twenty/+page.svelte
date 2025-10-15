@@ -183,7 +183,7 @@ return x * x * x * x * x;
                 <div
                   class="card-overlay opacity-0 bg-dark/20 backdrop-blur-lg h-full w-full absolute top-0 left-0 flex items-center justify-center"
                 >
-                  <p class="text-white text-center">
+                  <p class="text-white text-center p-4">
                     {card.body || "Go to project!"}
                   </p>
                 </div>

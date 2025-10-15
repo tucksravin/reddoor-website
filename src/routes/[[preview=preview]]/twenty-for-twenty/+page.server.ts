@@ -69,7 +69,7 @@ export async function load({ params, fetch, cookies }) {
         number: q.data.number || 0,
         name: q.data.name_override || linkedProject?.data.title,
         image: imageField,
-        body: q.data.body,
+        body: q.data.body || linkedProject?.data.tagline,
         dates: q.data.dates,
         mediums: q.data.mediums_override || mediumString(linkedProject),
         href: projLink
