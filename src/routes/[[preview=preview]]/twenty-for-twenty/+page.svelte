@@ -69,9 +69,8 @@
   };
 
   function easeInQuint(x: number): number {
-return x * x * x * x * x;
-
-}
+    return x * x * x * x * x;
+  }
 
   onMount(() => {
     projectCardArray = data.projectCards;
@@ -155,51 +154,57 @@ return x * x * x * x * x;
       >
         <div class="h-full w-4/5 relative cards-container">
           {#each projectCardArray as card, i}
-            <a
-              href={card.href}
-              class="card-item absolute top-0 sm:left-12 w-full h-full flex flex-col justify-between bg-paper shadow-md shadow-black/20 p-5 md:p-9"
+            <!-- Transform wrapper div -->
+            <div
+              class="card-transform-wrapper absolute top-0 sm:left-12 w-full h-full"
               style="transform: translate3d({calcCardTranslationInVH(i - 1)}vw, 0, 0) rotate({(((2 * (i % 2) - 1) * (i + 1)) / projectCardArray.length) * 6 * easeInQuint((100-calcCardTranslationInVH(i - 1))/100)}deg);"
-            >
-              <div class="w-full aspect-square relative inset-shadow">
-                {#if typeof card.image === "string"}
-                  <img
-                    src={card.image}
-                    alt="stack of catalogs"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                {:else}
-                  <PrismicImage
-                    field={card.image}
-                    class="w-full h-full object-cover"
-                  />
-                {/if}
-
-                <h1
-                  class="text-primary mix-blend-multiply absolute top-0 right-0 xl:right-9 xl:top-9 number"
-                >
-                  {card.number.toString().padStart(2, "0")}
-                </h1>
-                <div
-                  class="card-overlay opacity-0 bg-dark/20 backdrop-blur-lg h-full w-full absolute top-0 left-0 flex items-center justify-center"
-                >
-                  <p class="text-white text-center p-4">
-                    {card.body || "Go to project!"}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="w-full h-full flex flex-col justify-between pt-4 xl:pt-6"
+            > 
+              <!-- Anchor with its own transitions -->
+              <a
+                href={card.href}
+                class="card-item w-full h-full flex flex-col justify-between bg-paper shadow-md hover:shadow-xl hover:shadow-black/60 translate-y-0 active:-translate-y-6 active:shadow-black/90 shadow-black/20 p-5 md:p-9 transition-all duration-300"
               >
-                <h5 class="text-black">{card.name}</h5>
-                <div
-                  class="flex flex-row md:flex-col xl:flex-row justify-between flex-wrap"
-                >
-                  <p class="text-primary uppercase">{card.mediums}</p>
-                  <p class="text-primary uppercase">{card.dates}</p>
+                <div class="w-full aspect-square relative inset-shadow">
+                  {#if typeof card.image === "string"}
+                    <img
+                      src={card.image}
+                      alt="stack of catalogs"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  {:else}
+                    <PrismicImage
+                      field={card.image}
+                      class="w-full h-full object-cover"
+                    />
+                  {/if}
+
+                  <h1
+                    class="text-primary mix-blend-multiply absolute top-0 right-0 xl:right-9 xl:top-9 number"
+                  >
+                    {card.number.toString().padStart(2, "0")}
+                  </h1>
+                  <div
+                    class="opacity-0 bg-dark/20 backdrop-blur-lg hover:opacity-100 transition-opacity duration-300 h-full w-full absolute top-0 left-0 flex items-center justify-center"
+                  >
+                    <p class="text-white text-center p-4">
+                      {card.body || "Go to project!"}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </a>
+                <div
+                  class="w-full h-full flex flex-col justify-between pt-4 xl:pt-6"
+                >
+                  <h5 class="text-black">{card.name}</h5>
+                  <div
+                    class="flex flex-row md:flex-col xl:flex-row justify-between flex-wrap"
+                  >
+                    <p class="text-primary uppercase">{card.mediums}</p>
+                    <p class="text-primary uppercase">{card.dates}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
           {/each}
         </div>
       </div>
@@ -258,13 +263,20 @@ return x * x * x * x * x;
     transform: translate3d(0, 0, 0);
   }
 
-  .card-item {
+  /* Transform wrapper handles position and rotation */
+  .card-transform-wrapper {
     will-change: transform;
     transform-origin: center center;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    pointer-events: auto;
+    pointer-events: none; /* Let events pass through to the anchor */
+  }
+
+  /* Card item handles its own transitions */
+  .card-item {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    pointer-events: auto; /* Re-enable pointer events on the anchor */
     isolation: isolate;
   }
 
@@ -281,42 +293,17 @@ return x * x * x * x * x;
     }
   }
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     .card-square {
       width: min(50vw, 80vh);
       height: min(50vw, 80vh);
     }
   }
 
-
-    .card-item:hover {
-      transform: scale(1.02) translateY(-0.5rem);
-      box-shadow:
-        0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      transition: all 0.2s ease-out;
-    }
-
-    .card-item:hover .card-overlay {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-  
-
-  .card-item:active {
-    transform: translateY(-2rem);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
-  }
-
   .progress-bar {
     will-change: transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-  }
-
-  .card-overlay {
-    -webkit-backdrop-filter: blur(16px);
-    pointer-events: none;
   }
 
   @media only screen and (max-width: 1200px) {
@@ -342,7 +329,6 @@ return x * x * x * x * x;
     h1.number {
       font-size: 80px;
     }
-
   }
 
   .postcard-shadow {
