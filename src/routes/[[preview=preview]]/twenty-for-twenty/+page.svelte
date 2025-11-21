@@ -162,7 +162,7 @@
               <!-- Anchor with its own transitions -->
               <a
                 href={card.href}
-                class="card-item w-full h-full flex flex-col justify-between bg-paper shadow-md hover:shadow-black/20 translate-y-0 active:-translate-y-6 active:shadow-black/25 shadow-black/15 p-[4.5%] transition-all duration-300"
+                class="card-item w-full h-full flex flex-col justify-between bg-paper shadow-md hover:shadow-black/35 hover:shadow-lg translate-y-0 active:-translate-y-6 active:shadow-black/25 shadow-black/15 p-[4.5%] transition-all duration-300"
               >
                 <div class="w-full aspect-square relative inset-shadow">
                   {#if typeof card.image === "string"}
