@@ -27,6 +27,10 @@
             href:"/about"
         },
         {
+            label:"20 for 20",
+            href:"/twenty-for-twenty"
+        },
+        {
             label:"Meet With Us",
             href:"/contact"
         },
@@ -44,11 +48,11 @@
     let scrollY:number;
     export let data;
 
-    $: showNav = $page.status === 404 || scrollY > 300;
+    $: showNav = $page.status === 404 || scrollY > 300 || $page.url.pathname.includes('about');
 
 
     const handleScroll = () =>{
-            showNav=$page.status === 404 ||scrollY>300;
+            showNav=$page.status === 404 ||scrollY>300 || $page.url.pathname.includes('about');
     }
     function disableScrollRestoration() {
   if ('scrollRestoration' in history) {
