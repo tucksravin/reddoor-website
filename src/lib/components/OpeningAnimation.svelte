@@ -12,6 +12,9 @@
   import { isTop } from "$lib/stores/isTop";
   import Img from "@zerodevx/svelte-img";
   import drawnLogo from '$lib/assets/icons/logos/staticReddoor.png'
+  import ContentBox from "./FullWidth/ContentBox.svelte";
+
+  let isOverlayVisible = false;
 
   
   let viewportHeight: number;
@@ -108,6 +111,23 @@
  {#if transitioning}
    <div class="bg-white w-screen h-dvh fixed top-0 left-0 z-50" transition:fade/>
  {/if}
+
+      {#if isOverlayVisible}
+     <div class="w-screen h-lvh fixed bg-paper-red top-0 left-0 z-50" transition:fly={{y:"-100%"}}>
+      <ContentWidth class="h-full flex flex-col items-center justify-center gap-12 relative">
+        <a href="/" class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>Home</a>
+        <a href="/portfolio" class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>Portfolio</a>
+        <a href="/about" class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>About</a>
+        <a href="/twenty-for-twenty" class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>20 for 20</a>
+        <a href="/contact" class="text-white text-2xl" on:click={()=>isOverlayVisible=false}>Meet With Us</a>
+        <button class="absolute top-12 right-0 opacity-60 hover:opacity-100 transition z-40" on:click={()=>isOverlayVisible=false}>
+          <div in:fade={{delay: 600}} out:fade class="text-white">
+            <i class="fa-sharp fa-thin fa-xmark fa-2xl" />
+          </div>
+        </button>
+      </ContentWidth>
+     </div>
+     {/if}
  
  <div class="w-screen" bind:this={openingSection}>
    <div class="h-dvh w-screen fixed bottom-0 left-0 bg-paper-red">
@@ -122,9 +142,14 @@
        <i class="fa-light fa-arrow-down fa-2xl opacity-50 absolute bottom-12 text-white bob-always" />
      </ContentWidth>
      
+
+
      <div class="fixed top-0 left-0 w-screen h-dvh overflow-hidden z-20">
-      <ContentWidth>
-        <img src={drawnLogo} class='absolute top-8 left-0 h-20' alt='reddoor'/>
+      <ContentWidth class="h-32 flex justify-between items-center">
+        <img src={drawnLogo} class=' h-20' alt='reddoor'/>
+        <button class="opacity-100 hover:opacity-60 transition " on:click={() => isOverlayVisible = true} in:fade={{delay:400}} out:fade>
+          <i class="fa-sharp fa-bars fa-xl text-black"/>
+        </button>
       </ContentWidth>
        <div
          class="fixed top-0 left-0 w-lvw h-dvh z-20"
@@ -154,8 +179,9 @@
 
 
            {#if $isTop}
-           <ContentWidth>
-            <img src={printedReddoorLogo} alt="reddoor logo" class="absolute top-8 left-0 w-12" in:fade={{delay:400}} out:fade/>
+           <ContentWidth class="flex flex-row justify-between items-center absolute top-8 left-0 right-0">
+            <img src={printedReddoorLogo} alt="reddoor logo" class="w-12" in:fade={{delay:400}} out:fade/>
+
            </ContentWidth>
           {/if}
          
