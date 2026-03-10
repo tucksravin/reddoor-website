@@ -452,6 +452,22 @@ export interface ShowcaseDocumentDataProjectsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   subtitleOverride: prismic.KeyTextField;
+
+  /**
+   * set link field in *showcase → projects*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.projects[].linkOverride
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  linkOverride: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 type ShowcaseDocumentDataSlicesSlice =
@@ -610,7 +626,7 @@ interface ShowcaseDocumentData {
   meta_image: prismic.ImageField<never>;
 
   /**
-   * `slices1` field in *showcase*
+   * Slice Zone field in *showcase*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*

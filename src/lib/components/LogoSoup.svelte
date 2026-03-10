@@ -25,7 +25,7 @@
 
 
   let showImage = false;
-  let brandIndex = 0;
+  let brandIndex = -1;
   let isMobile = false;
   let scrollY = 0;
   let viewportHeight: number;
@@ -136,7 +136,7 @@ function calculateScrollPositionForBrand(index: number) {
     >
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video transition-opacity duration-500
-    {showImage ? '' : 'opacity-0'}  
+    {showImage && brandIndex > -1 ? '' : 'opacity-0'}  
     {viewportHeight * 16 > viewportWidth * 9
           ? 'h-lvh min-w-full'
           : 'w-screen min-h-full'}"
@@ -152,7 +152,7 @@ function calculateScrollPositionForBrand(index: number) {
       <ContentWidth class="h-full py-32 flex flex-row justify-end relative">
         <AnimateIn class="absolute left-0 top-40">
           <h6
-            class="transition duration-300 ease-fast-slow {showImage
+            class="transition duration-300 ease-fast-slow {showImage && brandIndex > -1
               ? 'text-white'
               : 'text-red'}"
           >
@@ -173,6 +173,7 @@ function calculateScrollPositionForBrand(index: number) {
                 }}
                 on:mouseleave={() => {
                   showImage = false;
+                  brandIndex = -1;
                 }}
               >
                 <PrismicLink field={brand.project_link}>
@@ -186,7 +187,7 @@ function calculateScrollPositionForBrand(index: number) {
                   />
                   <PrismicImage
                     field={brand.logo_color}
-                    class="h-full transition-opacity duration-300 ease-fast-slow {showImage
+                    class="h-full transition-opacity duration-300 ease-fast-slow {showImage && brandIndex > -1
                       ? 'opacity-0'
                       : ''}"
                     loading="eager"
@@ -201,35 +202,41 @@ function calculateScrollPositionForBrand(index: number) {
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <div
             class="pt-10"
-            on:mouseenter={() => {
-              showImage = true;
-            }}
+            
             on:mouseleave={() => {
               showImage = false;
             }}
           >
             {#key brandIndex}
-              <PrismicLink field={brands[brandIndex].project_link}>
+              {#if brandIndex >= 0 && brands[brandIndex]}
+                <PrismicLink field={brands[brandIndex].project_link}>
+                  <p
+                    class="underline underline-offset-4 text-white transition duration-300 ease-fast-slow"
+                    in:fade
+                  >
+                    {showImage && brandIndex > -1 ? brands[brandIndex].name : ""}
+                  </p>
+                </PrismicLink>
                 <p
-                  class="underline underline-offset-4 text-white transition duration-300 ease-fast-slow"
+                  class="{showImage
+                    ? 'text-white'
+                    : 'text-red'} transition duration-300 ease-fast-slow"
                   in:fade
                 >
-                  {showImage ? brands[brandIndex].name : ""}
+                  {showImage && brandIndex > -1 ? brands[brandIndex].services : "Browse Our Work"}
                 </p>
-              </PrismicLink>
-              <p
-                class="{showImage
-                  ? 'text-white'
-                  : 'text-red'} transition duration-300 ease-fast-slow"
-                in:fade
-              >
-                {showImage ? brands[brandIndex].services : "Browse Our Work"}
-              </p>
+              {:else}
+                <p class="text-red transition duration-300 ease-fast-slow">
+                  Browse Our Work
+                </p>
+              {/if}
             {/key}
-            <div class="mt-8 gap-8 flex flex-row">
+            <div class="mt-8 gap-8 flex flex-row w-fit" on:mouseenter={() => {
+              showImage = true;
+            }}> 
               <button
                 on:click={prevBrand}
-                class="{showImage
+                class="{showImage && brandIndex > -1
                   ? 'text-white hover:text-primary'
                   : 'text-primary hover:text-white'} bump"
               >
@@ -237,7 +244,7 @@ function calculateScrollPositionForBrand(index: number) {
               </button>
               <button
                 on:click={nextBrand}
-                class="{showImage
+                class="{showImage && brandIndex > -1
                   ? 'text-white hover:text-primary'
                   : 'text-primary hover:text-white'} bump"
               >
@@ -304,24 +311,30 @@ function calculateScrollPositionForBrand(index: number) {
         <!-- Brand info on mobile -->
         <div class="brand-info text-center">
           {#key brandIndex}
-            <PrismicLink field={brands[brandIndex].project_link}>
+            {#if brandIndex >= 0 && brands[brandIndex]}
+              <PrismicLink field={brands[brandIndex].project_link}>
+                <p
+                  class="underline underline-offset-4 text-white transition duration-300 ease-fast-slow"
+                  in:fade
+                >
+                  {mobileScrollActive ? brands[brandIndex].name : ""}
+                </p>
+              </PrismicLink>
               <p
-                class="underline underline-offset-4 text-white transition duration-300 ease-fast-slow"
+                class="{mobileScrollActive
+                  ? 'text-white'
+                  : 'text-red'} transition duration-300 ease-fast-slow"
                 in:fade
               >
-                {mobileScrollActive ? brands[brandIndex].name : ""}
+                {mobileScrollActive
+                  ? brands[brandIndex].services
+                  : "Scroll to explore our work"}
               </p>
-            </PrismicLink>
-            <p
-              class="{mobileScrollActive
-                ? 'text-white'
-                : 'text-red'} transition duration-300 ease-fast-slow"
-              in:fade
-            >
-              {mobileScrollActive
-                ? brands[brandIndex].services
-                : "Scroll to explore our work"}
-            </p>
+            {:else}
+              <p class="text-red transition duration-300 ease-fast-slow">
+                Scroll to explore our work
+              </p>
+            {/if}
           {/key}
         </div>
 

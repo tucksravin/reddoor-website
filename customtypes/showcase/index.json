@@ -108,6 +108,17 @@
                 "label": "set subtitle",
                 "placeholder": "optional"
               }
+            },
+            "linkOverride": {
+              "type": "Link",
+              "config": {
+                "label": "set link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": false,
+                "repeat": false
+              }
             }
           }
         }
@@ -167,7 +178,10 @@
       },
       "slices1": {
         "type": "Slices",
-        "fieldset": "Slice Zone"
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
       }
     }
   }

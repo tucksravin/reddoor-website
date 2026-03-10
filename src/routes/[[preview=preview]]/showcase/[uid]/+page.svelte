@@ -6,6 +6,7 @@
 	import ContentWidth from '$lib/components/ContentWidth/ContentWidth.svelte';
 	import DefaultButton from '$lib/components/Buttons/DefaultButton.svelte';
 	import {PrismicImage, PrismicRichText} from '@prismicio/svelte';
+	import { isFilled, asLink } from '@prismicio/client';
   import type { ProjectDocument } from '../../../../prismicio-types';
 
   function mediumString (project:ProjectDocument<string>) {
@@ -84,7 +85,7 @@
 		<div class="w-full flex flex-col lg:flex-row mt-6 flex-wrap relative">
 			{#each projects as project, i}
 			<div class="md:pr-6 pb-6 w-full lg:w-1/2 aspect-[4/3] transition-opacity duration-700">
-			<a href={"/portfolio/"+project.uid} class="h-full w-full flex flex-col justify-end relative">
+			<a href={isFilled.link(pageData.projects[i].linkOverride) ? asLink(pageData.projects[i].linkOverride) : "/portfolio/"+project.uid} target={isFilled.link(pageData.projects[i].linkOverride) ? "_blank" : undefined} class="h-full w-full flex flex-col justify-end relative">
 				<img src={pageData.projects[i].imageOverride.url||project.data.hero.url||''} alt={project.data.title  + " Hero Image"} class="absolute w-full h-full object-cover"/>
 				<div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
 			   
