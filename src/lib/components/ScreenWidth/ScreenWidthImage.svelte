@@ -45,7 +45,7 @@
   >
     <!-- Image fallback - always present -->
      
-    {#if !field}
+    {#if !field&&src}
       <img
         {src}
         alt={alt||altText}
