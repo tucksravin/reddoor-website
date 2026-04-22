@@ -1,9 +1,6 @@
 <script lang="ts">
     import profile_placeholder from "$lib/assets/images/profile_placeholder.jpeg"
-    import logo_placeholder from "$lib/assets/icons/logos/logo.svg"
-    import { FontAwesomeIcon} from '@fortawesome/svelte-fontawesome'
-    import { faFacebook, faTwitter, faReddit, faInstagram} from '@fortawesome/free-brands-svg-icons'
-    
+
 
     export let src = profile_placeholder;
     export let alt = "profile picture placeholder"
@@ -30,17 +27,17 @@
                
                 <a href={social.href} class="mx-6 w-6 h-6 hover:opacity-75 transition-all bump">
                     {#if social.platform==='facebook'}
-                        <FontAwesomeIcon icon={faFacebook} inverse size="2x" />
+                        <i class="fa-brands fa-facebook fa-inverse fa-2x"></i>
                     {:else if social.platform=='twitter'}
-                        <FontAwesomeIcon icon={faTwitter} inverse size="2x"/>
+                        <i class="fa-brands fa-twitter fa-inverse fa-2x"></i>
                     {:else if social.platform=='reddit'}
-                        <FontAwesomeIcon icon={faReddit} inverse size="2x"/>
+                        <i class="fa-brands fa-reddit fa-inverse fa-2x"></i>
                     {:else if social.platform=='instagram'}
-                        <FontAwesomeIcon icon={faInstagram} inverse size="2x"/>
+                        <i class="fa-brands fa-instagram fa-inverse fa-2x"></i>
                     {/if}
 
                 </a>
-               
+
             {/each}
         </div>
     </div>
@@ -57,13 +54,13 @@
             {#each socials as social }
             <a href={social.href} class="mx-6 w-6 h-6 hover:opacity-75 transition-all bump">
                 {#if social.platform==='facebook'}
-                    <FontAwesomeIcon icon={faFacebook} inverse size="2x" />
+                    <i class="fa-brands fa-facebook fa-inverse fa-2x"></i>
                 {:else if social.platform=='twitter'}
-                    <FontAwesomeIcon icon={faTwitter} inverse size="2x"/>
+                    <i class="fa-brands fa-twitter fa-inverse fa-2x"></i>
                 {:else if social.platform=='reddit'}
-                    <FontAwesomeIcon icon={faReddit} inverse size="2x"/>
+                    <i class="fa-brands fa-reddit fa-inverse fa-2x"></i>
                 {:else if social.platform=='instagram'}
-                    <FontAwesomeIcon icon={faInstagram} inverse size="2x"/>
+                    <i class="fa-brands fa-instagram fa-inverse fa-2x"></i>
                 {/if}
 
             </a>

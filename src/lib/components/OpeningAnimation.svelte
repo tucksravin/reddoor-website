@@ -12,7 +12,6 @@
   import { isTop } from "$lib/stores/isTop";
   import Img from "@zerodevx/svelte-img";
   import drawnLogo from '$lib/assets/icons/logos/staticReddoor.png'
-  import ContentBox from "./FullWidth/ContentBox.svelte";
 
   let isOverlayVisible = false;
 
@@ -54,18 +53,6 @@
     currentImageIndex = (currentImageIndex + 1) % backgrounds.length;
   };
 
-  let hideTopImage = false;
-
-  $: {
-    currentImageIndex;
-    hideTopImage = false;
-    setTimeout(() => {
-      
-        hideTopImage = true;
-    }, 5000);
-
-
-  }
   const handleScroll = () => {
     const containerRect = openingSection.getBoundingClientRect();
     percentageScrolled = 100 - (containerRect.bottom - viewportHeight) / (containerRect.height - viewportHeight) * 100;

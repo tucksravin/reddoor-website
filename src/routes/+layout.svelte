@@ -123,10 +123,10 @@ afterNavigate(() => {
             
             <div class="flex flex-row">
                 <div class="hidden lg:flex flex-row justify-between items-center gap-10">
-                    {#each NAV_LINKS as item, i}
-          
+                    {#each NAV_LINKS as item}
+
                         <a class="label hover:opacity-80 transition-opacity " href={item.href} on:click={()=>isOverlayVisible=false}>{item.label}</a>
-                      
+
                     {/each}
                 </div>
            
@@ -183,7 +183,7 @@ afterNavigate(() => {
         <div class="flex flex-col tracking-wide label gap-8 w-full md:w-1/3 lg:w-1/5">
             
             <div class="flex flex-col gap-1">
-                <a href="/" class="-translate-x-[8%] w-3/5 md:w-full"><img src={rotatingReddoor} alt='reddoor drawn in multiple styles'/></a>
+                <a href="/" class="translate-x-[-8%] w-3/5 md:w-full"><img src={rotatingReddoor} alt='reddoor drawn in multiple styles'/></a>
                 <a href="/portfolio" class="text-primary underline">Portfolio</a>
                 <a href="/about" class="text-primary underline">About</a>
                 <a href="/contact" class="text-primary underline">Meet with Us</a>

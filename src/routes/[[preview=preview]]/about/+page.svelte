@@ -192,17 +192,8 @@
 </script>
 
 <style>
-    h4{
-        
-font-family: Pragmatica;
-font-size: 60px;
-font-style: normal;
-font-weight: 250;
-line-height: 125%; /* 75px */
-    }
-
     h5.title{
-      
+
 font-family: Pragmatica;
 font-size: 50px;
 font-style: normal;
@@ -210,18 +201,7 @@ font-weight: 250;
 line-height: 140%; /* 70px */
     }
 
-    .archive-title{
-
-font-size: 60px;
-font-style: normal;
-font-weight: 700;
-line-height: 140%; /* 84px */
-    }
-
     @media only screen and (max-width:768px) {
-        h4{
-            font-size: 40px
-        }
         h5.title{
             font-size: 28px
         }
@@ -236,7 +216,7 @@ line-height: 140%; /* 84px */
 <svelte:window bind:innerHeight={viewportHeight} bind:innerWidth={viewportWidth} />
 
 {#if popupText && !isMobile}
-    <h5 transition:fade  class="pointer-events-none -translate-y-full w-[360px] p-5 fixed z-20 bg-white/80 backdrop-blur text-primary" style="top:{popupY}px;left:{popupX}px">{popupText}</h5>
+    <h5 transition:fade  class="pointer-events-none -translate-y-full w-[360px] p-5 fixed z-20 bg-white/80 backdrop-blur-sm text-primary" style="top:{popupY}px;left:{popupX}px">{popupText}</h5>
 {/if}
 
 <!-- Mobile Popup -->
@@ -249,7 +229,7 @@ line-height: 140%; /* 84px */
             role="dialog"
             aria-label="Additional information"
             aria-modal="true"
-            class="relative bg-white/95 backdrop-blur shadow-xl p-6 max-w-sm w-full border border-primary"
+            class="relative bg-white/95 backdrop-blur-sm shadow-xl p-6 max-w-sm w-full border border-primary"
         >
             <button 
                 data-popup-close
@@ -303,7 +283,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "by using our creative expertise to serve.")}
             on:focus={(e) => handleTooltipFocus("by using our creative expertise to serve.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xs">
             act on your behalf
         </span>
         <br /> by choosing to
@@ -317,7 +297,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "in order to efficiently deliver excellence.")}
             on:focus={(e) => handleTooltipFocus("in order to efficiently deliver excellence.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
              work hard and smart
         </span>
         <br /> so you can 
@@ -331,7 +311,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "because you have a partner committed to your success.")}
             on:focus={(e) => handleTooltipFocus("because you have a partner committed to your success.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
                 feel relief.
             </span>
         </h5>
@@ -353,7 +333,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "since we define ourselves as enemies of mediocrity.")}
             on:focus={(e) => handleTooltipFocus("since we define ourselves as enemies of mediocrity.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
             create compelling design
         </span>
         <br /> by choosing to
@@ -367,7 +347,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "because exceptional work requires it.")}
             on:focus={(e) => handleTooltipFocus("because exceptional work requires it.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
              take risks
         </span>
         <br /> so you can 
@@ -381,7 +361,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "in the way you share your story with the world.")}
             on:focus={(e) => handleTooltipFocus("in the way you share your story with the world.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
                 feel confident.
             </span>
         </h5>
@@ -403,7 +383,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "so we may care deeply about it.")}
             on:focus={(e) => handleTooltipFocus("so we may care deeply about it.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
             do meaningful work
         </span>
         <br /> by choosing to
@@ -417,7 +397,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "because reducing noise and obstacles allows us to connect with purpose.")}
             on:focus={(e) => handleTooltipFocus("because reducing noise and obstacles allows us to connect with purpose.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
              seek order
         </span>
         <br /> so you can 
@@ -431,7 +411,7 @@ line-height: 140%; /* 84px */
             on:keydown={(e) => handleTooltipKeydown(e, "by finding clarity and focus in what you do.")}
             on:focus={(e) => handleTooltipFocus("by finding clarity and focus in what you do.", e)}
             on:blur={handleTooltipBlur}
-            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm">
+            class="underline underline-offset-[25%] {isMobile ? 'cursor-pointer' : 'cursor-default'} focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xs">
                 feel energized.
             </span>
         </h5>

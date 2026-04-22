@@ -13,8 +13,6 @@
   const projects = data.latestFourProjects.results;
 
   function mediumString (project:any) {
-    let acc = "";
-
     let servicesArray = [
   project.data.branding,
   project.data.product,
@@ -48,8 +46,8 @@
         
           <h6 class="text-primary w-full md:w-4/5  mt-24 md:mt-48">Enjoy our most recent work</h6>
         <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap mt-12" >
-        {#each projects as project, i (project.uid)}
-        <div animate:flip={{ duration:4500, easing: expoOut}}  class="md:pr-6 pb-6 w-full lg:w-1/2 aspect-[4/3] transition-opacity duration-700 relative">
+        {#each projects as project (project.uid)}
+        <div animate:flip={{ duration:4500, easing: expoOut}}  class="md:pr-6 pb-6 w-full lg:w-1/2 aspect-4/3 transition-opacity duration-700 relative">
           
                 <a href={"/portfolio/"+project.uid} class="h-full w-full flex flex-col justify-end relative">
                     <img src={project.data.hero.url||''} alt={project.data.title  + " Hero Image"} class="absolute w-full h-full object-cover"/>

@@ -20,7 +20,6 @@
   import { fade, scale, slide } from "svelte/transition";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
   import { expoOut } from "svelte/easing";
-  import type { HtmlTagDescriptor } from "vite";
   import { onMount } from "svelte";
 
   
@@ -79,8 +78,6 @@
   });
 
 function mediumString (project:ProjectDocument<string>) {
-    let acc = "";
-
     let servicesArray = [
   project.data.branding,
   project.data.product,
@@ -219,7 +216,7 @@ line-height: 140%; /* 84px */
 <section class="w-screen max-h-[720px] flex flex-col justify-between lg:aspect-video pt-24 bg-paper">
     <div/>
     <ContentWidth>
-        <h5 class="w-4/5 max-w-screen-lg mr-0 ml-auto">We are honored to work with these amazing clients. Take a look and consider taking your place among them.</h5>
+        <h5 class="w-4/5 max-w-(--breakpoint-lg) mr-0 ml-auto">We are honored to work with these amazing clients. Take a look and consider taking your place among them.</h5>
    </ContentWidth>
    <ContentWidth>
     <h1 class="text-primary w-full text-left">Portfolio</h1>
@@ -256,7 +253,7 @@ line-height: 140%; /* 84px */
     <ContentWidth>
         <div class="w-full md:w-4/5 md:ml-[20%] flex flex-col">
             <AnimateIn>
-                <img class="w-full aspect-[4/3]" src={bed} alt="a beautiful bed"/>
+                <img class="w-full aspect-4/3" src={bed} alt="a beautiful bed"/>
             </AnimateIn>
             <div class="w-full flex flex-col-reverse lg:flex-row">
                 <AnimateIn transitionDelayMax={0} class="bg-paper flex flex-col justify-between p-4 w-full lg:w-1/2  aspect-square">
@@ -415,7 +412,7 @@ line-height: 140%; /* 84px */
             <AnimateIn class="relative z-10">
                 <div class="w-48 h-12 bg-paper absolute z-20"></div>
                 {#if isOrderSelectOpen}
-                    <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1  border-t-0 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[100%] {isAlphabeticalDescending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light  bg-white hover:text-primary"}" transition:slide on:click={()=>orderString="A-Z"}>A-Z</button>
+                    <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1  border-t-0 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-full {isAlphabeticalDescending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light  bg-white hover:text-primary"}" transition:slide on:click={()=>orderString="A-Z"}>A-Z</button>
                     <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 border-t-0 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[200%] {isAlphabeticalAscending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light  bg-white hover:text-primary"}" transition:slide on:click={()=>orderString="Z-A"}>Z-A</button>
                     <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 border-t-0 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[300%] {isChronologicalDescending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light  bg-white hover:text-primary"}" transition:slide on:click={()=>orderString="Latest-Earliest"}>Latest-Earliest</button>
                     <button class="pl-5 py-[10px] w-48 h-12 transition-colors duration-500 border-1 border-t-0 mb-24 flex flex-row items-center justify-between absolute top-0 left-0 translate-y-[400%] {isChronologicalAscending ? "border-primary bg-primary  hover:text-light text-white":"border-light text-light  bg-white hover:text-primary"}" transition:slide on:click={()=>orderString="Earliest-Latest"}>Earliest-Latest</button>
@@ -436,8 +433,8 @@ line-height: 140%; /* 84px */
             </AnimateIn>
         </div>
         <div class="w-full md:ml-[20%] md:w-4/5 flex flex-row flex-wrap" >
-        {#each sortedProjects as project, i (project.uid)}
-        <div animate:flip={{ duration:4500, easing: expoOut}}  class="md:pr-6 pb-6 w-full lg:w-1/2 aspect-[4/3] transition-opacity duration-700 {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.packaging&&showPackaging)? "relative": "absolute top-1/2 left-1/2 opacity-0 pointer-events-none"}">
+        {#each sortedProjects as project (project.uid)}
+        <div animate:flip={{ duration:4500, easing: expoOut}}  class="md:pr-6 pb-6 w-full lg:w-1/2 aspect-4/3 transition-opacity duration-700 {showAll||(project.data.branding&&showBrand)||(project.data.digital&&showDigital)||(project.data.environmental&&showEnvironmental)||(project.data.print&&showPrint)||(project.data.product&&showProduct)||(project.data.packaging&&showPackaging)? "relative": "absolute top-1/2 left-1/2 opacity-0 pointer-events-none"}">
           
                 <a href={"/portfolio/"+project.uid} class="h-full w-full flex flex-col justify-end relative">
                     <img src={project.data.hero.url||''} alt={project.data.title  + " Hero Image"} class="absolute w-full h-full object-cover"/>

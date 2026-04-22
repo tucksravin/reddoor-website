@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { ImageField } from "@prismicio/client";
   import placeholder from "../../assets/images/background_placeholder.svg";
   import { PrismicImage } from "@prismicio/svelte";
-  
+
   export let src = '';
   export let field = undefined;
   export let altText = "background image";
@@ -11,10 +10,9 @@
   export let darken = false;
   export let backdrop = false;
   export let alt = ""
-  
+
   let viewportHeight: number = 1024;
   let viewportWidth: number = 768;
-  let videoLoaded = false;
   let showVideo = true;
 
 

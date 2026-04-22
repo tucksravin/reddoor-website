@@ -7,12 +7,6 @@
 
     let selectHover=false;
 </script>
-<style>
-    .value-container{
-    flex-direction: row-reverse;
-}
-</style>
-
 <div class="max-w-[720px] w-full mx-auto cursor-pointer relative" role="separator" on:mouseover={()=> selectHover=true} on:focus={()=> selectHover=true} on:mouseout={()=> selectHover=false} on:blur={()=> selectHover=false} >
     <Select items={filters} bind:value={activeFilters} placeholder="Type of Project" multiple={true} searchable={false} class="svelte-select" />
     <div class="absolute h-full aspect-square right-0 top-0 flex items-center justify-center pointer-events-none">

@@ -13,7 +13,7 @@
   
      
   
-          <div class="transition ease-fast-slow {$trigger ? "opacity-100 translate-y-0 delay-1000":"opacity-0 -translate-y-[50%]"} {$$props.class || ''}" style=" transition-duration:{transitionDuration}ms; transition-delay:{transitionDelay}ms; {style}">
+          <div class="transition ease-fast-slow {$trigger ? "opacity-100 translate-y-0 delay-1000":"opacity-0 translate-y-[-50%]"} {$$props.class || ''}" style=" transition-duration:{transitionDuration}ms; transition-delay:{transitionDelay}ms; {style}">
               <slot />
           </div>
   

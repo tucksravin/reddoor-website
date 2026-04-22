@@ -2,7 +2,7 @@ import { createClient } from '$lib/prismicio';
 import { filter } from '@prismicio/client';
 import metaImage from "$lib/assets/icons/logos/printedReddoor.png"
 
-export async function load({ params, fetch, cookies }) {
+export async function load({ fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
 
 	

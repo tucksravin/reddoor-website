@@ -34,7 +34,7 @@
       <AnimateIn class="-mt-24 w-4/5 md:w-2/5 text-primary">
         <h2>Better Design Means Better Business</h2>
       </AnimateIn>
-      <AnimateIn class="h-[1px] bg-primary w-full my-8"></AnimateIn>
+      <AnimateIn class="h-px bg-primary w-full my-8"></AnimateIn>
       <div class="w-full flex flex-col md:flex-row justify-end">
         <AnimateIn class="w-full md:w-1/3 lg:w-1/5 pr-6 pb-6">
           <h5 class="text-primary">Stand Out</h5>
@@ -89,7 +89,7 @@
           </AnimateIn>
         </div>
       </div>
-      <AnimateIn class="h-[1px] bg-primary w-full my-8"></AnimateIn>
+      <AnimateIn class="h-px bg-primary w-full my-8"></AnimateIn>
       <div class="w-full flex flex-col md:flex-row justify-end">
         <AnimateIn class="w-full md:w-1/3 lg:w-1/5 pr-8 pb-8">
           <h5 class="text-primary">Call us, <br /> let’s talk.</h5>

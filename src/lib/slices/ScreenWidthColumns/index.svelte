@@ -31,10 +31,10 @@
           class="
             {slice.primary.hasGap ? 'mr-6 mb-6' : ''} 
             {item.aspect ==='square' ? 'aspect-square':
-             item.aspect === '4/3' ? 'aspect-[4/3]': 
-             item.aspect === '3/4' ? 'aspect-[3/4]' :
+             item.aspect === '4/3' ? 'aspect-4/3': 
+             item.aspect === '3/4' ? 'aspect-3/4' :
              item.aspect === '16/9' ? 'aspect-video' :
-             item.aspect === '9/16' ? 'aspect-[9/16]' : ''} 
+             item.aspect === '9/16' ? 'aspect-9/16' : ''} 
             relative w-full flex flex-col items-center justify-start 
             {slice.primary.desktopcolumns === '2' ? 'lg:w-1/2' : 
               slice.primary.desktopcolumns === '3' ? 'lg:w-1/3' : ''}"
@@ -79,10 +79,10 @@
             ? 'mr-6 mb-6'
             : ''} relative w-full flex flex-col items-center justify-start 
             {item.aspect ==='square' ? 'aspect-square':
-             item.aspect === '4/3' ? 'aspect-[4/3]': 
-             item.aspect === '3/4' ? 'aspect-[3/4]' :
+             item.aspect === '4/3' ? 'aspect-4/3': 
+             item.aspect === '3/4' ? 'aspect-3/4' :
              item.aspect === '16/9' ? 'aspect-video' :
-             item.aspect === '9/16' ? 'aspect-[9/16]' : ''} 
+             item.aspect === '9/16' ? 'aspect-9/16' : ''} 
             relative w-full flex flex-col items-center justify-start 
             {slice.primary.desktopcolumns === '2' ? 'lg:w-1/2' : 
               slice.primary.desktopcolumns === '3' ? 'lg:w-1/3' : ''}"

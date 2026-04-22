@@ -1,6 +1,6 @@
 import metaImage from "$lib/assets/icons/logos/printedReddoor.png"
 
-export async function load({ params, fetch, cookies }) {
+export async function load() {
 	return {
 
 		title: "Contact | Reddoor Creative",

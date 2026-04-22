@@ -1,1 +1,11 @@
 node_modules
+.claude
+.svelte-kit
+build
+.slicemachine
+.netlify
+package-lock.json
+.DS_Store
+.env
+.env.*
+!.env.example

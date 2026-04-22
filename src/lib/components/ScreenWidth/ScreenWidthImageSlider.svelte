@@ -1,6 +1,6 @@
 <script lang='ts'>
 	import { onMount } from "svelte";
-	import { swipe } from "svelte-gestures";
+	import { createSwipeAction } from "$lib/utils/swipeAction";
     import placeholder from "../../assets/images/background_placeholder.svg";
 	import ContentWidth from "../ContentWidth/ContentWidth.svelte";
 	import chevronLeft from "$lib/assets/icons/chevron-left.svg"
@@ -11,44 +11,12 @@
 	export let dotFloat = "left";
 	export let hasArrows = false;
 
-	const SLIDER_TRANSITION_FUNCTION="cubic-bezier(.5,0,0,1)";
 	const SLIDER_TRANSITION_LENGTH_IN_MS=2000;
 	const SLIDER_INTERVAL_IN_MS = 5000;
 
     let sliderIndex = 0;
-	
+
 	let isSlideAnimated = true;
-	let nextSlideIndex = 1;
-	let previousSlideIndex = imageArray.length-1;
-
-	let getNextSlideIndex = () =>{
-		if(sliderIndex==imageArray.length-1){
-			nextSlideIndex = 0;
-			return;
-		}
-		if(sliderIndex==imageArray.length){
-			nextSlideIndex = 1;
-			return;
-		}
-		if(sliderIndex<-1){
-			nextSlideIndex = imageArray.length+(sliderIndex + 1);
-			return;
-		}
-			nextSlideIndex = sliderIndex + 1;
-	}
-
-	let getPreviousSlideIndex = () => {
-		if(sliderIndex<1&&sliderIndex>0-imageArray.length){
-			previousSlideIndex = imageArray.length+(sliderIndex-1);
-			return;
-		}
-		if(sliderIndex==0-imageArray.length){
-			previousSlideIndex = imageArray.length-1;
-			return;
-		}
-		
-		previousSlideIndex = sliderIndex - 1;
-	}
 
 	const resetSlider = () => {
 		setTimeout(()=>isSlideAnimated=false, SLIDER_TRANSITION_LENGTH_IN_MS)
@@ -58,22 +26,13 @@
 
 	const slideLeft = () => {
 		sliderIndex++;
-		getNextSlideIndex();
-		getPreviousSlideIndex();
 		if(sliderIndex%imageArray.length==0&&sliderIndex!==0)
 			resetSlider();
-		
-		console.log(sliderIndex)
 	}
 	const slideRight = () => {
 		sliderIndex--;
-		getNextSlideIndex();
-		getPreviousSlideIndex();
 		if(sliderIndex%imageArray.length==0&&sliderIndex!==0)
 			resetSlider();
-		
-
-		console.log(sliderIndex)
 	}
 
     const setSliderIndex = (index:number) => {
@@ -84,13 +43,15 @@
 
 	let sliderInterval:NodeJS.Timeout;
 
-	const handleSwipe = (e:CustomEvent<{ direction: "left" | "top" | "right" | "bottom"; target: EventTarget; }>) => {
-      if(e.detail.direction==="left") 
+	const handleSwipe = (e:CustomEvent<{ direction: "left" | "top" | "right" | "bottom" | null }>) => {
+      if(e.detail.direction==="left")
         slideLeft();
 
-        if(e.detail.direction==="right") 
+        if(e.detail.direction==="right")
         slideRight();
     }
+
+	const swipe = createSwipeAction(handleSwipe);
 
     onMount(()=>{
        sliderInterval = setInterval(()=>slideLeft(), SLIDER_INTERVAL_IN_MS);
@@ -100,8 +61,8 @@
 </script>
     
 <section>
-    <div use:swipe on:swipe={handleSwipe} class="h-[160vw] sm:h-[90vw] xl:h-[60vw] lg:max-h-screen relative overflow-hidden" >
-    <div  class="h-full flex flex-row flex-nowrap {isSlideAnimated ? 'transition-transform duration-[2000ms]': ''}"
+    <div use:swipe class="h-[160vw] sm:h-[90vw] xl:h-[60vw] lg:max-h-screen relative overflow-hidden" >
+    <div  class="h-full flex flex-row flex-nowrap {isSlideAnimated ? 'transition-transform duration-2000': ''}"
     style= "width:{100*tripledImages.length}vw; transform:translateX({-(sliderIndex+imageArray.length)*100}vw); ">
 		
         
@@ -116,9 +77,9 @@
     <div class="absolute flex justify-center w-full h-full top-0 left-0">
         <ContentWidth class="h-full relative w-full">
         <slot />
-        <div class="absolute h-10 flex align-middle justify-start {dotFloat === "left" ? "left-[4%]  xl:left-8" : ""} {dotFloat === "left" ? "left-[4%]  xl:left-8 translate-x-[2px]" : ""} {dotFloat === "right" ? "right-[4%]  xl:right-8 -translate-x-[2px]" : ""} {dotFloat === "center" ? "left-1/2 -translate-x-1/2" : ""}  bottom-10">
-            {#each  imageArray as image, i}
-                <button class="h-[10px] w-[10px] border-2  rounded-full transition-colors duration-1000 cursor-pointer active:-translate-y-[0.5px] hover:opacity-60 mr-4 
+        <div class="absolute h-10 flex align-middle justify-start {dotFloat === "left" ? "left-[4%]  xl:left-8" : ""} {dotFloat === "left" ? "left-[4%]  xl:left-8 translate-x-[2px]" : ""} {dotFloat === "right" ? "right-[4%]  xl:right-8 translate-x-[-2px]" : ""} {dotFloat === "center" ? "left-1/2 -translate-x-1/2" : ""}  bottom-10">
+            {#each  imageArray as _image, i}
+                <button class="h-[10px] w-[10px] border-2  rounded-full transition-colors duration-1000 cursor-pointer active:translate-y-[-0.5px] hover:opacity-60 mr-4 
 								{(sliderIndex%imageArray.length>=0&&sliderIndex%imageArray.length===i)|| (sliderIndex%imageArray.length<=0&&imageArray.length+sliderIndex%imageArray.length===i) ? "bg-dark border-dark" : "border-light"}"
                     on:click={()=>setSliderIndex(i)}
                     aria-label="image {i} of {imageArray.length}"
@@ -129,8 +90,8 @@
 		
 	</ContentWidth>
 		{#if hasArrows}
-			<button on:click={slideRight} class="absolute top-1/2 -translate-y-1/2 left-6"><img src={chevronLeft} class="w-3 md:w-4" /></button>
-			<button on:click={slideLeft} class="absolute top-1/2 -translate-y-1/2 right-6"><img src={chevronRight} class="w-3 md:w-4" /></button>
+			<button on:click={slideRight} class="absolute top-1/2 -translate-y-1/2 left-6"><img src={chevronLeft} alt="" class="w-3 md:w-4" /></button>
+			<button on:click={slideLeft} class="absolute top-1/2 -translate-y-1/2 right-6"><img src={chevronRight} alt="" class="w-3 md:w-4" /></button>
 		{/if}
     </div>
 </div>

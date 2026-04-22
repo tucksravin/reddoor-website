@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import { swipe } from "svelte-gestures";
+  import { createSwipeAction } from "$lib/utils/swipeAction";
   import type { SlideshowSlice } from "../../../prismicio-types";
   import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
@@ -68,13 +68,15 @@
   const slideLeft = () => moveSlide(-1);
   const slideRight = () => moveSlide(1);
 
-  const handleSwipe = (e: CustomEvent<{ direction: "left" | "top" | "right" | "bottom" }>) => {
+  const handleSwipe = (e: CustomEvent<{ direction: "left" | "top" | "right" | "bottom" | null }>) => {
     if (e.detail.direction === "left") {
       slideRight();
     } else if (e.detail.direction === "right") {
       slideLeft();
     }
   };
+
+  const swipe = createSwipeAction(handleSwipe);
 
   const togglePlayPause = () => {
     isPlaying = !isPlaying;
@@ -118,7 +120,7 @@
       
       <!-- Slideshow -->
       <div class="{slice.primary.isFullContentWidth ? 'w-full' : 'w-full md:w-4/5'} flex flex-row flex-wrap">
-        <div use:swipe on:swipe={handleSwipe} class="w-full h-full relative overflow-hidden aspect-video">
+        <div use:swipe class="w-full h-full relative overflow-hidden aspect-video">
           <!-- Slides Container -->
           <div 
             class="flex flex-row flex-nowrap transition-transform ease-[cubic-bezier(0.25,0.1,0.25,1)]"
@@ -128,7 +130,7 @@
               transition-duration: {isTransitioning ? TRANSITION_DURATION_MS : 0}ms;
             "
           >
-            {#each tripledArray as media, i}
+            {#each tripledArray as media}
               <div class="h-full z-0" style="width: {slideWidth}%;">
                 <PrismicImage field={media.image} class="h-full w-full object-contain" />
               </div>
@@ -143,7 +145,7 @@
               class="h-6 w-6 rounded-full border-mid border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white disabled:opacity-50 disabled:cursor-default"
               aria-label="Previous slide"
             >
-              <i class='-translate-y-[1.75px] -translate-x-[0.75px] fa-solid fa-sharp fa-chevron-left scale-90' />
+              <i class='translate-y-[-1.75px] translate-x-[-0.75px] fa-solid fa-sharp fa-chevron-left scale-90' />
             </button>
             
             <button 
@@ -152,7 +154,7 @@
               class="h-6 w-6 rounded-full border-mid border-2 p-1 flex align-middle cursor-pointer transition-all duration-300 active:-translate-y-1 justify-center hover:bg-primary hover:border-primary hover:text-white disabled:opacity-50 disabled:cursor-default"
               aria-label="Next slide"
             >
-              <i class='-translate-y-[1.75px] translate-x-[0.75px] fa-solid fa-sharp fa-chevron-right scale-90' />
+              <i class='translate-y-[-1.75px] translate-x-[0.75px] fa-solid fa-sharp fa-chevron-right scale-90' />
             </button>
           </div>
 
@@ -163,9 +165,9 @@
             aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
           >
             {#if isPlaying}
-              <i class="-translate-y-[1.5px] fa-solid fa-sharp fa-pause scale-90"/>
+              <i class="translate-y-[-1.5px] fa-solid fa-sharp fa-pause scale-90"/>
             {:else}
-              <i class="-translate-y-[1.5px] translate-x-[1px] fa-solid fa-sharp fa-play scale-75"/>
+              <i class="translate-y-[-1.5px] translate-x-px fa-solid fa-sharp fa-play scale-75"/>
             {/if}
           </button>
 

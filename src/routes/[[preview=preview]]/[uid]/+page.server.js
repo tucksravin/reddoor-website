@@ -1,6 +1,5 @@
 import { asText } from '@prismicio/client';
 import { createClient } from '$lib/prismicio';
-import { filter } from '@prismicio/client';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch, cookies }) {
@@ -10,7 +9,7 @@ export async function load({ params, fetch, cookies }) {
 	
 	try {
 		page = await client.getByUID('page', params.uid);
-	} catch (err) {
+	} catch {
 		
 		
 		throw error(404, {

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { PrismicImage, PrismicLink } from "@prismicio/svelte";
   import type { LogoSoupDocumentData, LogoSoupDocumentDataBrandsItem } from "../../prismicio-types";
-  import ContentBox from "./FullWidth/ContentBox.svelte";
   import ContentWidth from "./ContentWidth/ContentWidth.svelte";
   import { fade } from "svelte/transition";
   import AnimateIn from "./AnimateIn.svelte";

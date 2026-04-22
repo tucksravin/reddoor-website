@@ -4,7 +4,6 @@
 	import { components } from '$lib/slices';
     import ContentWidth from '$lib/components/ContentWidth/ContentWidth.svelte';
     import AnimateIn from '$lib/components/AnimateIn.svelte';
-  import { onMount } from 'svelte';
   import DefaultButton from '$lib/components/Buttons/DefaultButton.svelte';
   import type { ProjectDocument } from "../../../../prismicio-types.js";
     import arrowButton from "$lib/assets/icons/arrowButton.svg"
@@ -36,8 +35,6 @@ $: services = servicesArray.reduce((acc, service, index) => {
 
 
 function mediumString (project:ProjectDocument<string>) {
-    let acc = "";
-
     let servicesArray = [
   project.data.branding,
   project.data.product,
@@ -103,7 +100,7 @@ function mediumString (project:ProjectDocument<string>) {
     <h4 class="text-primary text-left w-full">Related Projects</h4>
     <div class="w-full mt-12 flex flex-col md:flex-row gap-12 md:gap-0">
       <div class="w-1/5" />
-      <div class="w-full md:w-2/5 md:pr-2 aspect-[4/3] relative">
+      <div class="w-full md:w-2/5 md:pr-2 aspect-4/3 relative">
         <a href={"/portfolio/"+(data.relatedProjectOne.uid||'')} class="h-full w-full flex flex-col justify-end relative">
           <img src={data.relatedProjectOne.data.hero.url||''} alt={data.relatedProjectOne.data.title||''  + " Hero Image"} class="absolute w-full h-full object-cover"/>
           <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
@@ -112,13 +109,13 @@ function mediumString (project:ProjectDocument<string>) {
                   <p class="text-white uppercase">{data.relatedProjectOne.data.title||''}</p>
                   <p class="text-light">{mediumString(data.relatedProjectOne)||''}</p>
               </div>
-              <a href={"/portfolio/"+(data.relatedProjectOne.uid||'')} class="brightness-200 hover:brightness-50 transition bump">
+              <div class="brightness-200 hover:brightness-50 transition bump">
                   <img src={arrowButton} alt="go to page" class="h-full"/>
-              </a>
+              </div>
           </div>  
         </a>
       </div>
-      <div class="w-full md:w-2/5 md:pl-2 aspect-[4/3] relative">
+      <div class="w-full md:w-2/5 md:pl-2 aspect-4/3 relative">
         <a href={"/portfolio/"+data.relatedProjectTwo.uid} class="h-full w-full flex flex-col justify-end relative">
           <img src={data.relatedProjectTwo.data.hero.url||''} alt={data.relatedProjectTwo.data.title||''  + " Hero Image"} class="absolute w-full h-full object-cover"/>
           <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
@@ -127,9 +124,9 @@ function mediumString (project:ProjectDocument<string>) {
                   <p class="text-white uppercase">{data.relatedProjectTwo.data.title||''}</p>
                   <p class="text-light">{mediumString(data.relatedProjectTwo)||''}</p>
               </div>
-              <a href={"/portfolio/"+data.relatedProjectTwo.uid||''} class="brightness-200 hover:brightness-50 transition bump">
+              <div class="brightness-200 hover:brightness-50 transition bump">
                   <img src={arrowButton} alt="go to page" class="h-full"/>
-              </a>
+              </div>
           </div>  
         </a>
       </div>

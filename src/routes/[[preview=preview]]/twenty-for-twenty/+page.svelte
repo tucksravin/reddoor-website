@@ -2,7 +2,6 @@
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   import AnimateIn from "$lib/components/AnimateIn.svelte";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
-  import progressImage from "$lib/assets/images/progressImage.jpg";
   import type { ImageField } from "@prismicio/client";
   import { PrismicImage } from "@prismicio/svelte";
   import { onMount } from "svelte";
@@ -150,7 +149,7 @@
         </div>
       </div>
       <div
-        class="w-[125%] md:w-3/5 max-h-[80vh] aspect-square p-6 sm:translate-y-0 -translate-x-[2%] sm:-translate-x-[2%] md:translate-x-0 card-square"
+        class="w-[125%] md:w-3/5 max-h-[80vh] aspect-square p-6 sm:translate-y-0 translate-x-[-2%] sm:translate-x-[-2%] md:translate-x-0 card-square"
       >
         <div class="h-full w-4/5 relative cards-container">
           {#each projectCardArray as card, i}
@@ -164,7 +163,7 @@
                 href={card.href}
                 class="card-item w-full h-full flex flex-col justify-between bg-paper shadow-md hover:shadow-black/35 hover:shadow-lg translate-y-0 active:-translate-y-6 active:shadow-black/25 shadow-black/15 p-[4.5%] transition-all duration-300"
               >
-                <div class="w-full aspect-square relative inset-shadow">
+                <div class="w-full aspect-square relative inset-shadow-sm">
                   {#if typeof card.image === "string"}
                     <img
                       src={card.image}
@@ -333,10 +332,6 @@
     h1.number {
       font-size: 80px;
     }
-  }
-
-  .postcard-shadow {
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
   }
 
   .inset-shadow::after {
