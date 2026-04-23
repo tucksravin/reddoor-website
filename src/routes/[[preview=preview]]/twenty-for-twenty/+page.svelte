@@ -38,7 +38,11 @@
     const sectionOffsetTop = cardsSection.offsetTop;
 
     const scrollStart = sectionOffsetTop;
-    const scrollEnd = sectionOffsetTop + cardsRect.height - viewportHeight - (40 * viewportHeight / 100);
+    const scrollEnd =
+      sectionOffsetTop +
+      cardsRect.height -
+      viewportHeight -
+      (40 * viewportHeight) / 100;
     const scrollRange = scrollEnd - scrollStart;
 
     const rawProgress = (pageScrollTop - scrollStart) / scrollRange;
@@ -58,7 +62,6 @@
     if (p > (i + 1) / l) return 0;
     return (1 - l * (p - i / l)) * 100;
   };
-
 
   const handleScroll = () => {
     calculateTargetProgress();
@@ -149,7 +152,12 @@
             <!-- Transform wrapper div -->
             <div
               class="card-transform-wrapper absolute top-0 sm:left-12 w-full h-full"
-              style="transform: translate3d({calcCardTranslationInVH(i - 1)}vw, 0, 0) rotate({(((2 * (i % 2) - 1) * (i + 1)) / projectCardArray.length) * 6 * easeInQuint((100-calcCardTranslationInVH(i - 1))/100)}deg);"
+              style="transform: translate3d({calcCardTranslationInVH(
+                i - 1,
+              )}vw, 0, 0) rotate({(((2 * (i % 2) - 1) * (i + 1)) /
+                projectCardArray.length) *
+                6 *
+                easeInQuint((100 - calcCardTranslationInVH(i - 1)) / 100)}deg);"
             >
               <!-- Anchor with its own transitions -->
               <a
@@ -191,8 +199,12 @@
                   <div
                     class="flex flex-row lg:flex-col xl:flex-row justify-between flex-wrap"
                   >
-                    <p class="text-primary uppercase card-label">{card.mediums}</p>
-                    <p class="text-primary uppercase card-label">{card.dates}</p>
+                    <p class="text-primary uppercase card-label">
+                      {card.mediums}
+                    </p>
+                    <p class="text-primary uppercase card-label">
+                      {card.dates}
+                    </p>
                   </div>
                 </div>
               </a>
@@ -200,15 +212,15 @@
           {/each}
         </div>
       </div>
-       <div
-          class="w-full h-2 md:hidden relative overflow-hidden rounded-full mt-4 bg-mid"
-        >
-          <div
-            class="progress-bar w-full h-full bg-primary absolute rounded-xl"
-            style="transform: translate3d({-100 +
-              100 * cardStackProgress}%, 0, 0);"
-          ></div>
-        </div>
+      <div
+        class="w-full h-2 md:hidden relative overflow-hidden rounded-full mt-4 bg-mid"
+      >
+        <div
+          class="progress-bar w-full h-full bg-primary absolute rounded-xl"
+          style="transform: translate3d({-100 +
+            100 * cardStackProgress}%, 0, 0);"
+        ></div>
+      </div>
     </ContentWidth>
   </div>
 </section>
@@ -309,7 +321,7 @@
       font-size: 80px;
       line-height: 125%;
     }
-        p.card-label{
+    p.card-label {
       font-size: 12px;
     }
   }
@@ -318,7 +330,6 @@
     h1.number {
       font-size: 160px;
     }
-
   }
 
   @media only screen and (max-width: 540px) {

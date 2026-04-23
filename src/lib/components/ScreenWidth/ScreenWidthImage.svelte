@@ -1,8 +1,8 @@
 <script lang="ts">
   import placeholder from "../../assets/images/background_placeholder.svg";
   import { PrismicImage } from "@prismicio/svelte";
-  import type { Snippet } from 'svelte';
-  import type { ImageField } from '@prismicio/client';
+  import type { Snippet } from "svelte";
+  import type { ImageField } from "@prismicio/client";
 
   interface Props {
     src?: string;
@@ -18,7 +18,7 @@
   }
 
   let {
-    src = '',
+    src = "",
     field = undefined,
     altText = "background image",
     placeholderSide = "right",
@@ -26,8 +26,8 @@
     darken = false,
     backdrop = false,
     alt = "",
-    class: className = '',
-    children
+    class: className = "",
+    children,
   }: Props = $props();
 
   let viewportHeight = $state(1024);
@@ -36,7 +36,7 @@
 
   const handleVideoError = () => {
     showVideo = false;
-  }
+  };
 </script>
 
 <svelte:window
@@ -46,29 +46,26 @@
 
 <section
   class="h-screen w-screen overflow-clip {className}
-  {backdrop
-    ? 'fixed -z-10 top-0 left-0'
-    : 'relative'}"
+  {backdrop ? 'fixed -z-10 top-0 left-0' : 'relative'}"
 >
   <div
     class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video
-    {viewportHeight * 16 > viewportWidth * 9 ? 'h-screen min-w-full': 'w-screen min-h-full'}"
+    {viewportHeight * 16 > viewportWidth * 9
+      ? 'h-screen min-w-full'
+      : 'w-screen min-h-full'}"
   >
     <!-- Image fallback - always present -->
 
-    {#if !field&&src}
+    {#if !field && src}
       <img
         {src}
-        alt={alt||altText}
+        alt={alt || altText}
         class="absolute bottom-0 {placeholderSide}-0 h-full w-full object-cover -z-10
         {src === placeholder ? 'lg:w-[45%] md:h-auto' : ''}
         "
       />
     {:else}
-      <PrismicImage
-        {field}
-        class="absolute h-full w-full object-cover -z-10"
-      />
+      <PrismicImage {field} class="absolute h-full w-full object-cover -z-10" />
     {/if}
 
     <!-- Video - only show if vimeoId exists and hasn't failed -->
@@ -79,7 +76,9 @@
         class="aspect-video absolute {viewportHeight * 16 > viewportWidth * 9
           ? 'h-screen min-w-full'
           : 'w-screen min-h-full'} contrast-[1.15] -z-10
-        {showVideo ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300"
+        {showVideo
+          ? 'opacity-100'
+          : 'opacity-0'} transition-opacity duration-300"
         frameborder="0"
         allowfullscreen
         onerror={handleVideoError}
@@ -105,13 +104,13 @@
   }
 
   img:not([src]) {
-  font-size: 0; /* Hide the alt text visually */
-  position: relative; /* Establish a positioning context for the pseudo-element */
-}
+    font-size: 0; /* Hide the alt text visually */
+    position: relative; /* Establish a positioning context for the pseudo-element */
+  }
 
-img:not([src])::after {
-  content: ""; /* Or a custom fallback message */
-  display: block;
-  font-size: 1rem; /* Reset font size for the custom content */
-}
+  img:not([src])::after {
+    content: ""; /* Or a custom fallback message */
+    display: block;
+    font-size: 1rem; /* Reset font size for the custom content */
+  }
 </style>

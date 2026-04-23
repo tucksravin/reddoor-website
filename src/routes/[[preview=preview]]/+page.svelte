@@ -7,7 +7,7 @@
   import LogoSoup from "$lib/components/LogoSoup.svelte";
   import pencil from "$lib/assets/icons/RD_TakeAction-02.png";
   import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
-  import type { PageData } from './$types';
+  import type { PageData } from "./$types";
 
   let { data }: { data: PageData } = $props();
 </script>

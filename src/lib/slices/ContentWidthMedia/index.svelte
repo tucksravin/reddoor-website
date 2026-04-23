@@ -57,13 +57,17 @@
                   : ''} {slice.primary.desktopcolumns === '3'
                   ? 'lg:w-1/3'
                   : ' '}
-                  {item.aspect==="square" ? "aspect-square" :
-                    item.aspect==="4/3" ? "aspect-4/3" :
-                    item.aspect==="3/4" ? "aspect-3/4" :
-                    item.aspect==="16/9" ? "aspect-video" :
-                    item.aspect==="9/16" ? "aspect-9/16" :
-                    ""
-                  }
+                  {item.aspect === 'square'
+                  ? 'aspect-square'
+                  : item.aspect === '4/3'
+                    ? 'aspect-4/3'
+                    : item.aspect === '3/4'
+                      ? 'aspect-3/4'
+                      : item.aspect === '16/9'
+                        ? 'aspect-video'
+                        : item.aspect === '9/16'
+                          ? 'aspect-9/16'
+                          : ''}
                   "
               >
                 <a
@@ -86,7 +90,9 @@
                     <iframe
                       title="background video"
                       src={`https://player.vimeo.com/video/${item.vimeoid}?title=0${item.loopvideo ? "&background=1&loop=1&autoplay=1&muted=1" : ""}`}
-                      class="object-cover w-full {item.aspect!=="free"?"h-full":""} mx-auto z-10
+                      class="object-cover w-full {item.aspect !== 'free'
+                        ? 'h-full'
+                        : ''} mx-auto z-10
                         {!hiddenVideos.has(i)
                         ? 'opacity-100'
                         : 'opacity-0'} transition-opacity duration-300"
@@ -96,7 +102,9 @@
                     ></iframe>
                   {:else}
                     <PrismicImage
-                      class="w-full {item.aspect!=="free"?"h-full":""} object-cover cursor-pointer"
+                      class="w-full {item.aspect !== 'free'
+                        ? 'h-full'
+                        : ''} object-cover cursor-pointer"
                       field={item.image}
                     />
                   {/if}
@@ -111,16 +119,18 @@
                   : ''} relative w-full flex flex-col items-center justify-start
                       {slice.primary.desktopcolumns === '2'
                   ? 'lg:w-1/2'
-                  : ''} {slice.primary.desktopcolumns === '3'
-                  ? 'lg:w-1/3'
-                  : ''}
-                  {item.aspect==="square" ? "aspect-square" :
-                    item.aspect==="4/3" ? "aspect-4/3" :
-                    item.aspect==="3/4" ? "aspect-3/4" :
-                    item.aspect==="16/9" ? "aspect-video" :
-                    item.aspect==="9/16" ? "aspect-9/16" :
-                    ""
-                  }"
+                  : ''} {slice.primary.desktopcolumns === '3' ? 'lg:w-1/3' : ''}
+                  {item.aspect === 'square'
+                  ? 'aspect-square'
+                  : item.aspect === '4/3'
+                    ? 'aspect-4/3'
+                    : item.aspect === '3/4'
+                      ? 'aspect-3/4'
+                      : item.aspect === '16/9'
+                        ? 'aspect-video'
+                        : item.aspect === '9/16'
+                          ? 'aspect-9/16'
+                          : ''}"
               >
                 {#if item.label}
                   <div class="w-full border-b-1 border-dark label mb-8">
@@ -129,7 +139,9 @@
                 {/if}
 
                 <PrismicImage
-                  class="w-full {item.aspect!=="free"?"h-full":""} object-cover"
+                  class="w-full {item.aspect !== 'free'
+                    ? 'h-full'
+                    : ''} object-cover"
                   field={item.image}
                 />
 
@@ -141,7 +153,9 @@
                   <iframe
                     title="background video"
                     src={`https://player.vimeo.com/video/${item.vimeoid}?title=0${item.loopvideo ? "&background=1&loop=1&autoplay=1&muted=1" : ""}`}
-                    class="object-cover w-full {item.aspect!=="free"?"h-full":""} z-10 {!hiddenVideos.has(i)
+                    class="object-cover w-full {item.aspect !== 'free'
+                      ? 'h-full'
+                      : ''} z-10 {!hiddenVideos.has(i)
                       ? 'opacity-100'
                       : 'opacity-0'} transition-opacity duration-300"
                     frameborder="0"

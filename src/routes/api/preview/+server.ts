@@ -1,6 +1,6 @@
 import { redirectToPreviewURL } from "@prismicio/svelte/kit";
 import { createClient } from "$lib/prismicio.js";
-import type { RequestHandler } from './$types';
+import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async ({ fetch, request, cookies }) => {
   const client = createClient({ fetch });
@@ -10,4 +10,4 @@ export const GET: RequestHandler = async ({ fetch, request, cookies }) => {
     request,
     cookies,
   });
-}
+};

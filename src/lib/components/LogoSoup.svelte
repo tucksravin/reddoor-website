@@ -1,6 +1,9 @@
 <script lang="ts">
   import { PrismicImage, PrismicLink } from "@prismicio/svelte";
-  import type { LogoSoupDocumentData, LogoSoupDocumentDataBrandsItem } from "../../prismicio-types";
+  import type {
+    LogoSoupDocumentData,
+    LogoSoupDocumentDataBrandsItem,
+  } from "../../prismicio-types";
   import ContentWidth from "./ContentWidth/ContentWidth.svelte";
   import { fade } from "svelte/transition";
   import AnimateIn from "./AnimateIn.svelte";
@@ -13,7 +16,11 @@
 
   const logoSoupData = $derived<LogoSoupDocumentData>(data.logoSoup.data);
   const allBrands = $derived(logoSoupData.brands);
-  const featuredBrands = $derived(allBrands.filter((brand: LogoSoupDocumentDataBrandsItem) => brand.isFeatured));
+  const featuredBrands = $derived(
+    allBrands.filter(
+      (brand: LogoSoupDocumentDataBrandsItem) => brand.isFeatured,
+    ),
+  );
 
   let showImage = $state(false);
   let brandIndex = $state(-1);
@@ -24,7 +31,9 @@
   let section: HTMLElement;
 
   const isMobile = $derived(viewportWidth > 0 && viewportWidth < 768);
-  const brands = $derived<LogoSoupDocumentDataBrandsItem[]>(isMobile ? featuredBrands : allBrands);
+  const brands = $derived<LogoSoupDocumentDataBrandsItem[]>(
+    isMobile ? featuredBrands : allBrands,
+  );
 
   function handleScroll() {
     if (!isMobile || !section) return;
@@ -70,7 +79,9 @@
     const currentAbsolutePosition = window.scrollY + sectionTop;
 
     const targetProgress = (index + 2) / (brands.length + 2);
-    return currentAbsolutePosition + (targetProgress * sectionHeight) - viewportHeight;
+    return (
+      currentAbsolutePosition + targetProgress * sectionHeight - viewportHeight
+    );
   }
 
   const nextBrand = () => {
@@ -91,15 +102,12 @@
 <svelte:window
   bind:innerHeight={viewportHeight}
   bind:innerWidth={viewportWidth}
-  bind:scrollY={scrollY}
+  bind:scrollY
 />
 
 <section bind:this={section}>
-
   {#if !isMobile}
-    <section
-      class="h-lvh w-screen relative overflow-hidden"
-    >
+    <section class="h-lvh w-screen relative overflow-hidden">
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video transition-opacity duration-500
     {showImage && brandIndex > -1 ? '' : 'opacity-0'}
@@ -109,7 +117,9 @@
       >
         {#each brands as brand, i (brand.name || i)}
           <PrismicImage
-            field={isMobile && brand.active_background_mobile_crop ? brand.active_background_mobile_crop : brand.active_background}
+            field={isMobile && brand.active_background_mobile_crop
+              ? brand.active_background_mobile_crop
+              : brand.active_background}
             class="absolute h-full w-full object-cover transition-opacity duration-700 ease-fast-slow
         {showImage && brandIndex === i ? '' : 'opacity-0'}"
           />
@@ -118,7 +128,8 @@
       <ContentWidth class="h-full py-32 flex flex-row justify-end relative">
         <AnimateIn class="absolute left-0 top-40">
           <h6
-            class="transition duration-300 ease-fast-slow {showImage && brandIndex > -1
+            class="transition duration-300 ease-fast-slow {showImage &&
+            brandIndex > -1
               ? 'text-white'
               : 'text-red'}"
           >
@@ -163,7 +174,8 @@
                   />
                   <PrismicImage
                     field={brand.logo_color}
-                    class="h-full transition-opacity duration-300 ease-fast-slow {showImage && brandIndex > -1
+                    class="h-full transition-opacity duration-300 ease-fast-slow {showImage &&
+                    brandIndex > -1
                       ? 'opacity-0'
                       : ''}"
                     loading="eager"
@@ -189,7 +201,9 @@
                     class="underline underline-offset-4 text-white transition duration-300 ease-fast-slow"
                     in:fade
                   >
-                    {showImage && brandIndex > -1 ? brands[brandIndex].name : ""}
+                    {showImage && brandIndex > -1
+                      ? brands[brandIndex].name
+                      : ""}
                   </p>
                 </PrismicLink>
                 <p
@@ -198,7 +212,9 @@
                     : 'text-red'} transition duration-300 ease-fast-slow"
                   in:fade
                 >
-                  {showImage && brandIndex > -1 ? brands[brandIndex].services : "Browse Our Work"}
+                  {showImage && brandIndex > -1
+                    ? brands[brandIndex].services
+                    : "Browse Our Work"}
                 </p>
               {:else}
                 <p class="text-red transition duration-300 ease-fast-slow">
@@ -238,9 +254,7 @@
     </section>
   {:else}
     <!-- Mobile Version -->
-    <section
-      class="h-lvh w-screen sticky top-0 overflow-hidden"
-    >
+    <section class="h-lvh w-screen sticky top-0 overflow-hidden">
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video transition-opacity duration-500
         {mobileScrollActive ? '' : 'opacity-0'}
@@ -257,7 +271,9 @@
         {/each}
       </div>
 
-      <div class="absolute bottom-0 left-0 w-screen h-lvh bg-black opacity-25"></div>
+      <div
+        class="absolute bottom-0 left-0 w-screen h-lvh bg-black opacity-25"
+      ></div>
       <div
         class="h-lvh w-screen flex flex-col items-center justify-evenly absolute top-0 left-0"
       >
@@ -270,7 +286,9 @@
         </h6>
 
         <!-- Mobile logo display -->
-        <div class="relative h-24 w-full flex justify-center items-center mb-16">
+        <div
+          class="relative h-24 w-full flex justify-center items-center mb-16"
+        >
           {#each brands as brand, i (brand.name || i)}
             <div
               class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -320,11 +338,19 @@
         </div>
 
         <!-- Progress indicator -->
-        <div class="absolute bottom-1/2 translate-y-1/2 left-6 flex justify-center">
+        <div
+          class="absolute bottom-1/2 translate-y-1/2 left-6 flex justify-center"
+        >
           <div class="flex flex-col gap-2">
             {#each brands as brand, i (brand.name || i)}
-              <button onclick={()=>navigateToBrand(i+1)} aria-label="Jump to {brand.name}" class="w-1.5 h-1.5 rounded-full transition-all duration-300 z-20
-                {i === brandIndex ? 'bg-white scale-125' : 'bg-white/50 scale-100'}">
+              <button
+                onclick={() => navigateToBrand(i + 1)}
+                aria-label="Jump to {brand.name}"
+                class="w-1.5 h-1.5 rounded-full transition-all duration-300 z-20
+                {i === brandIndex
+                  ? 'bg-white scale-125'
+                  : 'bg-white/50 scale-100'}"
+              >
               </button>
             {/each}
           </div>

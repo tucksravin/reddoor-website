@@ -25,14 +25,23 @@
           isOff={slice.primary.isAnimated !== null && !slice.primary.isAnimated}
           class="
             {slice.primary.hasGap ? 'mr-6 mb-6' : ''}
-            {item.aspect ==='square' ? 'aspect-square':
-             item.aspect === '4/3' ? 'aspect-4/3':
-             item.aspect === '3/4' ? 'aspect-3/4' :
-             item.aspect === '16/9' ? 'aspect-video' :
-             item.aspect === '9/16' ? 'aspect-9/16' : ''}
+            {item.aspect === 'square'
+            ? 'aspect-square'
+            : item.aspect === '4/3'
+              ? 'aspect-4/3'
+              : item.aspect === '3/4'
+                ? 'aspect-3/4'
+                : item.aspect === '16/9'
+                  ? 'aspect-video'
+                  : item.aspect === '9/16'
+                    ? 'aspect-9/16'
+                    : ''}
             relative w-full flex flex-col items-center justify-start
-            {slice.primary.desktopcolumns === '2' ? 'lg:w-1/2' :
-              slice.primary.desktopcolumns === '3' ? 'lg:w-1/3' : ''}"
+            {slice.primary.desktopcolumns === '2'
+            ? 'lg:w-1/2'
+            : slice.primary.desktopcolumns === '3'
+              ? 'lg:w-1/3'
+              : ''}"
         >
           <a
             href={item.link.url}
@@ -52,7 +61,9 @@
               <iframe
                 title="background video"
                 src={`https://player.vimeo.com/video/${item.vimeoId}?title=0${item.loopvideo ? "&background=1&loop=1&autoplay=1&muted=1" : ""}`}
-                class="object-cover {item.aspect!=="free"?"h-full":""} relative w-full  mx-auto z-10 {!hiddenVideos.has(i)
+                class="object-cover {item.aspect !== 'free'
+                  ? 'h-full'
+                  : ''} relative w-full mx-auto z-10 {!hiddenVideos.has(i)
                   ? 'opacity-100'
                   : 'opacity-0'} transition-opacity duration-200"
                 frameborder="0"
@@ -60,7 +71,12 @@
                 onerror={() => hiddenVideos.add(i)}
               ></iframe>
             {:else}
-              <PrismicImage class="w-full {item.aspect!=="free"?"h-full":""} object-cover" field={item.image} />
+              <PrismicImage
+                class="w-full {item.aspect !== 'free'
+                  ? 'h-full'
+                  : ''} object-cover"
+                field={item.image}
+              />
             {/if}
           </a>
         </AnimateIn>
@@ -70,14 +86,23 @@
           class="{slice.primary.hasGap
             ? 'mr-6 mb-6'
             : ''} relative w-full flex flex-col items-center justify-start
-            {item.aspect ==='square' ? 'aspect-square':
-             item.aspect === '4/3' ? 'aspect-4/3':
-             item.aspect === '3/4' ? 'aspect-3/4' :
-             item.aspect === '16/9' ? 'aspect-video' :
-             item.aspect === '9/16' ? 'aspect-9/16' : ''}
+            {item.aspect === 'square'
+            ? 'aspect-square'
+            : item.aspect === '4/3'
+              ? 'aspect-4/3'
+              : item.aspect === '3/4'
+                ? 'aspect-3/4'
+                : item.aspect === '16/9'
+                  ? 'aspect-video'
+                  : item.aspect === '9/16'
+                    ? 'aspect-9/16'
+                    : ''}
             relative w-full flex flex-col items-center justify-start
-            {slice.primary.desktopcolumns === '2' ? 'lg:w-1/2' :
-              slice.primary.desktopcolumns === '3' ? 'lg:w-1/3' : ''}"
+            {slice.primary.desktopcolumns === '2'
+            ? 'lg:w-1/2'
+            : slice.primary.desktopcolumns === '3'
+              ? 'lg:w-1/3'
+              : ''}"
         >
           {#if item.label}
             <div class="w-full border-b-1 border-dark label mb-8">
@@ -93,14 +118,23 @@
             <iframe
               title="background video"
               src={`https://player.vimeo.com/video/${item.vimeoId}?title=0${item.loopvideo ? "&background=1&loop=1&autoplay=1&muted=1" : ""}`}
-              class="object-cover {item.aspect!=="free"?"h-full":""} w-full mx-auto z-10 relative
-              {!hiddenVideos.has(i)  ? 'opacity-100'  : 'opacity-0'} transition-opacity duration-200"
+              class="object-cover {item.aspect !== 'free'
+                ? 'h-full'
+                : ''} w-full mx-auto z-10 relative
+              {!hiddenVideos.has(i)
+                ? 'opacity-100'
+                : 'opacity-0'} transition-opacity duration-200"
               frameborder="0"
               allow="autoplay"
               onerror={() => hiddenVideos.add(i)}
             ></iframe>
           {:else}
-            <PrismicImage class="w-full {item.aspect!=="free"?"h-full":""} object-cover" field={item.image} />
+            <PrismicImage
+              class="w-full {item.aspect !== 'free'
+                ? 'h-full'
+                : ''} object-cover"
+              field={item.image}
+            />
           {/if}
         </AnimateIn>
       {/if}
