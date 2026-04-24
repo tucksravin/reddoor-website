@@ -66,21 +66,25 @@
 
 <ContentWidth class="flex flex-col items-end">
 	<div class="w-full md:w-4/5">
+		{#if featuredProject || pageData.featuredImageOverride?.url}
 		<div class="w-full md:pr-6 aspect-[4/3] lg:aspect-[16/9] relative">
-			<a href={"/portfolio/"+data.featuredProject?.uid || ''} class="h-full w-full flex flex-col justify-end items-end relative">
-			  <img src={pageData.featuredImageOverride.url||featuredProject.data.hero.url||''} alt={featuredProject.data.title||''  + " Hero Image"} class="absolute w-full h-full object-cover"/>
+			<svelte:element this={featuredProject ? 'a' : 'div'} href={featuredProject ? "/portfolio/" + featuredProject.uid : undefined} class="h-full w-full flex flex-col justify-end items-end relative">
+			  <img src={pageData.featuredImageOverride.url||featuredProject?.data.hero.url||''} alt={(featuredProject?.data.title||'') + " Hero Image"} class="absolute w-full h-full object-cover"/>
 			  <div class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700" style="background: linear-gradient(180deg, rgba(12, 19, 35, 0.15) 0%, rgba(12, 19, 35, 0.80) 81.09%) 50% / cover no-repeat;" />
 			  <div class="w-full flex flex-row justify-between p-6 z-10" >
 				  <div class="w-4/5">
-					  <p class="text-white uppercase">{pageData.featuredTitleOverride||featuredProject.data.title||''}</p>
-					  <p class="text-light">{pageData.featuredSubtitleOverride ||mediumString(featuredProject)||''}</p>
+					  <p class="text-white uppercase">{pageData.featuredTitleOverride||featuredProject?.data.title||''}</p>
+					  <p class="text-light">{pageData.featuredSubtitleOverride || (featuredProject ? mediumString(featuredProject) : '') || ''}</p>
 				  </div>
+				  {#if featuredProject}
 				  <dive class="brightness-200 hover:brightness-50 transition bump w-12 h-12">
 					  <img src={arrowButton} alt="go to page" class="h-full"/>
 				  </dive>
-			  </div>  
-			</a>
+				  {/if}
+			  </div>
+			</svelte:element>
 		  </div>
+		{/if}
 
 		<div class="w-full flex flex-col lg:flex-row mt-6 flex-wrap relative">
 			{#each projects as project, i}
