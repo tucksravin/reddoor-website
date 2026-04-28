@@ -251,6 +251,7 @@
               ><img
                 src={rotatingReddoor}
                 alt="reddoor drawn in multiple styles"
+                loading="lazy"
               /></a
             >
             <a href="/portfolio" class="text-primary underline">Portfolio</a>

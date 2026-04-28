@@ -174,6 +174,7 @@
         ? viewportWidth - (viewportHeight * 16) / 9 + 240
         : 0}px center"
       loading="eager"
+      fetchpriority="high"
     />
 
     <div class="w-full max-w-[100vw] h-full max-h-screen relative">
@@ -537,6 +538,7 @@
               alt={project.data.title + " Hero Image"}
               class="absolute w-full h-full object-cover"
               loading="lazy"
+              fetchpriority="low"
             />
             <div
               class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700"

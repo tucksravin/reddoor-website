@@ -18,6 +18,8 @@
   <PrismicImage
     field={data.page.data.hero}
     class="w-full h-full absolute object-cover"
+    loading="eager"
+    fetchpriority="high"
   />
   <div
     class="w-full h-full absolute"
@@ -99,6 +101,7 @@
             alt={(data.relatedProjectOne.data.title || "") + " Hero Image"}
             class="absolute w-full h-full object-cover"
             loading="lazy"
+            fetchpriority="low"
           />
           <div
             class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700"
@@ -129,6 +132,7 @@
             alt={(data.relatedProjectTwo.data.title || "") + " Hero Image"}
             class="absolute w-full h-full object-cover"
             loading="lazy"
+            fetchpriority="low"
           />
           <div
             class="w-full h-full absolute top-0 left-0 hover:opacity-60 transition-opacity duration-700"
