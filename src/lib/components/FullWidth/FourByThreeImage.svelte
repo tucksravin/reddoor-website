@@ -32,13 +32,12 @@
       : ''}  rounded-xs flex items-center justify-center relative"
   >
     {#if img}
-      <Img src={img} {alt} class="z-10 w-full" loading="lazy" />
+      <Img src={img} {alt} class="z-10 w-full" />
     {:else}
       <img
         {src}
         {alt}
         class="z-10 {isPlaceholder ? 'w-16 bg-[#F2F5F7]' : 'w-full'}"
-        loading="lazy"
       />
     {/if}
     <div
