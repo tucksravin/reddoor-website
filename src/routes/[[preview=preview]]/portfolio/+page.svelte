@@ -209,6 +209,7 @@
           class="w-full aspect-4/3"
           src={bed}
           alt="a beautiful bed"
+          loading="lazy"
         />
       </div>
       <div class="w-full flex flex-col-reverse lg:flex-row">
@@ -241,6 +242,7 @@
             class="h-full w-auto top-0 left-0 object-cover object-left"
             src={catalogs}
             alt="catalogs"
+            loading="lazy"
           />
         </div>
       </div>
@@ -313,6 +315,7 @@
         class="h-full object-cover"
         src={roadmap}
         alt="roadmap mockup on iphone"
+        loading="lazy"
       />
     </div>
   </div>
@@ -351,6 +354,7 @@
             class="h-full object-cover"
             src={report}
             alt="annual reports"
+            loading="lazy"
           />
         </div>
       </div>
@@ -533,6 +537,7 @@
               src={project.data.hero.url || ""}
               alt={project.data.title + " Hero Image"}
               class="absolute w-full h-full object-cover"
+              loading="lazy"
               fetchpriority="low"
             />
             <div

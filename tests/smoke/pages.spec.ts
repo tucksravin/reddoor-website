@@ -1,24 +1,35 @@
 import { test, expect, type Page, type ConsoleMessage } from "@playwright/test";
 
 // Console messages we don't care about. Add patterns here only after seeing
-// them in CI and confirming they aren't actionable.
+// them in CI and confirming they aren't actionable. Patterns are matched
+// against both the message text and the offending resource URL — Chromium's
+// "Failed to load resource" text omits the URL, so URL matching is what
+// actually catches third-party network noise.
 const ALLOWED_CONSOLE_PATTERNS: RegExp[] = [
-  // Vimeo iframe embeds emit cross-origin / autoplay warnings we can't control.
+  // Vimeo iframe embeds + their CDN telemetry endpoints (lensflare, arclight,
+  // i.vimeocdn) occasionally 403 from cloud IPs due to bot detection.
   /vimeo/i,
   // Turnstile (Cloudflare) telemetry occasionally surfaces in console.
   /turnstile|challenges\.cloudflare/i,
+  // Font Awesome kit script injects icon SVGs at runtime; nothing we ship.
+  /fontawesome/i,
+  // Font Awesome's injected SVGs sometimes carry an invalid preserveAspectRatio
+  // value ("xMinYMin none") — Chromium logs a parser error attributed to the
+  // page itself (no URL), so this has to be matched on text.
+  /<svg> attribute preserveAspectRatio: Trailing garbage/,
 ];
 
 function attachConsoleWatcher(page: Page, extraAllowed: RegExp[] = []) {
   const errors: string[] = [];
   const allowed = [...ALLOWED_CONSOLE_PATTERNS, ...extraAllowed];
-  const isAllowed = (text: string) => allowed.some((re) => re.test(text));
+  const isAllowed = (s: string) => !!s && allowed.some((re) => re.test(s));
 
   page.on("console", (msg: ConsoleMessage) => {
     if (msg.type() !== "error") return;
     const text = msg.text();
-    if (isAllowed(text)) return;
-    errors.push(`[console.error] ${text}`);
+    const url = msg.location()?.url ?? "";
+    if (isAllowed(text) || isAllowed(url)) return;
+    errors.push(`[console.error] ${text}${url ? ` (${url})` : ""}`);
   });
 
   page.on("pageerror", (err) => {

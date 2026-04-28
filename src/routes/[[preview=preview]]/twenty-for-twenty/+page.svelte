@@ -170,6 +170,7 @@
                       src={card.image}
                       alt="stack of catalogs"
                       class="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   {:else}
                     <PrismicImage

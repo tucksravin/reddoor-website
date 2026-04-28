@@ -110,6 +110,7 @@
                 ""}
               alt={project.data.title + " Hero Image"}
               class="absolute w-full h-full object-cover"
+              loading="lazy"
               fetchpriority="low"
             />
             <div
