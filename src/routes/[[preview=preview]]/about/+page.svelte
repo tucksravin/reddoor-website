@@ -16,6 +16,7 @@
   import LogoSoup from "$lib/components/LogoSoup.svelte";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
+  import { untrack } from "svelte";
   import type { PageData } from "./$types";
 
   let { data }: { data: PageData } = $props();
@@ -168,15 +169,19 @@
   $effect(() => {
     if (!browser || typeof window === "undefined") return;
 
-    checkIfMobile();
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", checkIfMobile);
     window.addEventListener("click", handleClickOutside);
     window.addEventListener("keydown", handleKeydown);
 
-    animationFrameId = requestAnimationFrame(animate);
-    handleScroll();
+    // Bootstrap calls only — untracked so this effect doesn't re-run on viewport
+    // state changes and tear down the listeners it just registered.
+    untrack(() => {
+      checkIfMobile();
+      animationFrameId = requestAnimationFrame(animate);
+      handleScroll();
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);

@@ -11,6 +11,7 @@
   import { isInHero } from "$lib/stores/isInHero.svelte";
   import Img from "@zerodevx/svelte-img";
   import drawnLogo from "$lib/assets/icons/logos/staticReddoor.png";
+  import { untrack } from "svelte";
 
   const MASK_BASE = 0.25;
   const MASK_GROWTH = 14;
@@ -125,7 +126,9 @@
     mq.addEventListener("change", handleMQ);
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    updateScroll();
+    // Bootstrap call only — wrapped in untrack so this effect doesn't re-run
+    // on viewport state changes and tear down the listener it just registered.
+    untrack(() => updateScroll());
 
     const transitionTimer = setTimeout(
       () => (transitioning = false),
@@ -214,11 +217,7 @@
   </div>
 {/if}
 
-<div
-  class="w-screen"
-  bind:this={openingSection}
-  style:--mask-scale={maskScale}
->
+<div class="w-screen" bind:this={openingSection} style:--mask-scale={maskScale}>
   <div class="h-dvh w-screen fixed bottom-0 left-0 bg-paper-red">
     <ContentWidth
       class="flex flex-col justify-center items-center h-full z-10 relative {percentageScrolled >

@@ -15,6 +15,13 @@ export default [
         ...globals.browser,
         ...globals.node,
         NodeJS: "readonly",
+        $state: "readonly",
+        $derived: "readonly",
+        $effect: "readonly",
+        $props: "readonly",
+        $bindable: "readonly",
+        $inspect: "readonly",
+        $host: "readonly",
       },
     },
     rules: {
@@ -40,6 +47,16 @@ export default [
     },
   },
   {
+    files: ["**/*.ts"],
+    languageOptions: {
+      parser: tsParser,
+    },
+    rules: {
+      // The base rule reports type-only imports and overload signatures as unused.
+      "no-unused-vars": "off",
+    },
+  },
+  {
     ignores: [
       ".svelte-kit/**",
       ".slicemachine/**",
@@ -49,8 +66,7 @@ export default [
       "node_modules/**",
       "static/**",
       "customtypes/**",
-      "src/prismicio-types.d.ts",
-      "**/*.ts",
+      "**/*.d.ts",
     ],
   },
 ];

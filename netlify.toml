@@ -1,3 +1,8 @@
 [build]
-    command = "pnpm run build"
+    command = "pnpm run build && pnpm run test:smoke"
     publish = "build/"
+
+[build.environment]
+    # Install Playwright browsers inside node_modules so Netlify's build cache
+    # picks them up (saves ~90MB / ~30s on warm builds).
+    PLAYWRIGHT_BROWSERS_PATH = "0"

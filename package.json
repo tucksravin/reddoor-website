@@ -11,11 +11,13 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
     "lint": "prettier --check . --plugin prettier-plugin-svelte . && eslint .",
     "format": "prettier --write . --plugin prettier-plugin-svelte .",
+    "test:smoke": "playwright install chromium && playwright test",
     "slicemachine": "start-slicemachine",
     "vite:devHost": "vite dev --host --port 8888"
   },
   "devDependencies": {
     "@eslint/js": "^9",
+    "@playwright/test": "^1.59.1",
     "@slicemachine/adapter-sveltekit": "^0.3.60",
     "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/kit": "^2.57.1",
