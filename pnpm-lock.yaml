@@ -1,4 +1,4 @@
-lockfileVersion: "9.0"
+lockfileVersion: '9.0'
 
 settings:
   autoInstallPeers: true
@@ -673,6 +673,7 @@ packages:
         integrity: sha512-WT+d/cgqKkkKySYmqoZ8y3pxx7lx9vVejxW/W4DOFMYVSkErR+w7mf2u8m/y4+xHe7yY9DAXQMWQhpnMuFfScw==,
       }
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
+
     cpu: [x64]
     os: [linux]
     libc: [musl]
