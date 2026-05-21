@@ -286,19 +286,21 @@
               <ContentWidth
                 class="flex flex-col items-start justify-end h-full pb-4 lg:pb-16"
               >
-                {#if isFilled.link(currentSlide.project_link)}
-                  <PrismicLink
-                    field={currentSlide.project_link}
-                    class="pointer-events-auto"
-                  >
-                    <p class="text-white text-left underline underline-offset-4">
+                {#if currentSlide.project_name}
+                  {#if isFilled.link(currentSlide.project_link)}
+                    <PrismicLink
+                      field={currentSlide.project_link}
+                      class="pointer-events-auto"
+                    >
+                      <p class="text-white text-left underline underline-offset-4">
+                        {currentSlide.project_name}
+                      </p>
+                    </PrismicLink>
+                  {:else}
+                    <p class="text-white text-left">
                       {currentSlide.project_name}
                     </p>
-                  </PrismicLink>
-                {:else if currentSlide.project_name}
-                  <p class="text-white text-left">
-                    {currentSlide.project_name}
-                  </p>
+                  {/if}
                 {/if}
                 <p class="text-white text-left">
                   {currentSlide.services}
