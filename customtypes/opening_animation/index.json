@@ -31,7 +31,7 @@
             "project_name": {
               "type": "Text",
               "config": {
-                "label": "project name",
+                "label": "project title",
                 "placeholder": ""
               }
             },
