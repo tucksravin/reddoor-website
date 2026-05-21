@@ -1,0 +1,61 @@
+{
+  "format": "custom",
+  "id": "opening_animation",
+  "label": "Opening Animation",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "slides": {
+        "type": "Group",
+        "config": {
+          "label": "slides",
+          "repeat": true,
+          "fields": {
+            "background_image": {
+              "type": "Image",
+              "config": {
+                "label": "background image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "background_image_mobile_crop": {
+              "type": "Image",
+              "config": {
+                "label": "background image mobile crop",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "project_name": {
+              "type": "Text",
+              "config": {
+                "label": "project name",
+                "placeholder": ""
+              }
+            },
+            "services": {
+              "type": "Text",
+              "config": {
+                "label": "services",
+                "placeholder": ""
+              }
+            },
+            "project_link": {
+              "type": "Link",
+              "config": {
+                "label": "project link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": false,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
