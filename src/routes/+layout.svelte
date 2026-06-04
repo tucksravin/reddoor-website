@@ -93,7 +93,7 @@
 <svelte:window bind:scrollY />
 
 <svelte:head>
-  <title>{page.data.title}</title>
+  <title>{page.data.title ?? "Reddoor"}</title>
   {#if page.data.meta_description}
     <meta name="description" content={page.data.meta_description} />
   {/if}
