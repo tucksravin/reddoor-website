@@ -26,9 +26,7 @@ export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
     filters: [filter.not("document.tags", ["hide"])],
   });
 
-  const currentIndex = allProjects.findIndex(
-    (project) => project.uid === params.uid,
-  );
+  const currentIndex = allProjects.findIndex((project) => project.uid === params.uid);
   const prevProject = allProjects[currentIndex + 1] || null;
   const nextProject = allProjects[currentIndex - 1] || null;
   let relatedProjectOne = prevProject;
@@ -166,9 +164,7 @@ export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
     title: page.data.title + " | Reddoor Creative",
     heroHeading: page.data.title,
     meta_description:
-      page.data.meta_description ||
-      page.data.tagline ||
-      "Check out our work on " + page.data.title,
+      page.data.meta_description || page.data.tagline || "Check out our work on " + page.data.title,
     meta_title: page.data.meta_title || page.data.title + " | Reddoor Creative",
     meta_image: page.data.meta_image.url || page.data.hero?.url || metaImage,
     prevProject,
