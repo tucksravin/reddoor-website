@@ -66,15 +66,17 @@
   let isOrderSelectOpen = $state(false);
 
   $effect(() => {
-    // close the order dropdown whenever filters or order change
-    showBrand;
-    showDigital;
-    showEnvironmental;
-    showProduct;
-    showPrint;
-    showWeb;
-    showPackaging;
-    orderString;
+    // read filters/order so the dropdown closes whenever any of them change
+    const _deps = [
+      showBrand,
+      showDigital,
+      showEnvironmental,
+      showProduct,
+      showPrint,
+      showWeb,
+      showPackaging,
+      orderString,
+    ];
     isOrderSelectOpen = false;
   });
 

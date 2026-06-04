@@ -93,8 +93,8 @@
   };
 
   $effect(() => {
-    // track scrollY so this re-runs on scroll
-    scrollY;
+    // read scrollY so this effect re-runs on scroll
+    const _trackScroll = scrollY;
     if (isMobile) handleScroll();
   });
 </script>

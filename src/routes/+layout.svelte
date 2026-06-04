@@ -109,6 +109,7 @@
     content="width=device-width, initial-scale=1, user-scalable=no"
   />
   <!-- JSON-LD assembled via concatenation so the Svelte ESLint parser doesn't see a literal </script> tag -->
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html "<" +
     'script type="application/ld+json">' +
     JSON.stringify(organizationJsonLd) +

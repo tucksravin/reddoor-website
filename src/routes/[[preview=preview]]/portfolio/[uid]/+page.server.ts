@@ -61,7 +61,7 @@ export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
   }
 
   if (!isTwoSet) {
-    let projectTags = [{ tag: "branding", count: 0 }];
+    const projectTags = [{ tag: "branding", count: 0 }];
     let tagTotalCount = 0;
     projectTags.push({ tag: "product", count: 0 });
     projectTags.push({ tag: "packaging", count: 0 });
