@@ -5,7 +5,7 @@
   import type { ImageField } from "@prismicio/client";
   import { PrismicImage } from "@prismicio/svelte";
   import { slugForCard, parseCardNumberFromHash } from "$lib/twenty-for-twenty/hash";
-  import twentySketchFallback from "$lib/assets/images/twenty-sketch-fallback.jpg";
+  import twentySketchFallback from "$lib/assets/images/twenty-sketch-fallback.png";
 
   type ProjectCard = {
     number: number;
