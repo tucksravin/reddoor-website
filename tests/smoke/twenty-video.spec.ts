@@ -47,3 +47,34 @@ test("video reveals itself once it actually plays", async ({ page }) => {
   await expect(iframe).toHaveCSS("opacity", "0.9", { timeout: 20000 });
   await expect(fallback).toHaveCSS("opacity", "0");
 });
+
+// A stub that speaks Vimeo's postMessage protocol: announces "ready", streams a
+// burst of timeupdate heartbeats, then goes silent WITHOUT a pause event — the
+// exact iPad failure where iOS suspends a muted background autoplay mid-stream.
+const STALLING_VIMEO_STUB = `<!doctype html><html><body><script>
+  parent.postMessage(JSON.stringify({ event: "ready" }), "*");
+  var n = 0;
+  var timer = setInterval(function () {
+    parent.postMessage(JSON.stringify({ event: "timeupdate", data: { seconds: n * 0.2 } }), "*");
+    if (++n >= 8) clearInterval(timer); // ~1.6s of playback, then silence
+  }, 200);
+</script></body></html>`;
+
+test("fallback returns when playback stalls mid-stream (the iPad bug)", async ({ page }) => {
+  await page.route(/player\.vimeo\.com/, (route) =>
+    route.fulfill({ contentType: "text/html", body: STALLING_VIMEO_STUB }),
+  );
+  await page.goto("/twenty-for-twenty", { waitUntil: "domcontentloaded" });
+
+  const fallback = page.locator(FALLBACK);
+  const iframe = page.locator(IFRAME);
+
+  // Heartbeats arrive → the sketch hides and the video shows.
+  await expect(iframe).toHaveCSS("opacity", "0.9");
+  await expect(fallback).toHaveCSS("opacity", "0");
+
+  // Stream goes silent (no pause event) → the watchdog restores the static
+  // sketch instead of leaving the blank box that shipped to the iPad.
+  await expect(fallback).toHaveCSS("opacity", "0.9");
+  await expect(iframe).toHaveCSS("opacity", "0");
+});

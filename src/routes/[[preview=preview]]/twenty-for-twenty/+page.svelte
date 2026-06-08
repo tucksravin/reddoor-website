@@ -160,21 +160,42 @@
     };
   });
 
-  // Reveal the Vimeo iframe only when the player reports it is actually playing.
-  // We talk to the player over its postMessage API (no SDK dependency): subscribe
-  // to play events, and flip videoPlaying on the first one. If autoplay never
-  // starts, no event arrives and the static fallback simply remains.
+  // Reveal the Vimeo iframe only while playback is *continuously* confirmed via
+  // the player's postMessage API (no SDK dependency). iOS/iPadOS frequently
+  // fires an initial play event and then silently suspends a muted background
+  // autoplay — so a one-shot "it played" latch would hide the fallback and leave
+  // a blank box. Instead we gate on the steady stream of timeupdate events: each
+  // one (re)hides the fallback and arms a watchdog; if the stream stops (or we
+  // get pause/ended), the static sketch comes back. A device that never really
+  // plays never hides the fallback at all — so the box is never blank.
   $effect(() => {
     const iframe = vimeoIframe;
     if (!iframe) return;
+
+    // Longer than the ~250–330ms timeupdate cadence, so a couple of dropped
+    // ticks don't flicker the fallback, but short enough to recover quickly
+    // when iOS suspends playback mid-stream.
+    const PLAYBACK_TIMEOUT_MS = 700;
+    let watchdog: ReturnType<typeof setTimeout> | undefined;
 
     const post = (method: string, value?: string) =>
       iframe.contentWindow?.postMessage(JSON.stringify({ method, value }), "*");
 
     const subscribe = () => {
-      post("addEventListener", "play");
-      post("addEventListener", "playing");
-      post("addEventListener", "bufferend");
+      for (const event of ["timeupdate", "playProgress", "pause", "ended"]) {
+        post("addEventListener", event);
+      }
+    };
+
+    const onHeartbeat = () => {
+      videoPlaying = true;
+      clearTimeout(watchdog);
+      watchdog = setTimeout(() => (videoPlaying = false), PLAYBACK_TIMEOUT_MS);
+    };
+
+    const onStop = () => {
+      clearTimeout(watchdog);
+      videoPlaying = false;
     };
 
     const onMessage = (e: MessageEvent) => {
@@ -185,11 +206,20 @@
       } catch {
         return;
       }
-      // Vimeo emits "ready" once the player is live — (re)subscribe then, since
-      // listeners registered before ready can be dropped.
-      if (data?.event === "ready") subscribe();
-      if (data?.event === "play" || data?.event === "playing" || data?.event === "bufferend") {
-        videoPlaying = true;
+      switch (data?.event) {
+        // Vimeo emits "ready" once the player is live — (re)subscribe then,
+        // since listeners registered before ready can be dropped.
+        case "ready":
+          subscribe();
+          break;
+        case "timeupdate":
+        case "playProgress":
+          onHeartbeat();
+          break;
+        case "pause":
+        case "ended":
+          onStop();
+          break;
       }
     };
 
@@ -200,6 +230,7 @@
     return () => {
       window.removeEventListener("message", onMessage);
       iframe.removeEventListener("load", subscribe);
+      clearTimeout(watchdog);
     };
   });
 </script>
